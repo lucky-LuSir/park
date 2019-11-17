@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.contract.entity.ElectricityMeterEntity">
+
+    <!--  column对应数据库,property对应Bean-->
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.contract.entity.ElectricityMeterEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="ele_meter_code" property="eleMeterCode" jdbcType="VARCHAR"/>
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="ele_meter_name" property="eleMeterName" jdbcType="VARCHAR"/>
+        <result column="multiple" property="multiple" jdbcType="VARCHAR"/>
+        <result column="electricity_billing_type" property="electricityBillingType" jdbcType="VARCHAR"/>
+        <result column="init_electricity" property="initElectricity" jdbcType="NUMERIC"/>
+        <result column="electricity_average_price" property="electricityAveragePrice" jdbcType="NUMERIC"/>
+        <result column="electricity_peak" property="electricityPeak" jdbcType="NUMERIC"/>
+        <result column="electricity_flat" property="electricityFlat" jdbcType="NUMERIC"/>
+        <result column="electricity_trough" property="electricityTrough" jdbcType="NUMERIC"/>
+        <result column="electricity_peak_price" property="electricityPeakPrice" jdbcType="NUMERIC"/>
+        <result column="electricity_flat_price" property="electricityFlatPrice" jdbcType="NUMERIC"/>
+        <result column="electricity_trough_price" property="electricityTroughPrice" jdbcType="NUMERIC"/>
+        <result column="ele_is_open" property="eleIsOpen" jdbcType="BOOLEAN"/>
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <!-- 一对一查询，关联最新一条的电表抄表记录 -->
+        <association property="electricityRecordEntity" javaType="com.kfwy.park.ati.contract.entity.ElectricityRecordEntity">
+            <result column="ele_record_code" property="eleRecordCode" jdbcType="VARCHAR"/>
+            <result column="ele_meter_code" property="eleMeterCode" jdbcType="VARCHAR"/>
+            <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+            <result column="ele_code" property="eleCode" jdbcType="VARCHAR"/>
+            <result column="ele_meter_name" property="eleMeterName" jdbcType="VARCHAR"/>
+            <result column="electricity_billing_type" property="electricityBillingType" jdbcType="VARCHAR"/>
+            <result column="last_ele_average_degree" property="lastEleAverageDegree" jdbcType="NUMERIC"/>
+            <result column="current_ele_average_degree" property="currentEleAverageDegree" jdbcType="NUMERIC"/>
+            <result column="last_peak_degree" property="lastPeakDegree" jdbcType="NUMERIC"/>
+            <result column="current_peak_degree" property="currentPeakDegree" jdbcType="NUMERIC"/>
+            <result column="last_trough_degree" property="lastTroughDegree" jdbcType="NUMERIC"/>
+            <result column="current_trough_degree" property="currentTroughDegree" jdbcType="NUMERIC"/>
+            <result column="last_flat_degree" property="lastFlatDegree" jdbcType="NUMERIC"/>
+            <result column="current_flat_degree" property="currentFlatDegree" jdbcType="NUMERIC"/>
+            <result column="peak_degree" property="peakDegree" jdbcType="NUMERIC"/>
+            <result column="trough_degree" property="troughDegree" jdbcType="NUMERIC"/>
+            <result column="flat_degree" property="flatDegree" jdbcType="NUMERIC"/>
+            <result column="real_degree" property="realDegree" jdbcType="NUMERIC"/>
+            <result column="last_meter_record_date" property="lastMeterRecordDate" jdbcType="TIMESTAMP"/>
+            <result column="current_meter_record_date" property="currentMeterRecordDate" jdbcType="TIMESTAMP"/>
+            <result column="has_bill" property="hasBill" jdbcType="BOOLEAN"/>
+            <result column="record_month" property="recordMonth" jdbcType="TIMESTAMP"/>
+        </association>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_con_electricity_meter
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.eleMeterCode != null and i.eleMeterCode != ''">
+                    ele_meter_code,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+                <if test="i.eleMeterName != null and i.eleMeterName != ''">
+                    ele_meter_name,
+                </if>
+                <if test="i.multiple != null">
+                    multiple,
+                </if>
+                <if test="i.electricityBillingType != null">
+                    electricity_billing_type,
+                </if>
+                <if test="i.initElectricity != null">
+                    init_electricity,
+                </if>
+                <if test="i.electricityAveragePrice != null">
+                    electricity_average_price,
+                </if>
+                <if test="i.electricityPeak != null">
+                    electricity_peak,
+                </if>
+                <if test="i.electricityFlat != null">
+                    electricity_flat,
+                </if>
+                <if test="i.electricityTrough != null">
+                    electricity_trough,
+                </if>
+                <if test="i.electricityPeakPrice != null">
+                    electricity_peak_price,
+                </if>
+                <if test="i.electricityFlatPrice != null">
+                    electricity_flat_price,
+                </if>
+                <if test="i.electricityTroughPrice != null">
+                    electricity_trough_price,
+                </if>
+                <if test="i.eleIsOpen != null">
+                    ele_is_open,
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.eleMeterCode != null and i.eleMeterCode != ''">
+                    #{i.eleMeterCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+                <if test="i.eleMeterName != null and i.eleMeterName != ''">
+                    #{i.eleMeterName},
+                </if>
+                <if test="i.multiple != null">
+                    #{i.multiple},
+                </if>
+                <if test="i.electricityBillingType != null">
+                    #{i.electricityBillingType},
+                </if>
+                <if test="i.initElectricity != null">
+                    #{i.initElectricity},
+                </if>
+                <if test="i.electricityAveragePrice != null">
+                    #{i.electricityAveragePrice},
+                </if>
+                <if test="i.electricityPeak != null">
+                    #{i.electricityPeak},
+                </if>
+                <if test="i.electricityFlat != null">
+                    #{i.electricityFlat},
+                </if>
+                <if test="i.electricityTrough != null">
+                    #{i.electricityTrough},
+                </if>
+                <if test="i.electricityPeakPrice != null">
+                    #{i.electricityPeakPrice},
+                </if>
+                <if test="i.electricityFlatPrice != null">
+                    #{i.electricityFlatPrice},
+                </if>
+                <if test="i.electricityTroughPrice != null">
+                    #{i.electricityTroughPrice},
+                </if>
+                <if test="i.eleIsOpen != null">
+                    #{i.eleIsOpen},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.contract.entity.ElectricityMeterEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_con_electricity_meter
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.eleMeterCode != null and i.eleMeterCode != ''">
+                    ele_meter_code = #{i.eleMeterCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+                <if test="i.eleMeterName != null and i.eleMeterName != ''">
+                    ele_meter_name = #{i.eleMeterName},
+                </if>
+                <if test="i.multiple != null">
+                    multiple = #{i.multiple},
+                </if>
+                <if test="i.electricityBillingType != null">
+                    electricity_billing_type = #{i.electricityBillingType},
+                </if>
+                <if test="i.initElectricity != null">
+                    init_electricity = #{i.initElectricity},
+                </if>
+                <if test="i.electricityAveragePrice != null">
+                    electricity_average_price = #{i.electricityAveragePrice},
+                </if>
+                <if test="i.electricityPeak != null">
+                    electricity_peak = #{i.electricityPeak},
+                </if>
+                <if test="i.electricityFlat != null">
+                    electricity_flat = #{i.electricityFlat},
+                </if>
+                <if test="i.electricityTrough != null">
+                    electricity_trough = #{i.electricityTrough},
+                </if>
+                <if test="i.electricityPeakPrice != null">
+                    electricity_peak_price = #{i.electricityPeakPrice},
+                </if>
+                <if test="i.electricityFlatPrice != null">
+                    electricity_flat_price = #{i.electricityFlatPrice},
+                </if>
+                <if test="i.electricityTroughPrice != null">
+                    electricity_trough_price = #{i.electricityTroughPrice},
+                </if>
+                <if test="i.eleIsOpen != null">
+                    ele_is_open = #{i.eleIsOpen},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.eleMeterCode != null">
+                    AND ele_meter_code = #{i.eleMeterCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_con_electricity_meter WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="eleMeterCode != null">
+                AND ele_meter_code = #{eleMeterCode}
+            </if>
+            <if test="eleCode != null">
+                AND ele_code = #{eleCode}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="eleMeterName != null">
+                AND ele_meter_name = #{eleMeterName}
+            </if>
+            <if test="multiple != null">
+                AND multiple = #{multiple}
+            </if>
+            <if test="electricityBillingType != null">
+                AND electricity_billing_type = #{electricityBillingType}
+            </if>
+            <if test="initElectricity != null">
+                AND init_electricity = #{initElectricity}
+            </if>
+            <if test="electricityAveragePrice != null">
+                AND electricity_average_price = #{electricityAveragePrice}
+            </if>
+            <if test="electricityPeak != null">
+                AND electricity_peak = #{electricityPeak}
+            </if>
+            <if test="electricityFlat != null">
+                AND electricity_flat = #{electricityFlat}
+            </if>
+            <if test="electricityTrough != null">
+                AND electricity_trough = #{electricityTrough}
+            </if>
+            <if test="electricityPeakPrice != null">
+                AND electricity_peak_price = #{electricityPeakPrice}
+            </if>
+            <if test="electricityFlatPrice != null">
+                AND electricity_flat_price = #{electricityFlatPrice}
+            </if>
+            <if test="electricityTroughPrice != null">
+                AND electricity_trough_price = #{electricityTroughPrice}
+            </if>
+            <if test="eleIsOpen != null">
+                AND ele_is_open = #{eleIsOpen}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 电表启用禁用操作 -->
+    <update id="changeEleIsOpen" parameterType="java.util.Map">
+        UPDATE t_yq_ati_con_electricity_meter SET ele_is_open = #{eleIsOpen} WHERE id = #{id} AND ele_meter_code = #{eleMeterCode}
+    </update>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.ElectricityMeterEntity">
+        SELECT * FROM t_yq_ati_con_electricity_meter
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_electricity_meter
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.ElectricityMeterEntity">
+        SELECT * FROM t_yq_ati_con_electricity_meter
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_electricity_meter
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 关联查询电表和电表记录表，电表记录表取最新的一条数据 -->
+    <select id="eleMeterUnionRecord" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_ati_con_electricity_meter m LEFT JOIN
+            (
+                SELECT r.* FROM t_yq_ati_con_electricity_record r RIGHT JOIN
+                    (SELECT MAX ( id ) AS id, ele_meter_code FROM t_yq_ati_con_electricity_record GROUP BY ele_meter_code) er
+                    ON r.id = er.id AND r.ele_meter_code = er.ele_meter_code
+
+                    <trim prefix="where" prefixOverrides="AND|OR">
+                        <if test="recordMonthStart != null">
+                            AND r.record_month <![CDATA[ >= ]]> #{recordMonthStart}
+                        </if>
+                        <if test="recordMonthEnd != null">
+                            AND r.record_month <![CDATA[ <= ]]> #{recordMonthEnd}
+                        </if>
+                    </trim>
+            ) r
+            ON m.ele_meter_code = r.ele_meter_code AND m.ct_code = r.ct_code
+
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="cpyCode != null">
+                AND m.cpy_code = #{cpyCode}
+            </if>
+            <if test="ctCode != null">
+                AND m.ct_code = #{ctCode}
+            </if>
+            <if test="eleMeterCode != null">
+                AND m.ele_meter_code = #{eleMeterCode}
+            </if>
+            AND m.ele_is_open = TRUE
+        </trim>
+    </select>
+</mapper>

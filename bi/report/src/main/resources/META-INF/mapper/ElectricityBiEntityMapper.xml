@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.report.entity.ElectricityReceivableBiEntity">
+
+    <resultMap id="BaseResultMap" type="com.kfwy.park.bi.report.entity.ElectricityReceivableBiEntity">
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="ct_name" property="ctName" jdbcType="VARCHAR"/>
+        <result column="ct_status" property="ctStatus" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="relate_name" property="relateName" jdbcType="VARCHAR"/>
+        <result column="contract_start_time" property="contractStartTime" jdbcType="TIMESTAMP"/>
+        <result column="contract_end_time" property="contractEndTime" jdbcType="TIMESTAMP"/>
+
+        <result column="last_billing_time" property="lastBillingTime" jdbcType="TIMESTAMP"/>
+        <result column="current_billing_time" property="currentBillingTime" jdbcType="TIMESTAMP"/>
+        <result column="receiving_date" property="receivingDate" jdbcType="TIMESTAMP"/>
+        <result column="receivable_price" property="receivablePrice" jdbcType="NUMERIC"/>
+        <result column="has_tax" property="hasTax" jdbcType="BOOLEAN"/>
+        <result column="tax_point" property="taxPoint" jdbcType="VARCHAR"/>
+        <result column="tax_price" property="taxPrice" jdbcType="NUMERIC"/>
+        <result column="total_price" property="totalPrice" jdbcType="NUMERIC"/>
+        <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 查询合同项目名、合同编号 -->
+    <select id="selectElectricityReceivableReport" parameterType="java.util.Map" resultMap="BaseResultMap">
+          SELECT
+             c.ct_code
+            ,c.ct_name
+			,c.ct_status
+            ,c.pk_name
+            ,c.company_name
+            ,c.relate_name
+            ,c.contract_start_time
+            ,c.contract_end_time
+            ,e.last_billing_time
+            ,e.current_billing_time
+            ,e.receiving_date
+            ,e.receivable_price
+			,e.has_tax
+            ,e.tax_point
+            ,e.pay_status
+            ,COALESCE(e.tax_price, 0) AS "tax_price"
+            ,(e.receivable_price + COALESCE(e.tax_price, 0)) AS "total_price"
+        FROM t_yq_ati_con_electricity_receipt e LEFT JOIN t_yq_ati_con_contract c on e.ct_code = c.ct_code
+        WHERE e.receiving_date BETWEEN #{startDate} and #{endDate}
+          AND e.is_deleted = false
+		  AND c.is_deleted = false
+          AND c.ct_status = #{ctStatus}
+		  AND c.cpy_code = #{cpyCode}
+        <if test="contractorDeptCode != null and contractorDeptCode !=''">
+            AND c.contractor_dept_code = #{contractorDeptCode}
+        </if>
+        <if test="pkCode != null and pkCode != ''">
+            AND c.pk_code = #{pkCode}
+        </if>
+	    order by e.receiving_date
+    </select>
+    <select id="selectSumReceivable" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        COALESCE(sum(w.paid_price), 0) as paidprice,
+        COALESCE(sum(w.receivable_price), 0) as receivableprice,
+        COALESCE(sum(w.tax_price), 0) as taxprice
+        FROM t_yq_ati_con_electricity_receipt w
+        LEFT JOIN t_yq_ati_con_contract c on w.ct_code = c.ct_code
+        <if test="territoryType != null or cityCode != null">
+            left join t_yq_pro_hos_park p on c.pk_code = p.pk_code
+        </if>
+        WHERE w.is_deleted = false
+        and c.is_deleted = false
+        and c.cpy_code = #{cpyCode}
+        and c.ct_status in ('4', '9')
+        <if test="startDate != null">
+            and w.receiving_date <![CDATA[ >= ]]> #{startDate}
+        </if>
+        <if test="endDate != null">
+            and  w.receiving_date <![CDATA[ <= ]]> #{endDate}
+        </if>
+        <if test="pkCode != null">
+            and c.pk_code = #{pkCode}
+        </if>
+        <if test="territoryType != null">
+            and p.territory_type = #{territoryType}
+        </if>
+        <if test="cityCode != null">
+            and p.city_code = #{cityCode}
+        </if>
+        <if test="payStatus != null">
+            and w.pay_status = #{payStatus}
+        </if>
+    </select>
+</mapper>

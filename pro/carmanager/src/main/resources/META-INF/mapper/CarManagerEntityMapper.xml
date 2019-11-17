@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.pro.carmanager.entity.CarManagerEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.carmanager.entity.CarManagerEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="car_code" property="carCode" jdbcType="VARCHAR"/>
+        <result column="license_num" property="licenseNum" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="car_owner_name" property="carOwnerName" jdbcType="VARCHAR"/>
+        <result column="car_owner_phone" property="carOwnerPhone" jdbcType="VARCHAR"/>
+        <result column="car_owner_id_card" property="carOwnerIdCard" jdbcType="VARCHAR"/>
+        <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+        <result column="company" property="company" jdbcType="VARCHAR"/>
+        <result column="driving_licence" property="drivingLicence" jdbcType="VARCHAR"/>
+        <result column="vehicle_license" property="vehicleLicense" jdbcType="VARCHAR"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_car_manager
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.carCode != null and i.carCode != ''">
+                    car_code,
+                </if>
+                <if test="i.licenseNum != null and i.licenseNum != ''">
+                    license_num,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.carOwnerName != null and i.carOwnerName != ''">
+                    car_owner_name,
+                </if>
+                <if test="i.carOwnerPhone != null and i.carOwnerPhone != ''">
+                    car_owner_phone,
+                </if>
+                <if test="i.carOwnerIdCard != null and i.carOwnerIdCard != ''">
+                    car_owner_id_card,
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code,
+                </if>
+                <if test="i.company != null and i.company != ''">
+                    company,
+                </if>
+                <if test="i.drivingLicence != null and i.drivingLicence != ''">
+                    driving_licence,
+                </if>
+                <if test="i.vehicleLicense != null and i.vehicleLicense != ''">
+                    vehicle_license,
+                </if>
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.carCode != null and i.carCode != ''">
+                    #{i.carCode},
+                </if>
+                <if test="i.licenseNum != null and i.licenseNum != ''">
+                    #{i.licenseNum},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.carOwnerName != null and i.carOwnerName != ''">
+                    #{i.carOwnerName},
+                </if>
+                <if test="i.carOwnerPhone != null and i.carOwnerPhone != ''">
+                    #{i.carOwnerPhone},
+                </if>
+                <if test="i.carOwnerIdCard != null and i.carOwnerIdCard != ''">
+                    #{i.carOwnerIdCard},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    #{i.cusCode},
+                </if>
+                <if test="i.company != null and i.company != ''">
+                    #{i.company},
+                </if>
+                <if test="i.drivingLicence != null and i.drivingLicence != ''">
+                    #{i.drivingLicence},
+                </if>
+                <if test="i.vehicleLicense != null and i.vehicleLicense != ''">
+                    #{i.vehicleLicense},
+                </if>
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.carmanager.entity.CarManagerEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_car_manager
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.carCode != null and i.carCode != ''">
+                    car_code = #{i.carCode},
+                </if>
+                <if test="i.licenseNum != null and i.licenseNum != ''">
+                    license_num = #{i.licenseNum},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.carOwnerName != null and i.carOwnerName != ''">
+                    car_owner_name = #{i.carOwnerName},
+                </if>
+                <if test="i.carOwnerPhone != null and i.carOwnerPhone != ''">
+                    car_owner_phone = #{i.carOwnerPhone},
+                </if>
+                <if test="i.carOwnerIdCard != null and i.carOwnerIdCard != ''">
+                    car_owner_id_card = #{i.carOwnerIdCard},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code = #{i.cusCode},
+                </if>
+                <if test="i.company != null and i.company != ''">
+                    company = #{i.company},
+                </if>
+                <if test="i.drivingLicence != null and i.drivingLicence != ''">
+                    driving_licence = #{i.drivingLicence},
+                </if>
+                <if test="i.vehicleLicense != null and i.vehicleLicense != ''">
+                    vehicle_license = #{i.vehicleLicense},
+                </if>
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id}
+            </if>
+            <if test="carCode != null and carCode != ''">
+                AND car_code = #{carCode}
+            </if>
+            <if test="licenseNum != null and licenseNum != ''">
+                AND license_num = #{licenseNum}
+            </if>
+            <if test="pkCode != null and pkCode != ''">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null and pkName != ''">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="carOwnerName != null and carOwnerName != ''">
+                AND car_owner_name = #{carOwnerName}
+            </if>
+            <if test="carOwnerPhone != null and carOwnerPhone != ''">
+                AND car_owner_phone = #{carOwnerPhone}
+            </if>
+            <if test="carOwnerIdCard != null and carOwnerIdCard != ''">
+                AND car_owner_id_card = #{carOwnerIdCard}
+            </if>
+            <if test="cusCode != null and cusCode != ''">
+                AND cus_code = #{cusCode}
+            </if>
+            <if test="company != null and company != ''">
+                AND company = #{company}
+            </if>
+            <if test="drivingLicence != null and drivingLicence != ''">
+                AND driving_licence = #{drivingLicence}
+            </if>
+            <if test="vehicleLicense != null and vehicleLicense != ''">
+                AND vehicle_license = #{vehicleLicense}
+            </if>
+            <if test="cpyCode != null and cpyCode != ''">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null and cpyName != ''">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null and ownerCode != ''">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null and ownerName != ''">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null and ownerDeptCode != ''">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null and ownerDeptName != ''">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createCode != null and createCode != ''">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null and createName != ''">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null and createDeptCode != ''">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null and createDeptName != ''">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null and lastUpdateCode != ''">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null and lastUpdateName != ''">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_car_manager WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.carmanager.entity.CarManagerEntity">
+        SELECT * FROM t_yq_pro_car_manager
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_car_manager
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.carmanager.entity.CarManagerEntity">
+        SELECT * FROM t_yq_pro_car_manager
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_car_manager
+        <include refid="selectSql"/>
+    </select>
+</mapper>

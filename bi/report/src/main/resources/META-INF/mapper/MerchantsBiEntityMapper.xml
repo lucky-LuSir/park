@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.report.entity.MerchantsBiEntity">
+    <resultMap id="BaseResultMap" type="com.kfwy.park.bi.report.entity.MerchantsBiEntity">
+        <result column="banner" property="banner" jdbcType="INTEGER"/>
+        <result column="leaflets" property="leaflets" jdbcType="INTEGER"/>
+        <result column="friends_share" property="friendsShare" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <!-- 查询一个员工，本月招商任务 -->
+    <select id="selectTask" parameterType="java.util.Map" resultType="com.kfwy.park.bi.report.entity.MerchantsBiEntity">
+        SELECT
+            sum(banner)        AS "banner",
+            sum(leaflets)      AS "leaflets",
+            sum(friends_share) AS "friendsShare"
+        FROM t_yq_task_attract_task
+        WHERE emp_code = #{empCode}
+              AND task_time <![CDATA[ >= ]]> #{startDate}
+              AND task_time <![CDATA[ <= ]]> #{endDate}
+    </select>
+
+
+    <!--****************************************************** 跟进查询 ******************************************************-->
+    <!-- 查询电话跟进 -->
+    <select id="selectPhoneFollowup" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) AS customerPhoneFollowup
+        FROM t_yq_ati_cus_followup
+        WHERE create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND followup_type = '1'
+        AND is_deleted = false
+        AND create_code = #{empCode}
+    </select>
+
+    <!-- 查询客户拜访 -->
+    <select id="selectVisityFollowup" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) AS customerVisityFollowup
+        FROM t_yq_ati_cus_followup
+        WHERE followup_time <![CDATA[ >= ]]> #{startDate}
+        AND followup_time <![CDATA[ <= ]]> #{endDate}
+        AND followup_type = '2'
+        AND is_deleted = false
+        AND create_code = #{empCode}
+    </select>
+
+
+    <!--****************************************************** 获客渠道查询 ******************************************************-->
+    <!-- 7为中介，10为库房无忧，排除这两项，得到 “主动获客” 数据 -->
+    <select id="selectCusCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(ditch) FROM t_yq_ati_cus_customer
+        WHERE ditch NOT IN ('7', '10')
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND is_deleted = false
+        AND create_code = #{empCode}
+    </select>
+
+    <!-- 7为中介，查询中介数据 -->
+    <select id="selectAgent" parameterType="java.util.Map" resultType="int">
+        SELECT count(ditch)
+        FROM t_yq_ati_cus_customer
+        WHERE ditch = '7'
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND is_deleted = false
+        AND create_code = #{empCode}
+    </select>
+
+    <!-- 10为库房无忧，查询库房无忧数据 -->
+    <select id="selectKfwy" parameterType="java.util.Map" resultType="int">
+        SELECT count(ditch)
+        FROM t_yq_ati_cus_customer
+        WHERE ditch = '10'
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND is_deleted = false
+        AND create_code = #{empCode}
+    </select>
+
+    <!--查询一个招商人员，本月的获客数量，不含不合适、谈判中等状态-->
+    <select id="selectCustomerCount" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT( id ) FROM t_yq_ati_cus_customer
+        WHERE is_deleted = false
+        AND create_time BETWEEN #{startDate} AND #{endDate}
+        AND create_code = #{empCode}
+    </select>
+
+
+    <!--****************************************************** 谈判、入驻、去化面积 ******************************************************-->
+    <!-- 查询一个员工本月谈判中的客户 -->
+    <select id="selectCusNegotiateCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_yq_ati_cus_customer
+        WHERE cus_status = '1'
+        AND is_deleted = FALSE
+        AND create_code = #{empCode}
+    </select>
+
+    <!-- 查询一个员工,本月入驻客户 -->
+    <select id="selectCusEntryCount" parameterType="java.util.Map" resultType="int">
+        SELECT
+        COUNT (id)
+        FROM
+        t_yq_ati_cus_customer
+        WHERE create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND cus_status in ('3', '6')
+        AND is_deleted = FALSE
+        AND create_code = #{empCode}
+    </select>
+
+    <!-- 查询一个员工,本月去化面积 -->
+    <select id="selectSignAreaMonth" parameterType="java.util.Map" resultType="BigDecimal">
+        SELECT
+        COALESCE(SUM(h.invest_area), 0) FROM t_yq_ati_con_contract_house h
+        LEFT JOIN t_yq_ati_con_contract c on c.ct_code = h.ct_code
+        WHERE h.create_time <![CDATA[ >= ]]> #{startDate}
+        AND h.create_time <![CDATA[ <= ]]> #{endDate}
+        AND h.is_deleted = FALSE
+        AND c.is_deleted = FALSE
+        AND c.ct_status in ('4','9','7')
+        AND c.contractor_code = #{empCode}
+    </select>
+
+
+    <!-- 查询一个员工，本月招商任务 -->
+    <select id="selectTaskBanner" parameterType="java.util.Map" resultType="int">
+        SELECT COALESCE(sum(banner), 0) AS banner
+        FROM t_yq_task_attract_task
+        WHERE emp_code = #{empCode}
+              AND task_time <![CDATA[ >= ]]> #{startDate}
+              AND task_time <![CDATA[ <= ]]> #{endDate}
+              AND is_deleted = FALSE
+    </select>
+
+    <!-- 查询一个员工，本月招商任务 -->
+    <select id="selectTaskLeaflets" parameterType="java.util.Map" resultType="int">
+        SELECT COALESCE(sum(leaflets), 0) AS leaflets
+        FROM t_yq_task_attract_task
+        WHERE emp_code = #{empCode}
+              AND task_time <![CDATA[ >= ]]> #{startDate}
+              AND task_time <![CDATA[ <= ]]> #{endDate}
+              AND is_deleted = FALSE
+    </select>
+
+    <!-- 查询一个员工，本月招商任务 -->
+    <select id="selectTaskFriendShare" parameterType="java.util.Map" resultType="int">
+        SELECT COALESCE(sum(friends_share), 0) AS friendsShare
+        FROM t_yq_task_attract_task
+        WHERE emp_code = #{empCode}
+              AND task_time <![CDATA[ >= ]]> #{startDate}
+              AND task_time <![CDATA[ <= ]]> #{endDate}
+              AND is_deleted = FALSE
+    </select>
+</mapper>

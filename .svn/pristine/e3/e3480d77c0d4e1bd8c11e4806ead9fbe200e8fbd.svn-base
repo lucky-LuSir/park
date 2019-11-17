@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="http://sh.kufangwuyou.com/js/gniuu/jquery-1.8.3.min.js"></script>
+
+
+    <script>
+
+        function ajaxSubmitFile(){
+            var form = new FormData(document.getElementById("ajaxSubmit"));
+
+//            var req = new XMLHttpRequest();
+//            req.open("post", "upload", false);
+//            req.send(form);
+
+
+            //jquery示例
+
+            $.ajax({
+                url:"upload",
+                type:"post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data){
+
+                    console.log("====success====");
+                    console.log(data);
+
+                    $('#result').html(data.message);
+                },
+                error:function(data){
+                    console.log("====error====");
+                    console.log(data);
+                    $('#result').html(data.message);
+                }
+            });
+
+        }
+    </script>
+</head>
+<body>
+
+<p>Form表单提交示例</p>
+<form action="/park/file/upload" method="post" name="f_upload" enctype="multipart/form-data">
+
+    <input type="file" name="file" multiple="multiple"/>
+    <br>
+    <input type="submit" name="表单上传">
+</form>
+
+<br>
+<p>Ajax提交示例</p>
+<form id="ajaxSubmit">
+    <input type="file" name="file" multiple="multiple"/>
+</form>
+<button onclick="ajaxSubmitFile()" >ajax提交</button>
+
+<br/>
+<br/>
+<br/>
+<p id="result"></p>
+
+</body>
+</html>

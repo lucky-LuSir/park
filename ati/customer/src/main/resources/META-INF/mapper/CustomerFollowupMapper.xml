@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="followup_code" property="followupCode" jdbcType="VARCHAR"/>
+        <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+        <result column="cus_name" property="cusName" jdbcType="VARCHAR"/>
+        <result column="cus_phone" property="cusPhone" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="cus_intent_park" property="cusIntentPark" jdbcType="VARCHAR"/>
+        <result column="reception_type" property="receptionType" jdbcType="VARCHAR"/>
+        <result column="followup_type" property="followupType" jdbcType="VARCHAR"/>
+        <result column="cus_channel" property="cusChannel" jdbcType="VARCHAR"/>
+        <result column="cus_status" property="cusStatus" jdbcType="VARCHAR"/>
+        <result column="improper_reason" property="improperReason" jdbcType="VARCHAR"/>
+        <result column="improper_reason_note" property="improperReasonNote" jdbcType="VARCHAR"/>
+        <result column="followup_res" property="followupRes" jdbcType="VARCHAR"/>
+        <result column="followup_time" property="followupTime" jdbcType="TIMESTAMP"/>
+        <result column="emp_code" property="empCode" jdbcType="VARCHAR"/>
+        <result column="emp_name" property="empName" jdbcType="VARCHAR"/>
+        <result column="emp_phone" property="empPhone" jdbcType="VARCHAR"/>
+        <result column="mid_cpy_code" property="midCpyCode" jdbcType="VARCHAR"/>
+        <result column="mid_cpy_name" property="midCpyName" jdbcType="VARCHAR"/>
+        <result column="mid_code" property="midCode" jdbcType="VARCHAR"/>
+        <result column="mid_name" property="midName" jdbcType="VARCHAR"/>
+        <result column="mid_phone" property="midPhone" jdbcType="VARCHAR"/>
+        <result column="mid_position" property="midPosition" jdbcType="VARCHAR"/>
+        <result column="attachment" property="attachment" jdbcType="VARCHAR"/>
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <collection property="cusIntentParkList" javaType="ArrayList"
+                    ofType="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity"
+                    columnPrefix="cip_" resultMap="cusIntentParkResultMap">
+        </collection>
+    </resultMap>
+
+    <resultMap id="cusIntentParkResultMap" type="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="followup_code" property="followupCode" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="region_code" property="regionCode" jdbcType="VARCHAR"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="pk_address" property="pkAddress" jdbcType="VARCHAR"/>
+        <result column="bd_code" property="bdCode" jdbcType="VARCHAR"/>
+        <result column="fl_code" property="flCode" jdbcType="VARCHAR"/>
+        <result column="fl_status" property="flStatus" jdbcType="VARCHAR"/>
+        <result column="cus_appraisal" property="cusAppraisal" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_cus_followup
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    followup_code,
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code,
+                </if>
+                <if test="i.cusName != null and i.cusName != ''">
+                    cus_name,
+                </if>
+                <if test="i.cusPhone != null and i.cusPhone != ''">
+                    cus_phone,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.cusIntentPark != null and i.cusIntentPark != ''">
+                    cus_intent_park,
+                </if>
+                <if test="i.receptionType != null and i.receptionType != ''">
+                    reception_type,
+                </if>
+
+                <if test="i.followupType != null and i.followupType != ''">
+                    followup_type,
+                </if>
+                <if test="i.cusChannel != null and i.cusChannel != ''">
+                    cus_channel,
+                </if>
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    cus_status,
+                </if>
+                <if test="i.improperReason != null and i.improperReason != ''">
+                    improper_reason,
+                </if>
+                <if test="i.improperReasonNote != null and i.improperReasonNote != ''">
+                    improper_reason_note,
+                </if>
+                <if test="i.followupRes != null and i.followupRes != ''">
+                    followup_res,
+                </if>
+                <if test="i.followupTime != null">
+                    followup_time,
+                </if>
+                <if test="i.empCode != null and i.empCode != ''">
+                    emp_code,
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name,
+                </if>
+                <if test="i.empPhone != null and i.empPhone != ''">
+                    emp_phone,
+                </if>
+                <if test="i.midCpyCode != null and i.midCpyCode != ''">
+                    mid_cpy_code,
+                </if>
+                <if test="i.midCpyName != null and i.midCpyName != ''">
+                    mid_cpy_name,
+                </if>
+                <if test="i.midCode != null and i.midCode != ''">
+                    mid_code,
+                </if>
+                <if test="i.midName != null and i.midName != ''">
+                    mid_name,
+                </if>
+                <if test="i.midPhone != null and i.midPhone != ''">
+                    mid_phone,
+                </if>
+                <if test="i.midPosition != null and i.midPosition != ''">
+                    mid_position,
+                </if>
+                <if test="i.attachment != null and i.attachment != ''">
+                    attachment,
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    #{i.followupCode},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    #{i.cusCode},
+                </if>
+                <if test="i.cusName != null and i.cusName != ''">
+                    #{i.cusName},
+                </if>
+                <if test="i.cusPhone != null and i.cusPhone != ''">
+                    #{i.cusPhone},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.cusIntentPark != null and i.cusIntentPark != ''">
+                    #{i.cusIntentPark},
+                </if>
+
+                <if test="i.receptionType != null and i.receptionType != ''">
+                    #{i.receptionType},
+                </if>
+
+                <if test="i.followupType != null and i.followupType != ''">
+                    #{i.followupType},
+                </if>
+                <if test="i.cusChannel != null and i.cusChannel != ''">
+                    #{i.cusChannel},
+                </if>
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    #{i.cusStatus},
+                </if>
+                <if test="i.improperReason != null and i.improperReason != ''">
+                    #{i.improperReason},
+                </if>
+                <if test="i.improperReasonNote != null and i.improperReasonNote != ''">
+                    #{i.improperReasonNote},
+                </if>
+                <if test="i.followupRes != null and i.followupRes != ''">
+                    #{i.followupRes},
+                </if>
+                <if test="i.followupTime != null">
+                    #{i.followupTime},
+                </if>
+                <if test="i.empCode != null and i.empCode != ''">
+                    #{i.empCode},
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    #{i.empName},
+                </if>
+                <if test="i.empPhone != null and i.empPhone != ''">
+                    #{i.empPhone},
+                </if>
+                <if test="i.midCpyCode != null and i.midCpyCode != ''">
+                    #{i.midCpyCode},
+                </if>
+                <if test="i.midCpyName != null and i.midCpyName != ''">
+                    #{i.midCpyName},
+                </if>
+                <if test="i.midCode != null and i.midCode != ''">
+                    #{i.midCode},
+                </if>
+                <if test="i.midName != null and i.midName != ''">
+                    #{i.midName},
+                </if>
+                <if test="i.midPhone != null and i.midPhone != ''">
+                    #{i.midPhone},
+                </if>
+                <if test="i.midPosition != null and i.midPosition != ''">
+                    #{i.midPosition},
+                </if>
+                <if test="i.attachment != null and i.attachment != ''">
+                    #{i.attachment},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_cus_followup
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    followup_code = #{i.followupCode},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code = #{i.cusCode},
+                </if>
+                <if test="i.cusName != null and i.cusName != ''">
+                    cus_name = #{i.cusName},
+                </if>
+                <if test="i.cusPhone != null and i.cusPhone != ''">
+                    cus_phone = #{i.cusPhone},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.cusIntentPark != null and i.cusIntentPark != ''">
+                    cus_intent_park = #{i.cusIntentPark},
+                </if>
+
+                <if test="i.receptionType != null and i.receptionType != ''">
+                    reception_type = #{i.receptionType},
+                </if>
+
+
+                <if test="i.followupType != null and i.followupType != ''">
+                    followup_type = #{i.followupType},
+                </if>
+                <if test="i.cusChannel != null and i.cusChannel != ''">
+                    cus_channel = #{i.cusChannel},
+                </if>
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    cus_status = #{i.cusStatus},
+                </if>
+                <if test="i.improperReason != null and i.improperReason != ''">
+                    improper_reason = #{i.improperReason},
+                </if>
+                <if test="i.improperReasonNote != null and i.improperReasonNote != ''">
+                    improper_reason_note = #{i.improperReasonNote},
+                </if>
+                <if test="i.followupRes != null and i.followupRes != ''">
+                    followup_res = #{i.followupRes},
+                </if>
+                <if test="i.followupTime != null  ">
+                    followup_time = #{i.followupTime},
+                </if>
+                <if test="i.empCode != null and i.empCode != ''">
+                    emp_code = #{i.empCode},
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name = #{i.empName},
+                </if>
+                <if test="i.empPhone != null and i.empPhone != ''">
+                    emp_phone = #{i.empPhone},
+                </if>
+                <if test="i.midCpyCode != null and i.midCpyCode != ''">
+                    mid_cpy_code = #{i.midCpyCode},
+                </if>
+                <if test="i.midCpyName != null and i.midCpyName != ''">
+                    mid_cpy_name = #{i.midCpyName},
+                </if>
+                <if test="i.midCode != null and i.midCode != ''">
+                    mid_code = #{i.midCode},
+                </if>
+                <if test="i.midName != null and i.midName != ''">
+                    mid_name = #{i.midName},
+                </if>
+                <if test="i.midPhone != null and i.midPhone != ''">
+                    mid_phone = #{i.midPhone},
+                </if>
+                <if test="i.midPosition != null and i.midPosition != ''">
+                    mid_position = #{i.midPosition},
+                </if>
+                <if test="i.attachment != null and i.attachment != ''">
+                    attachment = #{i.attachment},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.followupCode != null">
+                    AND followup_code = #{i.followupCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_cus_followup WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="followupCode != null">
+                AND followup_code = #{followupCode}
+            </if>
+            <if test="cusCode != null">
+                AND cus_code = #{cusCode}
+            </if>
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="empCode != null">
+                AND emp_code = #{empCode}
+            </if>
+            <if test="midCpyCode != null">
+                AND mid_cpy_code = #{midCpyCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="cusName != null">
+                AND cus_name = #{cusName}
+            </if>
+            <if test="cusPhone != null">
+                AND cus_phone = #{cusPhone}
+            </if>
+            <if test="cusIntentPark != null">
+                AND cus_intent_park = #{cusIntentPark}
+            </if>
+
+            <if test="receptionType != null">
+                AND reception_type = #{receptionType}
+            </if>
+
+
+            <if test="followupType != null">
+                AND followup_type = #{followupType}
+            </if>
+            <if test="cusChannel != null">
+                AND cus_channel = #{cusChannel}
+            </if>
+            <if test="cusStatus != null">
+                AND cus_status = #{cusStatus}
+            </if>
+            <if test="improperReason != null">
+                AND improper_reason = #{improperReason}
+            </if>
+            <if test="improperReasonNote != null">
+                AND improper_reason_note = #{improperReasonNote}
+            </if>
+            <if test="followupRes != null">
+                AND followup_res = #{followupRes}
+            </if>
+
+            <if test="followupTimeStart != null">
+                AND followup_time <![CDATA[ >= ]]> #{followupTimeStart}
+            </if>
+            <if test="followupTimeEnd != null">
+                AND followup_time <![CDATA[ <= ]]> #{followupTimeEnd}
+            </if>
+
+
+            <if test="empName != null">
+                AND emp_name = #{empName}
+            </if>
+            <if test="empPhone != null">
+                AND emp_phone = #{empPhone}
+            </if>
+            <if test="midCpyName != null">
+                AND mid_cpy_name = #{midCpyName}
+            </if>
+            <if test="midCode != null">
+                AND mid_code = #{midCode}
+            </if>
+            <if test="midName != null">
+                AND mid_name = #{midName}
+            </if>
+            <if test="midPhone != null">
+                AND mid_phone = #{midPhone}
+            </if>
+            <if test="midPosition != null">
+                AND mid_position = #{midPosition}
+            </if>
+            <if test="attachment != null">
+                AND attachment = #{attachment}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+
+            <if test="keyword != null and keyword != ''">
+                AND
+                (
+                cus_name like '%' || #{keyword} ||'%' or
+                cus_phone like '%' || #{keyword} ||'%' or
+                emp_name like '%' || #{keyword} ||'%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+        SELECT * FROM t_yq_ati_cus_followup
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_followup
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+        SELECT * FROM t_yq_ati_cus_followup
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_followup
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 查询一条跟进详细信息 -->
+    <!--<select id="selectOneFollowup" parameterType="String" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+        SELECT f.*,p.id AS cip_id,p.followup_code AS cip_followup_code,p.pk_code AS cip_pk_code,p.province_code AS cip_province_code,
+                p.province_name AS cip_province_name,p.city_code AS cip_city_code,p.city_name AS cip_city_name,p.region_code AS cip_region_code,
+                p.region_name AS cip_region_name,p.pk_address AS cip_pk_address,p.bd_code AS cip_bd_code,p.fl_code AS cip_fl_code,
+                p.last_rent_area AS cip_last_rent_area,p.fl_status AS cip_fl_status,p.cus_appraisal AS cip_cus_appraisal
+            FROM t_yq_ati_cus_followup f
+       LEFT JOIN t_yq_ati_customer_intent_park p
+                          ON f.followup_code = p.followup_code
+        WHERE f.followup_code = #{followupCode}
+          AND f.is_deleted = FALSE
+          AND p.is_deleted = FALSE
+    </select>-->
+
+    <!--看板：我的看板，计算本月意向客户-->
+    <select id="thisMonthFollowup" parameterType="java.util.Map" resultType="int">
+        SELECT
+        count (distinct cus_code )
+        FROM
+        t_yq_ati_cus_followup
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="cusStatus != null">
+                AND cus_status = #{cusStatus}
+            </if>
+            <if test="followupTimeStart != null">
+                AND followup_time <![CDATA[ >= ]]> #{followupTimeStart}
+            </if>
+            <if test="followupTimeEnd != null">
+                AND followup_time <![CDATA[ <= ]]> #{followupTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 查询跟进数据 -->
+    <select id="selectFollowup" parameterType="java.util.Map" resultType="int">
+        SELECT count(id)
+        FROM "t_yq_ati_cus_followup"
+        WHERE create_code = #{empCode}
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND cpy_code = #{cpyCode}
+        AND is_deleted = #{isDeleted}
+    </select>
+
+    <!--查询跟进的园区-->
+    <select id="selectPk" parameterType="java.util.Map" resultMap="baseResultMap">
+        select coalesce(pk_code,'0') pk_code ,pk_name
+        from t_yq_ati_cus_followup
+        <include refid="selectSql"/>
+        GROUP BY  pk_code,pk_name
+    </select>
+    <!--查询每个园区的每个人跟进次数-->
+    <select id="selectPkByCusCount" parameterType="java.util.Map" resultType="com.kfwy.park.ati.customer.entity.CustomerFollowupEntity">
+        SELECT cus_code as cusCode,cus_name as cusName,count(id) as pkByCusCount from t_yq_ati_cus_followup
+        <include refid="selectSql"/>
+        GROUP BY cus_code,cus_name
+    </select>
+
+</mapper>

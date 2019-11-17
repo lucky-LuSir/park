@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.contract.entity.RentIncrementEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.contract.entity.RentIncrementEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="inc_code" property="incCode" jdbcType="VARCHAR"/>
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="inc_start_time" property="incStartTime" jdbcType="TIMESTAMP"/>
+        <result column="inc_end_time" property="incEndTime" jdbcType="TIMESTAMP"/>
+        <result column="rent_total" property="rentTotal" jdbcType="NUMERIC"/>
+        <result column="avg_unit_price" property="avgUnitPrice" jdbcType="NUMERIC"/>
+        <result column="rent_invest_area" property="rentInvestArea" jdbcType="NUMERIC"/>
+        <result column="rent_increase_proportion" property="rentIncreaseProportion" jdbcType="NUMERIC"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_con_rent_increment
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.incCode != null and i.incCode != ''">
+                    inc_code,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+                <if test="i.incStartTime != null">
+                    inc_start_time,
+                </if>
+                <if test="i.incEndTime != null">
+                    inc_end_time,
+                </if>
+                <if test="i.rentTotal != null">
+                    rent_total,
+                </if>
+                <if test="i.avgUnitPrice != null">
+                    avg_unit_price,
+                </if>
+                <if test="i.rentInvestArea != null">
+                    rent_invest_area,
+                </if>
+                <if test="i.rentIncreaseProportion != null">
+                    rent_increase_proportion,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.incCode != null and i.incCode != ''">
+                    #{i.incCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+                <if test="i.incStartTime != null">
+                    #{i.incStartTime},
+                </if>
+                <if test="i.incEndTime != null">
+                    #{i.incEndTime},
+                </if>
+                <if test="i.rentTotal != null">
+                    #{i.rentTotal},
+                </if>
+                <if test="i.avgUnitPrice != null">
+                    #{i.avgUnitPrice},
+                </if>
+                <if test="i.rentInvestArea != null">
+                    #{i.rentInvestArea},
+                </if>
+                <if test="i.rentIncreaseProportion != null">
+                    #{i.rentIncreaseProportion},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                   #{i.isDeleted}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.contract.entity.RentIncrementEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_con_rent_increment
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.incCode != null and i.incCode != ''">
+                    inc_code = #{i.incCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+                <if test="i.incStartTime != null">
+                    inc_start_time = #{i.incStartTime},
+                </if>
+                <if test="i.incEndTime != null">
+                    inc_end_time = #{i.incEndTime},
+                </if>
+                <if test="i.rentTotal != null">
+                    rent_total = #{i.rentTotal},
+                </if>
+                <if test="i.avgUnitPrice != null">
+                    avg_unit_price = #{i.avgUnitPrice},
+                </if>
+                <if test="i.rentInvestArea != null">
+                    rent_invest_area = #{i.rentInvestArea},
+                </if>
+                <if test="i.rentIncreaseProportion != null">
+                    rent_increase_proportion = #{i.rentIncreaseProportion},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.incCode != null">
+                    AND inc_code = #{i.incCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_con_rent_increment WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="incCode != null">
+                AND inc_code = #{incCode}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+            <if test="incStartTime != null">
+                AND inc_start_time = #{incStartTime}
+            </if>
+            <if test="incEndTime != null">
+                AND inc_end_time = #{incEndTime}
+            </if>
+            <if test="rentTotal != null">
+                AND rent_total = #{rentTotal}
+            </if>
+            <if test="avgUnitPrice != null">
+                AND avg_unit_price = #{avgUnitPrice}
+            </if>
+            <if test="rentInvestArea != null">
+                AND rent_invest_area = #{rentInvestArea}
+            </if>
+            <if test="rentIncreaseProportion != null">
+                AND rent_increase_proportion = #{rentIncreaseProportion}
+            </if>
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.RentIncrementEntity">
+        SELECT * FROM t_yq_ati_con_rent_increment
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_rent_increment
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.RentIncrementEntity">
+        SELECT * FROM t_yq_ati_con_rent_increment
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_rent_increment
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 查询某合同在某月的递增信息 -->
+    <select id="selectOneIncDel" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.RentIncrementEntity">
+        SELECT * FROM t_yq_ati_con_rent_increment
+        WHERE ct_code = #{ctCode}
+          AND (#{monthBegin} BETWEEN inc_start_time and  inc_end_time OR #{monthEnd} BETWEEN inc_start_time and  inc_end_time)
+        <if test="isDeleted != null">
+            AND is_deleted = #{isDeleted}
+        </if>
+        <if test="cpyCode != null">
+            AND cpy_code = #{cpyCode}
+        </if>
+        ORDER BY id DESC
+    </select>
+
+    <!-- 通过ctCode删除合同租金递增详情 -->
+    <delete id="delIncDelByCtCode" parameterType="java.util.Map">
+        DELETE FROM t_yq_ati_con_rent_increment
+        WHERE ct_code = #{ctCode}
+    </delete>
+
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>grossBiReport</fileName>
+    <!--导出应收租金报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>经营开始日</title>
+        <alias>businessStartDay</alias>
+    </cell>
+
+    <cell>
+        <title>经营结束日</title>
+        <alias>businessEndDay</alias>
+    </cell>
+
+    <cell>
+        <title>项目名称</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>项目承租面积（㎡）</title>
+        <alias>acreage</alias>
+    </cell>
+
+    <cell>
+        <title>项目计租面积（㎡）</title>
+        <alias>investArea</alias>
+    </cell>
+
+    <cell>
+        <title>空置计租面积（㎡）</title>
+        <alias>rentableArea</alias>
+    </cell>
+
+    <cell>
+        <title>去化计租面积（㎡）</title>
+        <alias>rentInvestArea</alias>
+    </cell>
+
+    <cell>
+        <title>去化率（%）</title>
+        <alias>rate</alias>
+    </cell>
+
+    <cell>
+        <title>租金收入(元)</title>
+        <alias>rentIncome</alias>
+    </cell>
+
+    <cell>
+        <title>项目承租金额（元）</title>
+        <alias>projectPrice</alias>
+    </cell>
+
+    <cell>
+        <title>出租承租金额(元)</title>
+        <alias>investPrice</alias>
+    </cell>
+    <cell>
+        <title>项目毛利率（%）</title>
+        <alias>projectGross</alias>
+    </cell>
+    <cell>
+        <title>出租毛利率（%）</title>
+        <alias>investGross</alias>
+    </cell>
+</exportFile>
+

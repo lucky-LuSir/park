@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.exp.contract.entity.LandlordContractEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.exp.contract.entity.LandlordContractEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="ld_code" property="ldCode" jdbcType="VARCHAR"/>
+        <result column="ld_ct_name" property="ldCtName" jdbcType="VARCHAR"/>
+        <result column="process_definition_id" property="processDefinitionId" jdbcType="VARCHAR"/>
+        <result column="process_instance_id" property="processInstanceId" jdbcType="VARCHAR"/>
+        <result column="ld_ct_status" property="ldCtStatus" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="acreage" property="acreage" jdbcType="NUMERIC"/>
+        <result column="landlord_name" property="landlordName" jdbcType="VARCHAR"/>
+        <result column="landlord_sex" property="landlordSex" jdbcType="VARCHAR"/>
+        <result column="landlord_phone" property="landlordPhone" jdbcType="VARCHAR"/>
+        <result column="contractor_code" property="contractorCode" jdbcType="VARCHAR"/>
+        <result column="contractor" property="contractor" jdbcType="VARCHAR"/>
+        <result column="contractor_phone" property="contractorPhone" jdbcType="VARCHAR"/>
+        <result column="contractor_dept_code" property="contractorDeptCode" jdbcType="VARCHAR"/>
+        <result column="contract_start_date" property="contractStartDate" jdbcType="TIMESTAMP"/>
+        <result column="contract_end_date" property="contractEndDate" jdbcType="TIMESTAMP"/>
+        <result column="advance_day" property="advanceDay" jdbcType="INTEGER"/>
+        <result column="has_detail_add" property="hasDetailAdd" jdbcType="BOOLEAN"/>
+        <result column="progressive_increase_detail" property="progressiveIncreaseDetail" jdbcType="VARCHAR"/>
+        <result column="rent_increasing_cycle" property="rentIncreasingCycle" jdbcType="INTEGER"/>
+        <result column="rent_increase_proportion" property="rentIncreaseProportion" jdbcType="NUMERIC"/>
+        <result column="rent_univalence" property="rentUnivalence" jdbcType="NUMERIC"/>
+        <result column="rent_unit" property="rentUnit" jdbcType="VARCHAR"/>
+        <result column="deposit_rule" property="depositRule" jdbcType="VARCHAR"/>
+        <result column="pay_rule" property="payRule" jdbcType="VARCHAR"/>
+        <result column="deposit" property="deposit" jdbcType="NUMERIC"/>
+        <result column="contract_url" property="contractUrl" jdbcType="VARCHAR"/>
+
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <collection property="landlordRentEntityList" ofType="com.kfwy.park.exp.contract.entity.LandlordRentEntity">
+            <result column="rent_code" property="rentCode" jdbcType="VARCHAR"/>
+            <result column="ld_code" property="ldCode" jdbcType="VARCHAR"/>
+            <result column="cost_start_time" property="costStartTime" jdbcType="TIMESTAMP"/>
+            <result column="cost_end_time" property="costEndTime" jdbcType="TIMESTAMP"/>
+            <result column="deadline" property="deadline" jdbcType="TIMESTAMP"/>
+            <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+            <result column="rent_price" property="rentPrice" jdbcType="NUMERIC"/>
+            <result column="rent_tax_price" property="rentTaxPrice" jdbcType="NUMERIC"/>
+            <result column="rent_on_invoice" property="rentOnInvoice" jdbcType="NUMERIC"/>
+            <result column="rent_real_tax_point" property="rentRealTaxPoint" jdbcType="VARCHAR"/>
+            <result column="rent_invoice_tax_point" property="rentInvoiceTaxPoint" jdbcType="VARCHAR"/>
+            <result column="property_price" property="propertyPrice" jdbcType="NUMERIC"/>
+            <result column="property_tax_price" property="propertyTaxPrice" jdbcType="NUMERIC"/>
+            <result column="property_on_invoice" property="propertyOnInvoice" jdbcType="NUMERIC"/>
+            <result column="property_real_tax_point" property="propertyRealTaxPoint" jdbcType="VARCHAR"/>
+            <result column="property_invoice_tax_point" property="propertyInvoiceTaxPoint" jdbcType="VARCHAR"/>
+            <result column="other_price" property="otherPrice" jdbcType="NUMERIC"/>
+            <result column="total_price" property="totalPrice" jdbcType="NUMERIC"/>
+            <result column="receivable_price" property="receivablePrice" jdbcType="NUMERIC"/>
+            <result column="paid_price" property="paidPrice" jdbcType="NUMERIC"/>
+            <result column="discounts_price" property="discountsPrice" jdbcType="NUMERIC"/>
+            <result column="pay_date" property="payDate" jdbcType="TIMESTAMP"/>
+        </collection>
+    </resultMap>
+
+    <!-- 添加 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_exp_invpark_contract
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.ldCode != null and i.ldCode != ''">
+                    ld_code,
+                </if>
+                <if test="i.ldCtName != null and i.ldCtName != ''">
+                    ld_ct_name,
+                </if>
+                <if test="i.processDefinitionId != null and i.processDefinitionId != ''">
+                    process_definition_id,
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id,
+                </if>
+                <if test="i.ldCtStatus != null and i.ldCtStatus != ''">
+                    ld_ct_status,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.acreage != null">
+                    acreage,
+                </if>
+                <if test="i.landlordName != null and i.landlordName != ''">
+                    landlord_name,
+                </if>
+                <if test="i.landlordSex != null and i.landlordSex != ''">
+                    landlord_sex,
+                </if>
+                <if test="i.landlordPhone != null and i.landlordPhone != ''">
+                    landlord_phone,
+                </if>
+                <if test="i.contractorCode != null and i.contractorCode != ''">
+                    contractor_code,
+                </if>
+                <if test="i.contractor != null and i.contractor != ''">
+                    contractor,
+                </if>
+                <if test="i.contractorPhone != null and i.contractorPhone != ''">
+                    contractor_phone,
+                </if>
+                <if test="i.contractorDeptCode != null and i.contractorDeptCode != ''">
+                    contractor_dept_code,
+                </if>
+                <if test="i.contractStartDate != null">
+                    contract_start_date,
+                </if>
+                <if test="i.contractEndDate != null">
+                    contract_end_date,
+                </if>
+                <if test="i.advanceDay != null">
+                    advance_day,
+                </if>
+                <if test="i.hasDetailAdd != null">
+                    has_detail_add,
+                </if>
+                <if test="i.progressiveIncreaseDetail != null and i.progressiveIncreaseDetail != ''">
+                    progressive_increase_detail,
+                </if>
+                <if test="i.rentIncreasingCycle != null">
+                    rent_increasing_cycle,
+                </if>
+                <if test="i.rentIncreaseProportion != null">
+                    rent_increase_proportion,
+                </if>
+                <if test="i.rentUnivalence != null">
+                    rent_univalence,
+                </if>
+                <if test="i.rentUnit != null and i.rentUnit != ''">
+                    rent_unit,
+                </if>
+                <if test="i.depositRule != null and i.depositRule != ''">
+                    deposit_rule,
+                </if>
+                <if test="i.payRule != null and i.payRule != ''">
+                    pay_rule,
+                </if>
+                <if test="i.deposit != null">
+                    deposit,
+                </if>
+                <if test="i.contractUrl != null and i.contractUrl != ''">
+                    contract_url,
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.ldCode != null and i.ldCode != ''">
+                    #{i.ldCode},
+                </if>
+                <if test="i.ldCtName != null and i.ldCtName != ''">
+                    #{i.ldCtName},
+                </if>
+                <if test="i.processDefinitionId != null and i.processDefinitionId != ''">
+                    #{i.processDefinitionId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    #{i.processInstanceId},
+                </if>
+                <if test="i.ldCtStatus != null and i.ldCtStatus != ''">
+                    #{i.ldCtStatus},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.acreage != null">
+                    #{i.acreage},
+                </if>
+                <if test="i.landlordName != null and i.landlordName != ''">
+                    #{i.landlordName},
+                </if>
+                <if test="i.landlordSex != null and i.landlordSex != ''">
+                    #{i.landlordSex},
+                </if>
+                <if test="i.landlordPhone != null and i.landlordPhone != ''">
+                    #{i.landlordPhone},
+                </if>
+                <if test="i.contractorCode != null and i.contractorCode != ''">
+                    #{i.contractorCode},
+                </if>
+                <if test="i.contractor != null and i.contractor != ''">
+                    #{i.contractor},
+                </if>
+                <if test="i.contractorPhone != null and i.contractorPhone != ''">
+                    #{i.contractorPhone},
+                </if>
+                <if test="i.contractorDeptCode != null and i.contractorDeptCode != ''">
+                    #{i.contractorDeptCode},
+                </if>
+                <if test="i.contractStartDate != null">
+                    #{i.contractStartDate},
+                </if>
+                <if test="i.contractEndDate != null">
+                    #{i.contractEndDate},
+                </if>
+                <if test="i.advanceDay != null">
+                    #{i.advanceDay},
+                </if>
+                <if test="i.hasDetailAdd != null">
+                    #{i.hasDetailAdd},
+                </if>
+                <if test="i.progressiveIncreaseDetail != null and i.progressiveIncreaseDetail != ''">
+                    #{i.progressiveIncreaseDetail},
+                </if>
+                <if test="i.rentIncreasingCycle != null">
+                    #{i.rentIncreasingCycle},
+                </if>
+                <if test="i.rentIncreaseProportion != null">
+                    #{i.rentIncreaseProportion},
+                </if>
+                <if test="i.rentUnivalence != null">
+                    #{i.rentUnivalence},
+                </if>
+                <if test="i.rentUnit != null and i.rentUnit != ''">
+                    #{i.rentUnit},
+                </if>
+                <if test="i.depositRule != null and i.depositRule != ''">
+                    #{i.depositRule},
+                </if>
+                <if test="i.payRule != null and i.payRule != ''">
+                    #{i.payRule},
+                </if>
+                <if test="i.deposit != null">
+                    #{i.deposit},
+                </if>
+                <if test="i.contractUrl != null and i.contractUrl != ''">
+                    #{i.contractUrl},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <!-- 修改 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.exp.contract.entity.LandlordContractEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_exp_invpark_contract
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.ldCtName != null and i.ldCtName != ''">
+                    ld_ct_name = #{i.ldCtName},
+                </if>
+                <if test="i.processDefinitionId != null and i.processDefinitionId != ''">
+                    process_definition_id = #{i.processDefinitionId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id = #{i.processInstanceId},
+                </if>
+                <if test="i.ldCtStatus != null and i.ldCtStatus != ''">
+                    ld_ct_status = #{i.ldCtStatus},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.acreage != null">
+                    acreage = #{i.acreage},
+                </if>
+                <if test="i.landlordName != null and i.landlordName != ''">
+                    landlord_name = #{i.landlordName},
+                </if>
+                <if test="i.landlordSex != null and i.landlordSex != ''">
+                    landlord_sex = #{i.landlordSex},
+                </if>
+                <if test="i.landlordPhone != null and i.landlordPhone != ''">
+                    landlord_phone = #{i.landlordPhone},
+                </if>
+                <if test="i.contractorCode != null and i.contractorCode != ''">
+                    contractor_code = #{i.contractorCode},
+                </if>
+                <if test="i.contractor != null and i.contractor != ''">
+                    contractor = #{i.contractor},
+                </if>
+                <if test="i.contractorPhone != null and i.contractorPhone != ''">
+                    contractor_phone = #{i.contractorPhone},
+                </if>
+                <if test="i.contractorDeptCode != null and i.contractorDeptCode != ''">
+                    contractor_dept_code = #{i.contractorDeptCode},
+                </if>
+                <if test="i.contractStartDate != null">
+                    contract_start_date = #{i.contractStartDate},
+                </if>
+                <if test="i.contractEndDate != null">
+                    contract_end_date = #{i.contractEndDate},
+                </if>
+                <if test="i.advanceDay != null">
+                    advance_day = #{i.advanceDay},
+                </if>
+                <if test="i.hasDetailAdd != null">
+                    has_detail_add = #{i.hasDetailAdd},
+                </if>
+                <if test="i.progressiveIncreaseDetail != null and i.progressiveIncreaseDetail != ''">
+                    progressive_increase_detail = #{i.progressiveIncreaseDetail},
+                </if>
+                <if test="i.rentIncreasingCycle != null">
+                    rent_increasing_cycle = #{i.rentIncreasingCycle},
+                </if>
+                <if test="i.rentIncreaseProportion != null">
+                    rent_increase_proportion = #{i.rentIncreaseProportion},
+                </if>
+                <if test="i.rentUnivalence != null">
+                    rent_univalence = #{i.rentUnivalence},
+                </if>
+                <if test="i.rentUnit != null and i.rentUnit != ''">
+                    rent_unit = #{i.rentUnit},
+                </if>
+                <if test="i.depositRule != null and i.depositRule != ''">
+                    deposit_rule = #{i.depositRule},
+                </if>
+                <if test="i.payRule != null and i.payRule != ''">
+                    pay_rule = #{i.payRule},
+                </if>
+                <if test="i.deposit != null">
+                    deposit = #{i.deposit},
+                </if>
+                <if test="i.contractUrl != null and i.contractUrl != ''">
+                    contract_url = #{i.contractUrl},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.ldCode != null">
+                    AND ld_code = #{i.ldCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!-- 根据条件查询唯一结果，SQL片段 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="ldCode != null">
+                AND ld_code = #{ldCode}
+            </if>
+            <if test="ldCtName != null">
+                AND ld_ct_name = #{ldCtName}
+            </if>
+            <if test="processDefinitionId != null and processDefinitionId != ''">
+                AND process_definition_id = #{processDefinitionId},
+            </if>
+            <if test="processInstanceId != null and processInstanceId != ''">
+                AND process_instance_id = #{processInstanceId},
+            </if>
+            <if test="ldCtStatus != null">
+                AND ld_ct_status = #{ldCtStatus}
+            </if>
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="acreage != null">
+                AND acreage = #{acreage}
+            </if>
+            <if test="landlordName != null">
+                AND landlord_name = #{landlordName}
+            </if>
+            <if test="landlordSex != null">
+                AND landlord_sex = #{landlordSex}
+            </if>
+            <if test="landlordPhone != null">
+                AND landlord_phone = #{landlordPhone}
+            </if>
+            <if test="contractorCode != null">
+                AND contractor_code = #{contractorCode}
+            </if>
+            <if test="contractor != null">
+                AND contractor = #{contractor}
+            </if>
+            <if test="contractorPhone != null">
+                AND contractor_phone = #{contractorPhone}
+            </if>
+            <if test="contractorDeptCode != null ">
+                AND contractor_dept_code = #{contractorDeptCode}
+            </if>
+            <if test="contractStartDate != null">
+                AND contract_start_date = #{contractStartDate}
+            </if>
+            <if test="contractStartDateStart != null">
+                AND contract_start_date <![CDATA[ >= ]]> #{contractStartDateStart}
+            </if>
+            <if test="contractStartDateEnd != null">
+                AND contract_start_date <![CDATA[ <= ]]> #{contractStartDateEnd}
+            </if>
+            <if test="contractEndDate != null">
+                AND contract_end_date = #{contractEndDate}
+            </if>
+            <if test="advanceDay != null">
+                AND advance_day = #{advanceDay}
+            </if>
+            <if test="hasDetailAdd != null">
+                AND has_detail_add = #{hasDetailAdd}
+            </if>
+            <if test="progressiveIncreaseDetail != null">
+                AND progressive_increase_detail = #{progressiveIncreaseDetail}
+            </if>
+            <if test="rentIncreasingCycle != null">
+                AND rent_increasing_cycle = #{rentIncreasingCycle}
+            </if>
+            <if test="rentIncreaseProportion != null">
+                AND rent_increase_proportion = #{rentIncreaseProportion}
+            </if>
+            <if test="rentUnivalence != null">
+                AND rent_univalence = #{rentUnivalence}
+            </if>
+            <if test="rentUnit != null">
+                AND rent_unit = #{rentUnit}
+            </if>
+            <if test="depositRule != null">
+                AND deposit_rule = #{depositRule}
+            </if>
+            <if test="payRule != null">
+                AND pay_rule = #{payRule}
+            </if>
+            <if test="deposit != null">
+                AND deposit = #{deposit}
+            </if>
+            <if test="contractUrl != null">
+                AND contract_url = #{i.contractUrl}
+            </if>
+
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null">
+                AND owner_dept_name = #{deptName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+            <if test="keyword != null and keyword !=''">
+                AND(
+                process_instance_id LIKE '%' || #{keyword} || '%'
+                OR create_name LIKE '%' || #{keyword} || '%'
+                OR ld_ct_name LIKE '%' || #{keyword} || '%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_exp_invpark_contract
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_exp_invpark_contract
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.exp.contract.entity.LandlordContractEntity">
+        SELECT * FROM t_yq_exp_invpark_contract
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_exp_invpark_contract
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询部门-->
+    <select id="selectDept" parameterType="java.util.Map" resultType="com.kfwy.park.exp.contract.entity.LandlordContractEntity">
+        SELECT DISTINCT create_dept_code as createDeptCode,create_dept_name as createDeptName FROM t_yq_exp_invpark_contract
+        <where>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+        </where>
+    </select>
+</mapper>

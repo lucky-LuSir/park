@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.customer.entity.CustomerEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+        <result column="emp_code" property="empCode" jdbcType="VARCHAR"/>
+        <result column="emp_name" property="empName" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+
+        <result column="customer_type" property="customerType" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="trade" property="trade" jdbcType="VARCHAR"/>
+        <result column="company_product" property="companyProduct" jdbcType="VARCHAR"/>
+        <result column="cus_status" property="cusStatus" jdbcType="VARCHAR"/>
+        <result column="ditch" property="ditch" jdbcType="VARCHAR"/>
+        <result column="channel_code" property="channelCode" jdbcType="VARCHAR"/>
+        <result column="main_area" property="mainArea" jdbcType="NUMERIC"/>
+        <result column="entry_time" property="entryTime" jdbcType="TIMESTAMP"/>
+        <result column="electric_ask" property="electricAsk" jdbcType="VARCHAR"/>
+        <result column="floor_ask" property="floorAsk" jdbcType="VARCHAR"/>
+        <result column="floor_height_ask" property="floorHeightAsk" jdbcType="VARCHAR"/>
+        <result column="use_type" property="useType" jdbcType="VARCHAR"/>
+        <result column="reason" property="reason" jdbcType="VARCHAR"/>
+        <result column="attachment" property="attachment" jdbcType="VARCHAR"/>
+
+        <result column="has_eia" property="hasEia" jdbcType="BOOLEAN"/>
+        <result column="has_certify" property="hasCertify" jdbcType="BOOLEAN"/>
+        <result column="has_office_build" property="hasOfficeBuild" jdbcType="BOOLEAN"/>
+        <result column="has_canteen" property="hasCanteen" jdbcType="BOOLEAN"/>
+        <result column="has_supermarket" property="hasSupermarket" jdbcType="BOOLEAN"/>
+        <result column="has_canopy" property="hasCanopy" jdbcType="BOOLEAN"/>
+        <result column="has_load_dock" property="hasLoadDock" jdbcType="BOOLEAN"/>
+        <result column="has_charging_pile" property="hasChargingPile" jdbcType="BOOLEAN"/>
+        <result column="has_sewage_certify" property="hasSewageCertify" jdbcType="BOOLEAN"/>
+        <result column="more_depict" property="moreDepict" jdbcType="VARCHAR"/>
+
+        <result column="main_contact_phone" property="mainContactPhone" jdbcType="VARCHAR"/>
+        <result column="landline_phone" property="landlinePhone" jdbcType="VARCHAR"/>
+        <result column="main_contact_name" property="mainContactName" jdbcType="VARCHAR"/>
+        <result column="main_contact_sex" property="mainContactSex" jdbcType="VARCHAR"/>
+
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+
+        <result column="agency_cpy_name" property="agencyCpyName" jdbcType="VARCHAR"/>
+        <result column="agency_person_name" property="agencyPersonName" jdbcType="VARCHAR"/>
+        <result column="agency_person_sex" property="agencyPersonSex" jdbcType="VARCHAR"/>
+        <result column="agency_person_phone" property="agencyPersonPhone" jdbcType="VARCHAR"/>
+
+        <result column="channel_status" property="channelStatus" jdbcType="VARCHAR"/>
+        <result column="user_name" property="channelUserName" jdbcType="VARCHAR"/>
+        <result column="phone" property="channelPhone" jdbcType="VARCHAR"/>
+        <result column="post" property="channelPost" jdbcType="VARCHAR"/>
+        <result column="company_code" property="channelCompanyCode" jdbcType="VARCHAR"/>
+        <result column="channel_cpy_name" property="channelCpyName" jdbcType="VARCHAR"/>
+
+
+
+        <!--关联客户联系人-->
+        <collection property="contactList" ofType="com.kfwy.park.ati.customer.entity.CustomerRelateEntity">
+            <result column="relate_code" property="relateCode" jdbcType="VARCHAR"/>
+            <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+            <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
+            <result column="contact_name" property="contactName" jdbcType="VARCHAR"/>
+            <result column="contact_sex" property="contactSex" jdbcType="VARCHAR"/>
+            <result column="contact_job" property="contactJob" jdbcType="VARCHAR"/>
+            <result column="has_main_contact" property="hasMainContact" jdbcType="BOOLEAN"/>
+        </collection>
+
+        <!--关联客户需求区域-->
+        <collection property="needAreaList" ofType="com.kfwy.park.ati.customer.entity.CustomerNeedAreaEntity">
+            <result column="cus_area_code" property="cusAreaCode" jdbcType="VARCHAR"/>
+            <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+            <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+            <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+            <result column="region_code" property="regionCode" jdbcType="VARCHAR"/>
+            <result column="street_code" property="streetCode" jdbcType="VARCHAR"/>
+            <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+            <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+            <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+            <result column="street_name" property="streetName" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <!--添加-->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_ati_cus_customer
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.companyName != null and i.companyName != ''">
+                    company_name,
+                </if>
+
+                <if test="i.empCode != null and i.empCode != ''">
+                    emp_code,
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+
+                <if test="i.agencyCpyName != null and i.agencyCpyName != ''">
+                    agency_cpy_name,
+                </if>
+                <if test="i.agencyPersonName != null and i.agencyPersonName != ''">
+                    agency_person_name,
+                </if>
+                <if test="i.agencyPersonSex != null and i.agencyPersonSex != ''">
+                    agency_person_sex,
+                </if>
+                <if test="i.agencyPersonPhone != null and i.agencyPersonPhone != ''">
+                    agency_person_phone,
+                </if>
+
+
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    cus_status,
+                </if>
+                <if test="i.companyProduct != null and i.companyProduct != ''">
+                    company_product,
+                </if>
+                <if test="i.ditch != null and i.ditch != ''">
+                    ditch,
+                </if>
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    channel_code,
+                </if>
+                <if test="i.mainArea != null ">
+                    main_area,
+                </if>
+                <if test="i.electricAsk != null and i.electricAsk != ''">
+                    electric_ask,
+                </if>
+                <if test="i.floorAsk != null and i.floorAsk != ''">
+                    floor_ask,
+                </if>
+                <if test="i.floorHeightAsk != null and i.floorHeightAsk != ''">
+                    floor_height_ask,
+                </if>
+                <if test="i.useType != null and i.useType != ''">
+                    use_type,
+                </if>
+                <if test="i.reason != null and i.reason != ''">
+                    reason,
+                </if>
+                <if test="i.attachment != null and i.attachment != ''">
+                    attachment,
+                </if>
+
+
+
+                <if test="i.hasEia != null">
+                    has_eia,
+                </if>
+                <if test="i.hasCertify != null">
+                    has_certify,
+                </if>
+                <if test="i.hasOfficeBuild != null">
+                    has_office_build,
+                </if>
+
+
+                <if test="i.hasCanteen != null">
+                    has_canteen,
+                </if>
+                <if test="i.hasSupermarket != null">
+                    has_supermarket,
+                </if>
+                <if test="i.hasCanopy != null">
+                    has_canopy,
+                </if>
+                <if test="i.hasLoadDock != null">
+                    has_load_dock,
+                </if>
+                <if test="i.hasChargingPile != null">
+                    has_charging_pile,
+                </if>
+                <if test="i.hasSewageCertify != null">
+                    has_sewage_certify,
+                </if>
+
+                <if test="i.hasDecorate != null">
+                    has_decorate,
+                </if>
+
+                <if test="i.moreDepict != null and i.moreDepict != ''">
+                    more_depict,
+                </if>
+                <if test="i.mainContactPhone != null and i.mainContactPhone != ''">
+                    main_contact_phone,
+                </if>
+
+                <if test="i.landlinePhone != null and i.landlinePhone != ''">
+                    landline_phone,
+                </if>
+
+                <if test="i.mainContactName != null and i.mainContactName != ''">
+                    main_contact_name,
+                </if>
+                <if test="i.mainContactSex != null and i.mainContactSex != ''">
+                    main_contact_sex,
+                </if>
+                <if test="i.entryTime != null">
+                    entry_time,
+                </if>
+                <if test="i.customerType != null and i.customerType != ''">
+                    customer_type,
+                </if>
+                <if test="i.trade != null and i.trade != ''">
+                    trade,
+                </if>
+
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    #{i.cusCode},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.companyName != null and i.companyName != ''">
+                    #{i.companyName},
+                </if>
+
+                <if test="i.empCode != null and i.empCode != ''">
+                    #{i.empCode},
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    #{i.empName},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+
+                <if test="i.agencyCpyName != null and i.agencyCpyName != ''">
+                    #{i.agencyCpyName},
+                </if>
+                <if test="i.agencyPersonName != null and i.agencyPersonName != ''">
+                    #{i.agencyPersonName},
+                </if>
+                <if test="i.agencyPersonSex != null and i.agencyPersonSex != ''">
+                    #{i.agencyPersonSex},
+                </if>
+                <if test="i.agencyPersonPhone != null and i.agencyPersonPhone != ''">
+                    #{i.agencyPersonPhone},
+                </if>
+
+
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    #{i.cusStatus},
+                </if>
+                <if test="i.companyProduct != null and i.companyProduct != ''">
+                    #{i.companyProduct},
+                </if>
+                <if test="i.ditch != null and i.ditch != ''">
+                    #{i.ditch},
+                </if>
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    #{i.channelCode},
+                </if>
+                <if test="i.mainArea != null ">
+                    #{i.mainArea},
+                </if>
+                <if test="i.electricAsk != null and i.electricAsk != ''">
+                    #{i.electricAsk},
+                </if>
+                <if test="i.floorAsk != null and i.floorAsk != ''">
+                    #{i.floorAsk},
+                </if>
+                <if test="i.floorHeightAsk != null and i.floorHeightAsk != ''">
+                    #{i.floorHeightAsk},
+                </if>
+                <if test="i.useType != null and i.useType != ''">
+                    #{i.useType},
+                </if>
+                <if test="i.reason != null and i.reason != ''">
+                    #{i.reason},
+                </if>
+                <if test="i.attachment != null and i.attachment != ''">
+                    #{i.attachment},
+                </if>
+
+
+
+                <if test="i.hasEia != null">
+                    #{i.hasEia},
+                </if>
+                <if test="i.hasCertify != null">
+                    #{i.hasCertify},
+                </if>
+                <if test="i.hasOfficeBuild != null">
+                    #{i.hasOfficeBuild},
+                </if>
+
+                <if test="i.hasCanteen != null">
+                    #{i.hasCanteen},
+                </if>
+                <if test="i.hasSupermarket != null">
+                    #{i.hasSupermarket},
+                </if>
+                <if test="i.hasCanopy != null">
+                    #{i.hasCanopy},
+                </if>
+                <if test="i.hasLoadDock != null">
+                    #{i.hasLoadDock},
+                </if>
+                <if test="i.hasChargingPile != null">
+                    #{i.hasChargingPile},
+                </if>
+                <if test="i.hasSewageCertify != null">
+                    #{i.hasSewageCertify},
+                </if>
+
+                <if test="i.hasDecorate != null">
+                    #{i.hasDecorate},
+                </if>
+
+                <if test="i.moreDepict != null and i.moreDepict != ''">
+                    #{i.moreDepict},
+                </if>
+
+                <if test="i.mainContactPhone != null and i.mainContactPhone != ''">
+                    #{i.mainContactPhone},
+                </if>
+
+                <if test="i.landlinePhone != null and i.landlinePhone != ''">
+                    #{i.landlinePhone},
+                </if>
+
+                <if test="i.mainContactName != null and i.mainContactName != ''">
+                    #{i.mainContactName},
+                </if>
+                <if test="i.mainContactSex != null and i.mainContactSex != ''">
+                    #{i.mainContactSex},
+                </if>
+                <if test="i.entryTime != null">
+                    #{i.entryTime},
+                </if>
+                <if test="i.customerType != null and i.customerType != ''">
+                    #{i.customerType},
+                </if>
+                <if test="i.trade != null and i.trade != ''">
+                    #{i.trade},
+                </if>
+
+
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <!--修改-->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_cus_customer
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.companyName != null and i.companyName != ''">
+                    company_name = #{i.companyName},
+                </if>
+
+                <if test="i.empCode != null and i.empCode != ''">
+                    emp_code = #{i.empCode},
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name = #{i.empName},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                   pk_name = #{i.pkName},
+                </if>
+
+                <if test="i.agencyCpyName != null and i.agencyCpyName != ''">
+                    agency_cpy_name = #{i.agencyCpyName},
+                </if>
+                <if test="i.agencyPersonName != null and i.agencyPersonName != ''">
+                    agency_person_name = #{i.agencyPersonName},
+                </if>
+                <if test="i.agencyPersonSex != null and i.agencyPersonSex != ''">
+                    agency_person_sex = #{i.agencyPersonSex},
+                </if>
+                <if test="i.agencyPersonPhone != null and i.agencyPersonPhone != ''">
+                    agency_person_phone = #{i.agencyPersonPhone},
+                </if>
+
+
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    cus_status = #{i.cusStatus},
+                </if>
+                <if test="i.companyProduct != null and i.companyProduct != ''">
+                    company_product = #{i.companyProduct},
+                </if>
+                <if test="i.ditch != null and i.ditch != ''">
+                    ditch = #{i.ditch},
+                </if>
+                    channel_code = #{i.channelCode},
+                <if test="i.mainArea != null ">
+                    main_area = #{i.mainArea},
+                </if>
+                <if test="i.electricAsk != null and i.electricAsk != ''">
+                    electric_ask = #{i.electricAsk},
+                </if>
+                <if test="i.floorAsk != null and i.floorAsk != ''">
+                    floor_ask = #{i.floorAsk},
+                </if>
+                <if test="i.floorHeightAsk != null and i.floorHeightAsk != ''">
+                    floor_height_ask = #{i.floorHeightAsk},
+                </if>
+                <if test="i.useType != null and i.useType != ''">
+                    use_type = #{i.useType},
+                </if>
+                <if test="i.reason != null and i.reason != ''">
+                    reason = #{i.reason},
+                </if>
+                <if test="i.attachment != null and i.attachment != ''">
+                    attachment = #{i.attachment},
+                </if>
+
+
+                <if test="i.hasEia != null">
+                    has_eia = #{i.hasEia},
+                </if>
+                <if test="i.hasCertify != null">
+                    has_certify = #{i.hasCertify},
+                </if>
+                <if test="i.hasOfficeBuild != null">
+                    has_office_build = #{i.hasOfficeBuild},
+                </if>
+
+                <if test="i.hasCanteen != null">
+                    has_canteen = #{i.hasCanteen},
+                </if>
+                <if test="i.hasSupermarket != null">
+                    has_supermarket = #{i.hasSupermarket},
+                </if>
+                <if test="i.hasCanopy != null">
+                    has_canopy = #{i.hasCanopy},
+                </if>
+                <if test="i.hasLoadDock != null">
+                    has_load_dock = #{i.hasLoadDock},
+                </if>
+                <if test="i.hasChargingPile != null">
+                    has_charging_pile = #{i.hasChargingPile},
+                </if>
+                <if test="i.hasSewageCertify != null">
+                    has_sewage_certify = #{i.hasSewageCertify},
+                </if>
+
+                <if test="i.hasDecorate != null">
+                    has_decorate = #{i.hasDecorate},
+                </if>
+
+                <if test="i.moreDepict != null and i.moreDepict != ''">
+                    more_depict = #{i.moreDepict},
+                </if>
+
+                <if test="i.mainContactPhone != null and i.mainContactPhone != ''">
+                    main_contact_phone = #{i.mainContactPhone},
+                </if>
+
+                <if test="i.landlinePhone != null and i.landlinePhone != ''">
+                    landline_phone = #{i.landlinePhone},
+                </if>
+
+                <if test="i.mainContactName != null and i.mainContactName != ''">
+                    main_contact_name = #{i.mainContactName},
+                </if>
+                <if test="i.mainContactSex != null and i.mainContactSex != ''">
+                    main_contact_sex = #{i.mainContactSex},
+                </if>
+                <if test="i.entryTime != null">
+                    entry_time = #{i.entryTime},
+                </if>
+                <if test="i.customerType != null and i.customerType != ''">
+                    customer_type = #{i.customerType},
+                </if>
+                <if test="i.trade != null and i.trade != ''">
+                    trade = #{i.trade},
+                </if>
+
+
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.cusCode != null">
+                    AND cus_code = #{i.cusCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!--根据条件查询唯一结果，SQL片段-->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="cusCode != null and cusCode != ''">
+                AND cus_code = #{cusCode}
+            </if>
+
+            <if test="cpyCode != null and cpyCode != ''">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                AND company_name = #{companyName}
+            </if>
+
+
+            <if test="empCode != null and empCode != ''">
+                AND emp_code = #{empCode}
+            </if>
+            <if test="empName != null and empName != ''">
+                AND emp_name = #{empName}
+            </if>
+
+
+            <if test="pkCode != null and pkCode != ''">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null and pkName != ''">
+                AND pk_name = #{pkName}
+            </if>
+
+            <if test="cpyName != null and cpyName != ''">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="cusStatus != null and cusStatus != ''">
+                AND cus_status = #{cusStatus}
+            </if>
+            <if test="companyProduct != null and companyProduct != ''">
+                AND company_product = #{companyProduct}
+            </if>
+            <if test="ditch != null and ditch != ''">
+                AND ditch = #{ditch}
+            </if>
+            <if test="channelCode != null and channelCode != ''">
+                AND channel_code = #{channelCode}
+            </if>
+            <if test="mainArea != null ">
+                AND main_area = #{mainArea}
+            </if>
+            <if test="electricAsk != null and electricAsk != ''">
+                AND electric_ask = #{electricAsk}
+            </if>
+            <if test="floorAsk != null and floorAsk != ''">
+                AND floor_ask = #{floorAsk}
+            </if>
+            <if test="floorHeightAsk != null and floorHeightAsk != ''">
+                AND floor_height_ask = #{floorHeightAsk}
+            </if>
+            <if test="useType != null">
+                AND use_type = #{useType}
+            </if>
+            <if test="reason != null and reason != ''">
+                AND reason = #{reason}
+            </if>
+            <if test="attachment != null and attachment != ''">
+                AND attachment = #{attachment}
+            </if>
+
+            <if test="hasEia != null">
+                AND has_eia = #{hasEia}
+            </if>
+            <if test="hasCertify != null">
+                AND has_certify = #{hasCertify}
+            </if>
+            <if test="hasOfficeBuild != null">
+                AND has_office_build = #{hasOfficeBuild}
+            </if>
+
+            <if test="hasCanteen != null">
+                AND has_canteen = #{hasCanteen}
+            </if>
+            <if test="hasSupermarket != null">
+                AND has_supermarket = #{hasSupermarket}
+            </if>
+            <if test="hasCanopy != null">
+                AND has_canopy = #{hasCanopy}
+            </if>
+            <if test="hasLoadDock != null">
+                AND has_load_dock = #{hasLoadDock}
+            </if>
+            <if test="hasChargingPile != null">
+                AND has_charging_pile = #{hasChargingPile}
+            </if>
+            <if test="hasSewageCertify != null">
+                AND has_sewage_certify = #{hasSewageCertify}
+            </if>
+
+            <if test="moreDepict != null and moreDepict != ''">
+                AND more_depict = #{moreDepict}
+            </if>
+
+            <if test="mainContactPhone != null and mainContactPhone != ''">
+                AND main_contact_phone = #{mainContactPhone}
+            </if>
+
+            <if test="landlinePhone != null and landlinePhone != ''">
+                AND landline_phone = #{landlinePhone}
+            </if>
+
+            <if test="mainContactName != null and mainContactName != ''">
+                AND main_contact_name = #{mainContactName}
+            </if>
+            <if test="mainContactSex != null and mainContactSex != ''">
+                AND main_contact_sex = #{mainContactSex}
+            </if>
+
+            <if test="entryTimeStart != null">
+                AND entry_time <![CDATA[ <= ]]>  #{entryTimeStart}
+            </if>
+            <if test="entryTimeEnd != null">
+                AND entry_time <![CDATA[ <= ]]>  #{entryTimeEnd}
+            </if>
+            <if test="customerType != null and customerType != ''">
+                AND customer_type = #{customerType}
+            </if>
+            <if test="trade != null and trade != ''">
+                AND trade = #{trade}
+            </if>
+
+
+
+            <if test="ownerCode != null and ownerCode != ''">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null and ownerName != ''">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null and ownerDeptCode != ''">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null and ownerDeptName != ''">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+
+
+            <if test="createCode != null and createCode != ''">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createDeptCode != null and createDeptCode != ''">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null and createDeptName != ''">
+                AND create_dept_name = #{createDeptName}
+            </if>
+
+            <if test="createName != null and createName != ''">
+                AND create_name = #{createName}
+            </if>
+            <if test="lastUpdateCode != null and lastUpdateCode != ''">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null and lastUpdateName != ''">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]>  #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]>  #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]>  #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time <![CDATA[ <= ]]>  #{lastUpdateTimeEnd}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="hasDecorate != null">
+                AND has_decorate = #{hasDecorate}
+            </if>
+
+            <if test="keyword != null and keyword != ''">
+                AND
+                (
+                main_contact_name like '%' || #{keyword} ||'%' or
+                company_name like '%' || #{keyword} ||'%' or
+                main_contact_phone like '%' || #{keyword} ||'%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        select * from (
+            select a.*
+            --,b.channel_code
+            ,b.channel_status
+            ,b.user_name
+            ,b.phone
+            ,b.post
+            ,b.company_code
+            --,c.company_code
+            ,c.channel_cpy_name
+        from t_yq_ati_cus_customer a left join t_yq_ati_cus_channel b on a.channel_code = b.channel_code
+                                     left join t_yq_ati_cus_channel_cpy c on b.company_code = c.company_code
+        <if test="territoryType != null and territoryType !=''">
+            INNER JOIN (SELECT pk_code from t_yq_pro_hos_park where territory_type = #{territoryType}) d ON a.pk_code = d.pk_code
+        </if>
+        )td
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(a.id) FROM t_yq_ati_cus_customer a
+        <if test="territoryType != null and territoryType !=''">
+            INNER JOIN (
+            SELECT pk_code as p_code FROM t_yq_pro_hos_park WHERE territory_type = #{territoryType}
+            )d ON a.pk_code = d.p_code
+        </if>
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 渠道报表 -->
+    <select id="selectDitchCount" parameterType="java.util.Map" resultType="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        SELECT
+        a.ditch,
+        COALESCE ( b.count, 0 ) ditchCount,
+        COALESCE ( c.count, 0 ) reWatchCount
+        FROM
+        ( SELECT ditch FROM t_yq_ati_cus_customer
+        <where>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+        </where>
+        GROUP BY ditch ORDER BY ditch ASC ) a
+        LEFT JOIN ( SELECT ditch, COUNT( ID ) FROM t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+        GROUP BY ditch) b
+        ON a.ditch = b.ditch
+        LEFT JOIN (select cus_channel,count(id)   from t_yq_ati_cus_followup
+        <where>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]>  #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]>  #{createTimeEnd}
+            </if>
+            <if test="followupType != null">
+                AND followup_type = #{followupType}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+        </where>
+        GROUP BY cus_channel ) c
+        on a.ditch = c.cus_channel
+        ORDER BY a.ditch
+    </select>
+
+    <!--渠道报表总获客-->
+    <select id="selectEmp" parameterType="java.util.Map" resultType="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        SELECT
+        a.emp_code as empCode,a.emp_name as empName,
+        COALESCE( b.counter, 0 ) as empCount
+        FROM
+        ( SELECT emp_code,emp_name FROM t_yq_ati_cus_customer
+        <where>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+        </where>
+        GROUP BY emp_code,emp_name
+        ) a
+        LEFT JOIN ( SELECT emp_code, COUNT( emp_code ) as counter FROM t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+        GROUP BY emp_code ) b
+        ON a.emp_code = b.emp_code
+        ORDER BY empCount DESC
+    </select>
+    <select id="selectEmpCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(1)
+        FROM
+        ( SELECT emp_code,emp_name FROM t_yq_ati_cus_customer
+        <where>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+        </where>
+        GROUP BY emp_code,emp_name  ) a
+        LEFT JOIN ( SELECT emp_code, COUNT( emp_code ) as counter FROM t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+        GROUP BY emp_code ) b
+        ON a.emp_code = b.emp_code
+    </select>
+
+    <!-- 7为中介，10为库房无忧，排除这两项，得到 “主动获客” 数据 -->
+    <select id="selectCusCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(ditch)
+        FROM "t_yq_ati_cus_customer"
+        WHERE create_code = #{empCode}
+        AND ditch NOT IN ('7', '10')
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+    </select>
+
+    <!-- 7为中介，查询中介数据 -->
+    <select id="selectAgent" parameterType="java.util.Map" resultType="int">
+        SELECT count(ditch)
+        FROM "t_yq_ati_cus_customer"
+        WHERE create_code = #{empCode}
+        AND ditch = '7'
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+    </select>
+
+    <!-- 10为库房无忧，查询库房无忧数据 -->
+    <select id="selectKfwy" parameterType="java.util.Map" resultType="int">
+        SELECT count(ditch)
+        FROM "t_yq_ati_cus_customer"
+        WHERE create_code = #{empCode}
+        AND ditch = '10'
+        AND create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+    </select>
+
+    <select id="analysisByPk" parameterType="java.util.Map" resultType="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        select count(id) as counter,pk_code as pkCode,pk_name as pkName
+        from t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+        GROUP BY pk_code,pk_name
+    </select>
+
+    <select id="analysisByTrade" parameterType="java.util.Map" resultType="com.kfwy.park.ati.customer.entity.CustomerEntity">
+        select count(id) as counter,trade
+        from t_yq_ati_cus_customer
+        <include refid="selectSql"/>
+        GROUP BY trade
+    </select>
+
+    <select id="selectStatus" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT DISTINCT cus_status FROM t_yq_ati_cus_customer WHERE cpy_code = #{cpyCode} and is_deleted = #{isDeleted}
+    </select>
+</mapper>

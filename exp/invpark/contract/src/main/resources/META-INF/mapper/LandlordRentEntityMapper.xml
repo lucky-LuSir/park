@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.exp.contract.entity.LandlordRentEntity">
+
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.exp.contract.entity.LandlordRentEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="rent_code" property="rentCode" jdbcType="VARCHAR"/>
+        <result column="ld_code" property="ldCode" jdbcType="VARCHAR"/>
+        <result column="cost_start_time" property="costStartTime" jdbcType="TIMESTAMP"/>
+        <result column="cost_end_time" property="costEndTime" jdbcType="TIMESTAMP"/>
+        <result column="deadline" property="deadline" jdbcType="TIMESTAMP"/>
+        <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+        <result column="rent_price" property="rentPrice" jdbcType="NUMERIC"/>
+        <result column="rent_tax_price" property="rentTaxPrice" jdbcType="NUMERIC"/>
+        <result column="rent_on_invoice" property="rentOnInvoice" jdbcType="NUMERIC"/>
+        <result column="rent_real_tax_point" property="rentRealTaxPoint" jdbcType="VARCHAR"/>
+        <result column="rent_invoice_tax_point" property="rentInvoiceTaxPoint" jdbcType="VARCHAR"/>
+        <result column="property_price" property="propertyPrice" jdbcType="NUMERIC"/>
+        <result column="property_tax_price" property="propertyTaxPrice" jdbcType="NUMERIC"/>
+        <result column="property_on_invoice" property="propertyOnInvoice" jdbcType="NUMERIC"/>
+        <result column="property_real_tax_point" property="propertyRealTaxPoint" jdbcType="VARCHAR"/>
+        <result column="property_invoice_tax_point" property="propertyInvoiceTaxPoint" jdbcType="VARCHAR"/>
+        <result column="other_price" property="otherPrice" jdbcType="NUMERIC"/>
+        <result column="total_price" property="totalPrice" jdbcType="NUMERIC"/>
+        <result column="paid_price" property="paidPrice" jdbcType="NUMERIC"/>
+        <result column="discounts_price" property="discountsPrice" jdbcType="NUMERIC"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_exp_invpark_contract_landlord_rent
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.rentCode != null and i.rentCode != ''">
+                    rent_code,
+                </if>
+                <if test="i.ldCode != null and i.ldCode != ''">
+                    ld_code,
+                </if>
+                <if test="i.costStartTime != null">
+                    cost_start_time ,
+                </if>
+                <if test="i.costEndTime != null">
+                    cost_end_time ,
+                </if>
+                <if test="i.deadline != null ">
+                    deadline ,
+                </if>
+                <if test="i.payStatus != null and i.payStatus !='' ">
+                    pay_status ,
+                </if>
+                <if test="i.rentPrice != null">
+                    rent_price ,
+                </if>
+                <if test="i.rentTaxPrice != null">
+                    rent_tax_price ,
+                </if>
+                <if test="i.rentOnInvoice != null">
+                    rent_on_invoice ,
+                </if>
+                <if test="i.rentRealTaxPoint != null and i.rentRealTaxPoint != ''">
+                    rent_real_tax_point ,
+                </if>
+                <if test="i.rentInvoiceTaxPoint != null and i.rentInvoiceTaxPoint !='' ">
+                    rent_invoice_tax_point,
+                </if>
+                <if test="i.propertyPrice != null">
+                    property_price,
+                </if>
+                <if test="i.propertyTaxPrice != null">
+                    property_tax_price,
+                </if>
+                <if test="i.propertyOnInvoice != null">
+                    property_on_invoice,
+                </if>
+                <if test="i.propertyRealTaxPoint != null and i.propertyRealTaxPoint != ''">
+                    property_real_tax_point,
+                </if>
+                <if test="i.propertyInvoiceTaxPoint != null and i.propertyInvoiceTaxPoint !='' ">
+                    property_invoice_tax_point,
+                </if>
+                <if test="i.otherPrice != null">
+                    other_price,
+                </if>
+                <if test="i.totalPrice != null">
+                    total_price,
+                </if>
+                <if test="i.paidPrice != null">
+                    paid_price,
+                </if>
+                <if test="i.discountsPrice != null">
+                    discounts_price,
+                </if>
+
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.rentCode != null and i.rentCode != ''">
+                    #{i.rentCode},
+                </if>
+                <if test="i.ldCode != null and i.ldCode != ''">
+                    #{i.ldCode},
+                </if>
+                <if test="i.costStartTime != null">
+                    #{i.costStartTime},
+                </if>
+                <if test="i.costEndTime != null">
+                    #{i.costEndTime},
+                </if>
+                <if test="i.deadline != null ">
+                    #{i.deadline},
+                </if>
+                <if test="i.payStatus != null and i.payStatus !='' ">
+                    #{i.payStatus},
+                </if>
+                <if test="i.rentPrice != null">
+                    #{i.rentPrice},
+                </if>
+                <if test="i.rentTaxPrice != null">
+                    #{i.rentTaxPrice},
+                </if>
+                <if test="i.rentOnInvoice != null">
+                     #{i.rentOnInvoice},
+                </if>
+                <if test="i.rentRealTaxPoint != null and i.rentRealTaxPoint != ''">
+                    #{i.rentRealTaxPoint},
+                </if>
+                <if test="i.rentInvoiceTaxPoint != null and i.rentInvoiceTaxPoint !='' ">
+                    #{i.rentInvoiceTaxPoint},
+                </if>
+                <if test="i.propertyPrice != null">
+                    #{i.propertyPrice},
+                </if>
+                <if test="i.propertyTaxPrice != null">
+                    #{i.propertyTaxPrice},
+                </if>
+                <if test="i.propertyOnInvoice != null">
+                    #{i.propertyOnInvoice},
+                </if>
+                <if test="i.propertyRealTaxPoint != null and i.propertyRealTaxPoint != ''">
+                    #{i.propertyRealTaxPoint},
+                </if>
+                <if test="i.propertyInvoiceTaxPoint != null and i.propertyInvoiceTaxPoint !='' ">
+                    #{i.propertyInvoiceTaxPoint},
+                </if>
+                <if test="i.otherPrice != null">
+                    #{i.otherPrice},
+                </if>
+                <if test="i.totalPrice != null">
+                    #{i.totalPrice},
+                </if>
+                <if test="i.paidPrice != null">
+                   #{i.paidPrice},
+                </if>
+                <if test="i.discountsPrice != null">
+                    #{i.discountsPrice},
+                </if>
+
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.exp.contract.entity.LandlordRentEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_exp_invpark_contract_landlord_rent
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != '' ">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.rentCode != null and i.rentCode != ''">
+                    rent_code = #{i.rentCode},
+                </if>
+                <if test="i.ldCode != null and i.ldCode != ''">
+                    ld_code = #{i.ldCode},
+                </if>
+                <if test="i.costStartTime != null">
+                    cost_start_time = #{i.costStartTime},
+                </if>
+                <if test="i.costEndTime != null">
+                    cost_end_time = #{i.costEndTime},
+                </if>
+                <if test="i.deadline != null ">
+                    deadline = #{i.deadline},
+                </if>
+                <if test="i.payStatus != null and i.payStatus !='' ">
+                    pay_status = #{i.payStatus},
+                </if>
+                <if test="i.rentPrice != null">
+                    rent_price = #{i.rentPrice},
+                </if>
+                <if test="i.rentTaxPrice != null">
+                    rent_tax_price = #{i.rentTaxPrice},
+                </if>
+                <if test="i.rentOnInvoice != null">
+                    rent_on_invoice = #{i.rentOnInvoice},
+                </if>
+                <if test="i.rentRealTaxPoint != null and i.rentRealTaxPoint != ''">
+                    rent_real_tax_point = #{i.rentRealTaxPoint},
+                </if>
+                <if test="i.rentInvoiceTaxPoint != null and i.rentInvoiceTaxPoint !='' ">
+                    rent_invoice_tax_point = #{i.rentInvoiceTaxPoint},
+                </if>
+                <if test="i.propertyPrice != null">
+                    property_price = #{i.propertyPrice},
+                </if>
+                <if test="i.propertyTaxPrice != null">
+                    property_tax_price = #{i.propertyTaxPrice},
+                </if>
+                <if test="i.propertyOnInvoice != null">
+                    property_on_invoice = #{i.propertyOnInvoice},
+                </if>
+                <if test="i.propertyRealTaxPoint != null and i.propertyRealTaxPoint != ''">
+                    property_real_tax_point = #{i.propertyRealTaxPoint},
+                </if>
+                <if test="i.propertyInvoiceTaxPoint != null and i.propertyInvoiceTaxPoint !='' ">
+                    property_invoice_tax_point = #{i.propertyInvoiceTaxPoint},
+                </if>
+                <if test="i.otherPrice != null">
+                    other_price = #{i.otherPrice},
+                </if>
+                <if test="i.totalPrice != null">
+                    total_price = #{i.totalPrice},
+                </if>
+                <if test="i.paidPrice != null">
+                    paid_price = #{i.paidPrice},
+                </if>
+                <if test="i.discountsPrice != null">
+                    discounts_price = #{i.discountsPrice},
+                </if>
+
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.rentCode != null">
+                    AND rent_code = #{i.rentCode}
+                </if>
+
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_exp_invpark_contract_landlord_rent WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND  = #{id}
+            </if>
+            <if test="rentCode != null">
+                AND  rent_code = #{rentCode}
+            </if>
+            <if test="ldCode != null">
+                AND  ld_code = #{ldCode}
+            </if>
+            <if test="costStartTime != null">
+                AND  cost_start_time = #{costStartTime}
+            </if>
+            <if test="costEndTime != null">
+                AND cost_end_time = #{costEndTime}
+            </if>
+            <if test="deadline != null ">
+                AND deadline = #{deadline}
+            </if>
+            <if test="deadLineStart != null">
+               AND deadline <![CDATA[ >= ]]> #{deadLineStart}
+            </if>
+            <if test="deadlineEnd != null">
+                AND deadline <![CDATA[ < ]]> #{deadlineEnd}
+            </if>
+            <if test="payStatus != null">
+                AND  pay_status = #{payStatus}
+            </if>
+            <if test="rentPrice != null">
+                AND   rent_price = #{rentPrice}
+            </if>
+            <if test="rentTaxPrice != null">
+                AND rent_tax_price = #{rentTaxPrice}
+            </if>
+            <if test="rentOnInvoice != null">
+                AND rent_on_invoice = #{rentOnInvoice}
+            </if>
+            <if test="rentRealTaxPoint != null">
+                AND rent_real_tax_point = #{rentRealTaxPoint}
+            </if>
+            <if test="rentInvoiceTaxPoint != null">
+                AND rent_invoice_tax_point = #{rentInvoiceTaxPoint}
+            </if>
+            <if test="propertyPrice != null">
+                AND property_price = #{propertyPrice}
+            </if>
+            <if test="propertyTaxPrice != null">
+                AND property_tax_price = #{propertyTaxPrice}
+            </if>
+            <if test="propertyOnInvoice != null">
+                AND  property_on_invoice = #{propertyOnInvoice}
+            </if>
+            <if test="propertyRealTaxPoint != null">
+                AND property_real_tax_point = #{propertyRealTaxPoint}
+            </if>
+            <if test="propertyInvoiceTaxPoint != null">
+                AND property_invoice_tax_point = #{propertyInvoiceTaxPoint}
+            </if>
+            <if test="otherPrice != null">
+                AND other_price = #{otherPrice}
+            </if>
+            <if test="totalPrice != null">
+                AND total_price = #{totalPrice}
+            </if>
+            <if test="paidPrice != null">
+                AND paid_price = #{paidPrice}
+            </if>
+            <if test="discountsPrice != null">
+                AND discounts_price = #{discountsPrice}
+            </if>
+
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.RentReceiptPayEntity">
+        SELECT * FROM t_yq_exp_invpark_contract_landlord_rent
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_exp_invpark_contract_landlord_rent
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.RentReceiptPayEntity">
+        SELECT * FROM t_yq_exp_invpark_contract_landlord_rent
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_exp_invpark_contract_landlord_rent
+        <include refid="selectSql"/>
+    </select>
+
+</mapper>

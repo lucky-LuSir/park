@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.pro.house.bi.entity.ParkBiEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.house.bi.entity.ParkBiEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="intent_cus_count" property="intentCusCount" jdbcType="NUMERIC" javaType="int"/>
+        <result column="cus_count" property="cusCount"  jdbcType="NUMERIC" javaType="int"/>
+        <result column="ct_warning_count" property="ctWarningCount"  jdbcType="NUMERIC" javaType="int"/>
+        <result column="rent_warning_count" property="rentWarningCount"  jdbcType="NUMERIC" javaType="int"/>
+        <result column="building_total" property="buildingTotal" jdbcType="NUMERIC"/>
+        <result column="use_elec_surplus" property="useElecSurplus" jdbcType="NUMERIC"/>
+        <result column="meter_reading" property="meterReading" jdbcType="VARCHAR"/>
+        <result column="overdue_count" property="overdueCount"  jdbcType="NUMERIC" javaType="int"/>
+        <result column="acreage" property="acreage" jdbcType="NUMERIC"/>
+        <result column="area_rate" property="areaRate" jdbcType="NUMERIC"/>
+        <result column="rentable_area" property="rentableArea" jdbcType="NUMERIC"/>
+        <result column="area_prop" property="areaProp" jdbcType="NUMERIC"/>
+        <result column="rent_invest_area" property="rentInvestArea" jdbcType="NUMERIC"/>
+        <result column="month_revenue" property="monthRevenue" jdbcType="NUMERIC"/>
+        <result column="expenditure" property="expenditure" jdbcType="NUMERIC"/>
+        <result column="profit_growth" property="profitGrowth" jdbcType="NUMERIC"/>
+        <result column="meter_data" property="meterData" jdbcType="VARCHAR"/>
+        <result column="total_cost" property="totalCost" jdbcType="NUMERIC"/>
+
+        <result column="territory_type" property="territoryType" jdbcType="VARCHAR"/>
+        <result column="territory_type_name" property="territoryTypeName" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="street_name" property="streetName" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_hos_bi_parkbi
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address,
+                </if>
+                <if test="i.intentCusCount != null">
+                    intent_cus_count,
+                </if>
+                <if test="i.cusCount != null">
+                    cus_count,
+                </if>
+                <if test="i.ctWarningCount != null">
+                    ct_warning_count,
+                </if>
+                <if test="i.rentWarningCount != null">
+                    rent_warning_count,
+                </if>
+                <if test="i.buildingTotal != null  ">
+                    building_total,
+                </if>
+                <if test="i.useElecSurplus != null  ">
+                    use_elec_surplus,
+                </if>
+                <if test="i.meterReading != null and i.meterReading != ''">
+                    meter_reading,
+                </if>
+                <if test="i.overdueCount != null">
+                    overdue_count,
+                </if>
+                <if test="i.areaRate != null">
+                    area_rate,
+                </if>
+                <if test="i.acreage != null">
+                    acreage,
+                </if>
+                <if test="i.rentableArea != null  ">
+                    rentable_area,
+                </if>
+                <if test="i.areaProp != null  ">
+                    area_prop,
+                </if>
+                <if test="i.rentInvestArea != null  ">
+                    rent_invest_area,
+                </if>
+                <if test="i.monthRevenue != null  ">
+                    month_revenue,
+                </if>
+                <if test="i.expenditure != null  ">
+                    expenditure,
+                </if>
+                <if test="i.profitGrowth != null  ">
+                    profit_growth,
+                </if>
+                <if test="i.meterData != null and i.meterData != ''">
+                    meter_data,
+                </if>
+                <if test="i.totalCost != null  ">
+                    total_cost,
+                </if>
+                <if test="i.territoryType != null and i.territoryType !=''">
+                    territory_type,
+                </if>
+                <if test="i.territoryTypeName != null and i.territoryTypeName !=''">
+                    territory_type_name,
+                </if>
+                <if test="i.provinceName != null and i.provinceName !=''">
+                    province_name,
+                </if>
+                <if test="i.cityName != null and i.cityName !=''">
+                    city_name,
+                </if>
+                <if test="i.regionName != null and i.regionName !=''">
+                    region_name,
+                </if>
+                <if test="i.streetName != null and i.streetName !=''">
+                    street_name,
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    #{i.address},
+                </if>
+                <if test="i.intentCusCount != null">
+                    #{i.intentCusCount},
+                </if>
+                <if test="i.cusCount != null">
+                    #{i.cusCount},
+                </if>
+                <if test="i.ctWarningCount != null">
+                    #{i.ctWarningCount},
+                </if>
+                <if test="i.rentWarningCount != null">
+                    #{i.rentWarningCount},
+                </if>
+                <if test="i.buildingTotal != null  ">
+                    #{i.buildingTotal},
+                </if>
+                <if test="i.useElecSurplus != null  ">
+                    #{i.useElecSurplus},
+                </if>
+                <if test="i.meterReading != null and i.meterReading != ''">
+                    #{i.meterReading},
+                </if>
+                <if test="i.overdueCount != null">
+                    #{i.overdueCount},
+                </if>
+                <if test="i.areaRate != null">
+                    #{i.areaRate},
+                </if>
+                <if test="i.acreage != null">
+                    #{i.acreage},
+                </if>
+                <if test="i.rentableArea != null">
+                    #{i.rentableArea},
+                </if>
+                <if test="i.areaProp != null  ">
+                    #{i.areaProp},
+                </if>
+                <if test="i.rentInvestArea != null  ">
+                    #{i.rentInvestArea},
+                </if>
+                <if test="i.monthRevenue != null  ">
+                    #{i.monthRevenue},
+                </if>
+                <if test="i.expenditure != null  ">
+                    #{i.expenditure},
+                </if>
+                <if test="i.profitGrowth != null  ">
+                    #{i.profitGrowth},
+                </if>
+                <if test="i.meterData != null and i.meterData != ''">
+                    #{i.meterData},
+                </if>
+                <if test="i.totalCost != null  ">
+                    #{i.totalCost},
+                </if>
+                <if test="i.territoryType != null and i.territoryType !=''">
+                    #{i.territoryType},
+                </if>
+                <if test="i.territoryTypeName != null and i.territoryTypeName !=''">
+                    #{i.territoryTypeName},
+                </if>
+                <if test="i.provinceName != null and i.provinceName !=''">
+                    #{i.provinceName},
+                </if>
+                <if test="i.cityName != null and i.cityName !=''">
+                    #{i.cityName},
+                </if>
+                <if test="i.regionName != null and i.regionName !=''">
+                    #{i.regionName},
+                </if>
+                <if test="i.streetName != null and i.streetName !=''">
+                    #{i.streetName},
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.house.bi.entity.ParkBiEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_hos_bi_parkbi
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address = #{i.address},
+                </if>
+                <if test="i.intentCusCount != null">
+                    intent_cus_count = #{i.intentCusCount},
+                </if>
+                <if test="i.cusCount != null">
+                    cus_count = #{i.cusCount},
+                </if>
+                <if test="i.ctWarningCount != null">
+                    ct_warning_count = #{i.ctWarningCount},
+                </if>
+                <if test="i.rentWarningCount != null">
+                    rent_warning_count = #{i.rentWarningCount},
+                </if>
+                <if test="i.buildingTotal != null  ">
+                    building_total = #{i.buildingTotal},
+                </if>
+                <if test="i.useElecSurplus != null  ">
+                    use_elec_surplus = #{i.useElecSurplus},
+                </if>
+                <if test="i.meterReading != null and i.meterReading != ''">
+                    meter_reading = #{i.meterReading},
+                </if>
+                <if test="i.overdueCount != null">
+                    overdue_count = #{i.overdueCount},
+                </if>
+                <if test="i.areaRate != null">
+                    area_rate = #{i.areaRate},
+                </if>
+                <if test="i.acreage != null">
+                    acreage = #{i.acreage},
+                </if>
+                <if test="i.rentableArea != null  ">
+                    rentable_area = #{i.rentableArea},
+                </if>
+                <if test="i.areaProp != null  ">
+                    area_prop = #{i.areaProp},
+                </if>
+                <if test="i.rentInvestArea != null  ">
+                    rent_invest_area = #{i.rentInvestArea},
+                </if>
+                <if test="i.monthRevenue != null  ">
+                    month_revenue = #{i.monthRevenue},
+                </if>
+                <if test="i.expenditure != null  ">
+                    expenditure = #{i.expenditure},
+                </if>
+                <if test="i.profitGrowth != null  ">
+                    profit_growth = #{i.profitGrowth},
+                </if>
+                <if test="i.meterData != null and i.meterData != ''">
+                    meter_data = #{i.meterData},
+                </if>
+                <if test="i.totalCost != null  ">
+                    total_cost = #{i.totalCost},
+                </if>
+                <if test="i.territoryType != null and i.territoryType !=''">
+                    territory_type = #{i.territoryType},
+                </if>
+                <if test="i.territoryTypeName != null and i.territoryTypeName !=''">
+                    territory_type_name = #{i.territoryTypeName},
+                </if>
+                <if test="i.provinceName != null and i.provinceName !=''">
+                    province_name = #{i.provinceName},
+                </if>
+                <if test="i.cityName != null and i.cityName !=''">
+                    city_name = #{i.cityName},
+                </if>
+                <if test="i.regionName != null and i.regionName !=''">
+                    region_name = #{i.regionName},
+                </if>
+                <if test="i.streetName != null and i.streetName !=''">
+                    street_name = #{i.streetName},
+                </if>
+
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.pkCode != null">
+                    AND pk_code = #{i.pkCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_hos_bi_parkbi WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id}
+            </if>
+            <if test="pkCode != null and pkCode != ''">
+                AND pk_code = #{pkCode}
+            </if>
+
+            <if test="cpyCode != null and cpyCode != ''">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null and cpyName != ''">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="pkName != null and pkName != ''">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="address != null and address != ''">
+                AND address = #{address}
+            </if>
+            <if test="intentCusCount != null">
+                AND intent_cus_count = #{intentCusCount}
+            </if>
+            <if test="cusCount != null">
+                AND cus_count = #{cusCount}
+            </if>
+            <if test="ctWarningCount != null">
+                AND ct_warning_count = #{ctWarningCount}
+            </if>
+            <if test="rentWarningCount != null">
+                AND rent_warning_count = #{rentWarningCount}
+            </if>
+            <if test="buildingTotal != null  ">
+                AND building_total = #{buildingTotal}
+            </if>
+            <if test="useElecSurplus != null  ">
+                AND use_elec_surplus = #{useElecSurplus}
+            </if>
+            <if test="meterReading != null and meterReading != ''">
+                AND meter_reading = #{meterReading}
+            </if>
+            <if test="overdueCount != null">
+                AND overdue_count = #{overdueCount}
+            </if>
+            <if test="acreage != null">
+                AND acreage = #{acreage}
+            </if>
+            <if test="areaRate != null">
+                AND area_rate = #{areaRate}
+            </if>
+            <if test="rentableArea != null  ">
+                AND rentable_area = #{rentableArea}
+            </if>
+            <if test="areaProp != null  ">
+                AND area_prop = #{areaProp}
+            </if>
+            <if test="rentInvestArea != null  ">
+                AND rent_invest_area = #{rentInvestArea}
+            </if>
+            <if test="monthRevenue != null  ">
+                AND month_revenue = #{monthRevenue}
+            </if>
+            <if test="expenditure != null  ">
+                AND expenditure = #{expenditure}
+            </if>
+            <if test="profitGrowth != null  ">
+                AND profit_growth = #{profitGrowth}
+            </if>
+            <if test="meterData != null and meterData != ''">
+                AND meter_data = #{meterData}
+            </if>
+            <if test="totalCost != null  ">
+                AND total_cost = #{totalCost}
+            </if>
+            <if test="territoryType != null">
+                AND territory_type = #{territoryType}
+            </if>
+            <if test="territoryTypeName != null and territoryTypeName !=''">
+                AND territory_type_name = #{territoryTypeName}
+            </if>
+            <if test="provinceName != null">
+                AND province_name = #{provinceName}
+            </if>
+            <if test="cityName != null">
+                AND city_name = #{cityName}
+            </if>
+            <if test="regionName != null">
+                AND region_name = #{regionName}
+            </if>
+            <if test="streetName != null">
+                AND street_name = #{streetName}
+            </if>
+
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]>  #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]>  #{createTimeEnd}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+        </trim>
+    </sql>
+
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_hos_bi_parkbi
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.house.bi.entity.ParkBiEntity">
+        SELECT * FROM t_yq_pro_hos_bi_parkbi
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_hos_bi_parkbi
+        <include refid="selectSql"/>
+    </select>
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.house.bi.entity.ParkBiEntity">
+        SELECT * FROM t_yq_pro_hos_bi_parkbi
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 统计园区所在城市 -->
+    <select id="selectCity" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT max(province_name) AS province_name,max(city_name) AS city_name
+          FROM t_yq_pro_hos_bi_parkbi
+         WHERE is_deleted = #{isDeleted}
+           AND cpy_code = #{cpyCode}
+         GROUP BY city_name
+    </select>
+
+    <!-- 统计园区在某城市下所有的区 -->
+    <select id="selectRegion" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT max(city_name) AS city_name,region_name
+          FROM t_yq_pro_hos_bi_parkbi
+         WHERE city_name = #{cityName}
+           AND is_deleted = #{isDeleted}
+           AND cpy_code = #{cpyCode}
+         GROUP BY region_name
+    </select>
+
+
+</mapper>

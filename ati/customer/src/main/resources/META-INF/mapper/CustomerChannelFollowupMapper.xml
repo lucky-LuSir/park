@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.ati.customer.entity.CustomerChannelFollowupEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.customer.entity.CustomerChannelFollowupEntity">
+        
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="followup_code" property="followupCode" jdbcType="VARCHAR"/>
+        <result column="channel_code" property="channelCode" jdbcType="VARCHAR"/>
+        <result column="company_code" property="companyCode" jdbcType="VARCHAR"/>
+        <result column="followup_type" property="followupType" jdbcType="VARCHAR"/>
+        <result column="followup_result" property="followupResult" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <!-- 关联渠道 -->
+        <association property="channelEntity" resultMap="customerChannelEntity">
+        </association>
+
+        <!-- 关联渠道单位 -->
+        <association property="channelCpyEntity" resultMap="customerChannelCpyEntity">
+        </association>
+    </resultMap>
+
+    <resultMap id="customerChannelEntity" type="com.kfwy.park.ati.customer.entity.CustomerChannelEntity">
+        <result column="channel_status" property="channelStatus" jdbcType="VARCHAR"/>
+        <result column="channel_status_name" property="channelStatusName" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="post" property="post" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="customerChannelCpyEntity" type="com.kfwy.park.ati.customer.entity.CustomerChannelCpyEntity">
+        <result column="channel_cpy_name" property="channelCpyName" jdbcType="VARCHAR"/>
+        <result column="channel_cpy_remark" property="channelCpyRemark" jdbcType="VARCHAR"/>
+        <result column="channel_cpy_address" property="channelCpyAddress" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_cus_channel_followup
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    followup_code,
+                </if>
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    channel_code,
+                </if>
+                <if test="i.companyCode != null and i.companyCode != ''">
+                    company_code,
+                </if>
+                <if test="i.followupType != null and i.followupType != ''">
+                    followup_type,
+                </if>
+                <if test="i.followupResult != null and i.followupResult != ''">
+                    followup_result,
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark !=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    #{i.followupCode},
+                </if>
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    #{i.channelCode},
+                </if>
+                <if test="i.companyCode != null and i.companyCode != ''">
+                    #{i.companyCode},
+                </if>
+                <if test="i.followupType != null and i.followupType != ''">
+                    #{i.followupType},
+                </if>
+                <if test="i.followupResult != null and i.followupResult != ''">
+                    #{i.followupResult},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.customer.entity.CustomerChannelFollowupEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_cus_channel_followup
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    followup_code = #{i.followupCode},
+                </if>
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    channel_code = #{i.channelCode},
+                </if>
+                <if test="i.followupType != null and i.followupType != ''">
+                    followup_type = #{i.followupType},
+                </if>
+                <if test="i.followupResult != null and i.followupResult != ''">
+                    followup_result = #{i.followupResult},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.followupCode != null">
+                    AND followup_code = #{i.followupCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_cus_channel_followup WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="followupCode != null">
+                AND followup_code = #{followupCode}
+            </if>
+            <if test="channelCode != null">
+                AND channel_code = #{channelCode}
+            </if>
+            <if test="companyCode != null">
+                AND company_code = #{companyCode}
+            </if>
+            <if test="followupType != null">
+                AND followup_type = #{followupType}
+            </if>
+            <if test="followupResult != null">
+                AND followup_result = #{followupResult}
+            </if>
+
+
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerChannelFollowupEntity">
+        SELECT * FROM t_yq_ati_cus_channel_followup
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_channel_followup
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerChannelFollowupEntity">
+        SELECT * FROM (
+        SELECT
+        f.*,
+        --c.channel_code,
+        c.channel_status,
+        c.user_name,
+        c.phone,
+        c.sex,
+        c.post,
+        --c.company_code,
+        cp.channel_cpy_name,
+        cp.channel_cpy_remark,
+        cp.channel_cpy_address
+        FROM
+        t_yq_ati_cus_channel_followup f
+        LEFT JOIN t_yq_ati_cus_channel c ON f.channel_code = c.channel_code
+        LEFT JOIN t_yq_ati_cus_channel_cpy cp ON c.company_code = cp.company_code
+        ) tb
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_channel_followup
+        <include refid="selectSql"/>
+    </select>
+</mapper>

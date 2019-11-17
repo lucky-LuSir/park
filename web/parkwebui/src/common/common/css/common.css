@@ -1,0 +1,128 @@
+/* 固定头部,内容滚动最大类 */
+.has-position_root {
+    min-width: 1000px;
+    min-height: 900px;
+    background-color: #f2f2f2;
+    position: relative;
+    padding-top: 50px;
+}
+
+/* 该类必须放在has-position_root子集 */
+.has-position_header {
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+/* 该类必须放在has-position_root子集 */
+.has-position_main {
+    height: calc(100vh - 147px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* 场景: 头部滚动, 底部固定分页时使用 */
+.has-position-paging_main {
+    height: calc(100vh - 197px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ------------------------------------不固定头部------------------------------------- */
+
+/* 不固定头部最大类 */
+.not-position_root {
+    min-width: 1000px;
+    background-color: #FFFFFF;
+    height: calc(100vh - 147px);
+}
+
+/* 底部没有分页的root类: 针对报表管理 */
+.not-position-notPaging_root {
+    min-width: 1000px;
+    background-color: #FFFFFF;
+    height: calc(100vh - 107px);
+}
+
+/* 不固定头部-头部类 */
+.not-position_header {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+/* 内容里有tabs标签页的 */
+.not-position_root .el-tabs__nav.is-top {
+    transform: translateX(20px) !important;
+}
+
+/* 内容里有tabs标签页的 */
+.not-position-notPaging_root .el-tabs__nav.is-top {
+    transform: translateX(20px) !important;
+}
+
+/* ------------------------------------不固定头部------------------------------------- */
+
+/* ----------------- dialog内容不多,可以给el-dialog__footer -----------------------*/
+/* 说用说明: 只需要给dialog组件加一个 hasfooter-dialog_wrapper足以,不要有别的操作 */
+.hasfooter-dialog_wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.hasfooter-dialog_wrapper .el-dialog {
+    margin: 0 auto !important;
+}
+
+.hasfooter-dialog_wrapper .el-dialog__body {
+    height: 60vh;
+    overflow: auto;
+}
+/* ----------------- dialog内容不多,可以给el-dialog__footer -----------------------*/
+
+
+/* ----------------- dialog内容过多,不要给el-dialog__footer -----------------------*/
+/* 说用说明: 只需要给dialog组件加一个notfooter-dialog_wrapper足以,不要有别的操作 */
+.notfooter-dialog_wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.notfooter-dialog_wrapper .el-dialog {
+    margin: 0 auto !important;
+}
+
+.notfooter-dialog_wrapper .el-dialog__body {
+    height: 72vh;
+    overflow: scroll;
+}
+/* ----------------- dialog内容过多,不要给el-dialog__footer -----------------------*/
+
+
+
+

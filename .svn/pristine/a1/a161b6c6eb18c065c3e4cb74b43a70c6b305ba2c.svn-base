@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.contract.entity.WaterMeterEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.contract.entity.WaterMeterEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="water_meter_code" property="waterMeterCode" jdbcType="VARCHAR"/>
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="water_meter_name" property="waterMeterName" jdbcType="VARCHAR"/>
+        <result column="water_billing_type" property="waterBillingType" jdbcType="VARCHAR"/>
+        <result column="water_unit_price" property="waterUnitPrice" jdbcType="NUMERIC"/>
+        <result column="init_water" property="initWater" jdbcType="NUMERIC"/>
+        <result column="water_amount" property="waterAmount" jdbcType="NUMERIC"/>
+        <result column="water_is_open" property="waterIsOpen" jdbcType="BOOLEAN"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <!-- 一对一查询水表抄表记录 -->
+        <association property="waterRecordEntity" javaType="com.kfwy.park.ati.contract.entity.WaterRecordEntity">
+            <result column="water_record_code" property="waterRecordCode" jdbcType="VARCHAR"/>
+            <result column="water_meter_code" property="waterMeterCode" jdbcType="VARCHAR"/>
+            <result column="water_meter_name" property="waterMeterName" jdbcType="VARCHAR"/>
+            <result column="water_code" property="waterCode" jdbcType="VARCHAR"/>
+            <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+            <result column="last_meter_record_date" property="lastMeterRecordDate" jdbcType="TIMESTAMP"/>
+            <result column="current_meter_record_date" property="currentMeterRecordDate" jdbcType="TIMESTAMP"/>
+            <result column="water_billing_type" property="waterBillingType" jdbcType="VARCHAR"/>
+            <result column="water_amount" property="waterAmount" jdbcType="NUMERIC"/>
+            <result column="last_billing_water" property="lastBillingWater" jdbcType="NUMERIC"/>
+            <result column="current_billing_water" property="currentBillingWater" jdbcType="NUMERIC"/>
+            <result column="water_unit_price" property="waterUnitPrice" jdbcType="NUMERIC"/>
+            <result column="real_water" property="realWater" jdbcType="NUMERIC"/>
+            <result column="has_bill" property="hasBill" jdbcType="BOOLEAN"/>
+            <result column="record_month" property="recordMonth" jdbcType="TIMESTAMP"/>
+        </association>
+    </resultMap>
+
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_con_water_meter
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.waterMeterCode != null and i.waterMeterCode != ''">
+                    water_meter_code,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+                <if test="i.waterMeterName != null and i.waterMeterName != ''">
+                    water_meter_name,
+                </if>
+                <if test="i.waterBillingType != null and i.waterBillingType != ''">
+                    water_billing_type,
+                </if>
+                <if test="i.waterUnitPrice != null">
+                    water_unit_price,
+                </if>
+                <if test="i.initWater != null">
+                    init_water,
+                </if>
+                <if test="i.waterAmount != null">
+                    water_amount,
+                </if>
+                <if test="i.waterIsOpen != null">
+                    water_is_open,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != '' ">
+                    cpy_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="i.waterMeterCode != null and i.waterMeterCode != ''">
+                    #{i.waterMeterCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+                <if test="i.waterMeterName != null and i.waterMeterName != ''">
+                    #{i.waterMeterName},
+                </if>
+                <if test="i.waterBillingType != null and i.waterBillingType != ''">
+                    #{i.waterBillingType},
+                </if>
+                <if test="i.waterUnitPrice != null">
+                    #{i.waterUnitPrice},
+                </if>
+                <if test="i.initWater != null">
+                    #{i.initWater},
+                </if>
+                <if test="i.waterAmount != null">
+                    #{i.waterAmount},
+                </if>
+                <if test="i.waterIsOpen != null">
+                    #{i.waterIsOpen},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != '' ">
+                    #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.contract.entity.WaterMeterEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_ati_con_water_meter
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.waterMeterCode != null and i.waterMeterCode != ''">
+                    water_meter_code = #{i.waterMeterCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+                <if test="i.waterMeterName != null and i.waterMeterName != ''">
+                    water_meter_name = #{i.waterMeterName},
+                </if>
+                <if test="i.waterBillingType != null and i.waterBillingType != ''">
+                    water_billing_type = #{i.waterBillingType},
+                </if>
+                <if test="i.waterUnitPrice != null">
+                    water_unit_price = #{i.waterUnitPrice},
+                </if>
+                <if test="i.initWater != null">
+                    init_water = #{i.initWater},
+                </if>
+                <if test="i.waterAmount != null">
+                    water_amount = #{i.waterAmount},
+                </if>
+                <if test="i.waterIsOpen != null">
+                    water_is_open = #{i.waterIsOpen},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != '' ">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.waterMeterCode != null">
+                    AND water_meter_code = #{i.waterMeterCode}
+                </if>
+
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_con_water_meter WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id}
+            </if>
+            <if test="waterMeterCode != null">
+                AND water_meter_code = #{waterMeterCode}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+            <if test="waterMeterName != null">
+                AND water_meter_name = #{waterMeterName}
+            </if>
+            <if test="waterBillingType != null">
+                AND water_billing_type = #{waterBillingType}
+            </if>
+            <if test="waterUnitPrice != null">
+                AND water_unit_price = #{waterUnitPrice}
+            </if>
+            <if test="initWater != null">
+                AND init_water = #{initWater}
+            </if>
+            <if test="waterAmount != null">
+                AND water_amount = #{waterAmount}
+            </if>
+            <if test="waterIsOpen != null">
+                AND water_is_open = #{waterIsOpen}
+            </if>
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]>  #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]>  #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]>  #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time <![CDATA[ <= ]]>  #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 水表启用禁用操作 -->
+    <update id="changeWaterIsOpen" parameterType="java.util.Map">
+        UPDATE t_yq_ati_con_water_meter SET water_is_open = #{waterIsOpen} WHERE id = #{id} AND water_meter_code = #{waterMeterCode}
+    </update>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.WaterMeterEntity">
+        SELECT * FROM t_yq_ati_con_water_meter
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_water_meter
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.WaterMeterEntity">
+        SELECT * FROM t_yq_ati_con_water_meter
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_water_meter
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 关联查询水表和水表记录表，水表记录表取最新的一条数据，用于批量抄水表 -->
+    <select id="waterMeterUnionRecord" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_ati_con_water_meter m LEFT JOIN
+        (
+            SELECT r.* FROM t_yq_ati_con_water_record r
+                       RIGHT JOIN
+                            (SELECT MAX ( id ) AS id, water_meter_code FROM t_yq_ati_con_water_record GROUP BY water_meter_code) er
+            ON r.id = er.id AND r.water_meter_code = er.water_meter_code
+
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="recordMonthStart != null">
+                    AND r.record_month <![CDATA[ >= ]]> #{recordMonthStart}
+                </if>
+                <if test="recordMonthEnd != null">
+                    AND r.record_month <![CDATA[ <= ]]> #{recordMonthEnd}
+                </if>
+            </trim>
+        ) r
+        ON m.water_meter_code = r.water_meter_code AND m.ct_code = r.ct_code
+
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="cpyCode != null">
+                AND m.cpy_code = #{cpyCode}
+            </if>
+            <if test="ctCode != null">
+                AND m.ct_code = #{ctCode}
+            </if>
+            <if test="waterMeterCode != null">
+                AND m.water_meter_code = #{waterMeterCode}
+            </if>
+            AND m.water_is_open = TRUE
+        </trim>
+    </select>
+</mapper>

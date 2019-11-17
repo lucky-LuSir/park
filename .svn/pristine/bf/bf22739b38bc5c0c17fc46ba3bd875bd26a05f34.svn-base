@@ -1,0 +1,50 @@
+/* 修改全局表格行高 */
+.el-table {
+    line-height: 30px;
+}
+
+/* --------------修改全局dialog位置居中 ---------------*/
+.el-dialog__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.el-dialog__wrapper .el-dialog {
+    margin: 0 auto !important;
+}
+/* --------------修改全局dialog位置居中 ---------------*/
+
+/* elementUI起止时间选择器的关闭按钮 上下位置调整 */
+.el-range-editor.el-input__inner {
+    align-items: baseline;
+}
+
+/* elementUI起止时间选择器 前后位置调整 */
+.el-range__close-icon {
+    width: 0 !important;
+    height: 0;
+}
+
+/* tabs标签页设置行高 */
+.el-tabs__item {
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+
+ /* 滚动条的宽度 */
+ ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    z-index: 99999;
+}
+
+/* 滚动条的滑块 */
+::-webkit-scrollbar-thumb {
+    background-color: #e0e3e5;
+    border-radius: 3px;
+    z-index: 99999;
+}

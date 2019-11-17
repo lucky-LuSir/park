@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.report.entity.FirstReceivableBiEntity">
+
+    <resultMap id="BaseResultMap" type="com.kfwy.park.bi.report.entity.FirstReceivableBiEntity">
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="ct_name" property="ctName" jdbcType="VARCHAR"/>
+        <result column="ct_status" property="ctStatus" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="relate_name" property="relateName" jdbcType="VARCHAR"/>
+        <result column="contract_start_time" property="contractStartTime" jdbcType="TIMESTAMP"/>
+        <result column="contract_end_time" property="contractEndTime" jdbcType="TIMESTAMP"/>
+
+        <result column="ele_deposit" property="eleDeposit" jdbcType="NUMERIC"/>
+        <result column="water_deposit" property="waterDeposit" jdbcType="NUMERIC"/>
+        <result column="fpay_insurance_price" property="fpayInsurancePrice" jdbcType="NUMERIC"/>
+        <result column="fpay_project_deposit" property="fpayProjectDeposit" jdbcType="NUMERIC"/>
+        <result column="fpay_bond" property="fpayBond" jdbcType="NUMERIC"/>
+
+        <result column="rent_code" property="rentCode" jdbcType="VARCHAR"/>
+        <result column="rent_start_time" property="rentStartTime" jdbcType="TIMESTAMP"/>
+        <result column="rent_end_time" property="rentEndTime" jdbcType="TIMESTAMP"/>
+        <result column="receiving_date" property="receivingDate" jdbcType="TIMESTAMP"/>
+        <result column="receivable_rent" property="receivableRent" jdbcType="NUMERIC"/>
+        <result column="has_tax" property="hasTax" jdbcType="BOOLEAN"/>
+        <result column="tax_point" property="taxPoint" jdbcType="VARCHAR"/>
+        <result column="property_price" property="propertyPrice" jdbcType="NUMERIC"/>
+        <result column="pro_has_tax" property="proHasTax" jdbcType="BOOLEAN"/>
+        <result column="pro_tax_point" property="proTaxPoint" jdbcType="VARCHAR"/>
+        <result column="total_price" property="totalPrice" jdbcType="NUMERIC"/>
+        <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 查询所有首笔款：日期最早的为首笔款 -->
+    <select id="selectFirstDate" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+           r.rent_code,
+           r1.ct_code,
+           r1.rent_start_time
+        FROM
+            t_yq_ati_con_rent_receipt r right join
+            (select ct_code,min( rent_start_time ) AS rent_start_time FROM t_yq_ati_con_rent_receipt
+              WHERE is_deleted = false AND cpy_code = #{cpyCode} GROUP BY ct_code) r1
+
+        ON r.ct_code = r1.ct_code and r.rent_start_time = r1.rent_start_time
+
+        WHERE r.is_deleted = false AND cpy_code = #{cpyCode} and r.receiving_date BETWEEN #{startDate} AND #{endDate} ORDER BY r.rent_start_time
+    </select>
+
+
+    <!-- 查询首笔款信息 -->
+    <select id="selectFirstInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+          SELECT
+             c.ct_code
+            ,c.ct_name
+			,c.ct_status
+            ,c.pk_name
+            ,c.company_name
+            ,c.relate_name
+            ,c.contract_start_time
+            ,c.contract_end_time
+            ,c.ele_deposit
+            ,c.water_deposit
+            ,c.fpay_insurance_price
+            ,c.fpay_project_deposit
+            ,c.fpay_bond
+            ,r.rent_start_time
+            ,r.rent_end_time
+            ,r.receiving_date
+            ,r.receivable_rent
+			,r.has_tax
+            ,r.tax_point
+            ,r.property_price
+			,r.pro_has_tax
+            ,r.pro_tax_point
+            ,(coalesce(r.receivable_rent) + coalesce(r.property_price) + coalesce(c.ele_deposit) + coalesce(c.water_deposit) + coalesce(c.fpay_insurance_price) + coalesce(c.fpay_project_deposit) + coalesce(c.fpay_bond)) AS total_price
+            ,r.pay_status
+        FROM t_yq_ati_con_rent_receipt r LEFT JOIN t_yq_ati_con_contract c on r.ct_code = c.ct_code
+        WHERE r.receiving_date BETWEEN #{startDate} AND #{endDate} AND
+              r.rent_start_time = #{rentStartTime} AND
+              r.ct_code = #{ctCode} AND
+              r.is_deleted = false AND
+		      c.is_deleted = false AND
+		      c.cpy_code = #{cpyCode}
+              AND c.ct_status = #{ctStatus}
+        <if test="contractorDeptCode != null and contractorDeptCode !=''">
+            AND c.contractor_dept_code = #{contractorDeptCode}
+        </if>
+        <if test="pkCode != null and pkCode != ''">
+            AND c.pk_code = #{pkCode}
+        </if>
+	    order by r.receiving_date
+    </select>
+</mapper>

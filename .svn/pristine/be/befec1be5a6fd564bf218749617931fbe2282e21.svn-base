@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>accountBiReport</fileName>
+
+    <exportType>0</exportType>
+    <cell>
+        <title>负责园区</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>姓名</title>
+        <alias>empName</alias>
+    </cell>
+
+    <!--<cell>-->
+        <!--<title>小广告指标</title>-->
+        <!--<alias>leafletsTarget</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>小广告总计</title>-->
+        <!--<alias>leafletsSum</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>小广告今日</title>-->
+        <!--<alias>leafletsToday</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>小广告完成进度(%)</title>-->
+        <!--<alias>leafletsFinish</alias>-->
+    <!--</cell>-->
+
+
+
+    <!--<cell>-->
+        <!--<title>横幅指标</title>-->
+        <!--<alias>bannerTarget</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>横幅总计</title>-->
+        <!--<alias>bannerSum</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>横幅今日</title>-->
+        <!--<alias>bannerToday</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>横幅完成进度(%)</title>-->
+        <!--<alias>bannerFinish</alias>-->
+    <!--</cell>-->
+
+
+
+    <!--<cell>-->
+        <!--<title>朋友圈指标</title>-->
+        <!--<alias>friendsShareTarget</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>朋友圈总计</title>-->
+        <!--<alias>friendsShareSum</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>朋友圈今日</title>-->
+        <!--<alias>friendsShareToday</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>朋友圈完成进度(%)</title>-->
+        <!--<alias>friendsShareFinish</alias>-->
+    <!--</cell>-->
+
+
+
+
+    <!--<cell>-->
+        <!--<title>管委会指标</title>-->
+        <!--<alias>otherChannelTarget</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>管委会总计</title>-->
+        <!--<alias>otherChannelSum</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>管委会今日</title>-->
+        <!--<alias>otherChannelToday</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>管委会完成进度(%)</title>-->
+        <!--<alias>otherChannelFinish</alias>-->
+    <!--</cell>-->
+
+
+
+    <!--<cell>-->
+        <!--<title>电话跟进客户指标</title>-->
+        <!--<alias>customerPhoneFollowupTarget</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>电话跟进客户总计</title>-->
+        <!--<alias>customerPhoneFollowupSum</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>电话跟进客户今日</title>-->
+        <!--<alias>customerPhoneFollowupToday</alias>-->
+    <!--</cell>-->
+    <!--<cell>-->
+        <!--<title>电话跟进客户完成进度(%)</title>-->
+        <!--<alias>customerPhoneFollowupFinish</alias>-->
+    <!--</cell>-->
+
+
+
+    <cell>
+        <title>员工获客指标</title>
+        <alias>customerCountTarget</alias>
+    </cell>
+    <cell>
+        <title>员工获客总计</title>
+        <alias>customerCountSum</alias>
+    </cell>
+    <cell>
+        <title>员工今日获客</title>
+        <alias>customerCountToday</alias>
+    </cell>
+    <cell>
+        <title>员工获客完成进度(%)</title>
+        <alias>customerCountFinish</alias>
+    </cell>
+
+
+
+
+    <cell>
+        <title>客户带看指标</title>
+        <alias>customerVisityFollowupTarget</alias>
+    </cell>
+    <cell>
+        <title>客户带看总计</title>
+        <alias>customerVisityFollowupSum</alias>
+    </cell>
+    <cell>
+        <title>客户带看今日</title>
+        <alias>customerVisityFollowupToday</alias>
+    </cell>
+    <cell>
+        <title>客户带看完成进度(%)</title>
+        <alias>customerVisityFollowupFinish</alias>
+    </cell>
+
+
+
+    <cell>
+        <title>去化面积指标</title>
+        <alias>signAreaTarget</alias>
+    </cell>
+    <cell>
+        <title>去化面积总计</title>
+        <alias>signAreaMonthSum</alias>
+    </cell>
+    <cell>
+        <title>去化面积今日</title>
+        <alias>signAreaToday</alias>
+    </cell>
+    <cell>
+        <title>去化面积完成进度(%)</title>
+        <alias>signAreaFinish</alias>
+    </cell>
+</exportFile>
+

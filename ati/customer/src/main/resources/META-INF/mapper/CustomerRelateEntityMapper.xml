@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.customer.entity.CustomerRelateEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.customer.entity.CustomerRelateEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="relate_code" property="relateCode" jdbcType="VARCHAR"/>
+        <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+        <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="contact_name" property="contactName" jdbcType="VARCHAR"/>
+        <result column="contact_sex" property="contactSex" jdbcType="VARCHAR"/>
+        <result column="contact_job" property="contactJob" jdbcType="VARCHAR"/>
+        <result column="has_main_contact" property="hasMainContact" jdbcType="BOOLEAN"/>
+
+        <result column="create_code"  property="createCode"  jdbcType="VARCHAR"/>
+        <result column="create_name"  property="createName"  jdbcType="VARCHAR"/>
+        <result column="last_update_code"  property="lastUpdateCode"  jdbcType="VARCHAR"/>
+        <result column="last_update_name"  property="lastUpdateName"  jdbcType="VARCHAR"/>
+        <result column="create_time"  property="createTime"  jdbcType="TIMESTAMP"/>
+        <result column="last_update_time"  property="lastUpdateTime"  jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="is_deleted"  property="isDeleted"  jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <!--新增客户联系方式-->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_ati_cus_customer_relate
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.relateCode != null and i.relateCode != ''">
+                    relate_code,
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.contactPhone != null and i.contactPhone != ''">
+                    contact_phone,
+                </if>
+                <if test="i.contactName != null and i.contactName != ''">
+                    contact_name,
+                </if>
+                <if test="i.contactSex != null and i.contactSex != ''">
+                    contact_sex,
+                </if>
+                <if test="i.contactJob != null and i.contactJob != ''">
+                    contact_job,
+                </if>
+                <if test="i.hasMainContact != null">
+                    has_main_contact,
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.relateCode != null and i.relateCode != ''">
+                    #{i.relateCode},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    #{i.cusCode},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.contactPhone != null and i.contactPhone != ''">
+                    #{i.contactPhone},
+                </if>
+                <if test="i.contactName != null and i.contactName != ''">
+                    #{i.contactName},
+                </if>
+                <if test="i.contactSex != null and i.contactSex != ''">
+                    #{i.contactSex},
+                </if>
+                <if test="i.contactJob != null and i.contactJob != ''">
+                    #{i.contactJob},
+                </if>
+                <if test="i.hasMainContact != null">
+                    #{i.hasMainContact},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!--修改-->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.customer.entity.CustomerRelateEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_cus_customer_relate
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code = #{i.cusCode}
+                </if>
+                <if test="i.contactPhone != null and i.contactPhone != ''">
+                    contact_phone = #{i.contactPhone},
+                </if>
+                <if test="i.contactName != null and i.contactName != ''">
+                    contact_name = #{i.contactName},
+                </if>
+                <if test="i.contactSex != null and i.contactSex != ''">
+                    contact_sex = #{i.contactSex},
+                </if>
+                <if test="i.contactJob != null and i.contactJob != ''">
+                    contact_job = #{i.contactJob},
+                </if>
+                <if test="i.hasMainContact != null">
+                    has_main_contact = #{i.hasMainContact},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.relateCode != null">
+                    AND relate_code = #{i.relateCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!--根据条件查询唯一结果，SQL片段-->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="relateCode != null">
+                AND relate_code = #{relateCode}
+            </if>
+            <if test="cusCode != null">
+                AND cus_code = #{cusCode}
+            </if>
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="contactPhone != null">
+                AND contact_phone = #{contactPhone}
+            </if>
+            <if test="contactName != null">
+                AND contact_name = #{contactName}
+            </if>
+            <if test="contactSex != null">
+                AND contact_sex = #{contactSex}
+            </if>
+            <if test="contactJob != null">
+                AND contact_job = #{contactJob}
+            </if>
+            <if test="hasMainContact != null">
+                AND has_main_contact = #{hasMainContact}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]>  #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]>  #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]>  #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time <![CDATA[ <= ]]>  #{lastUpdateTimeEnd}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_ati_cus_customer_relate
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_customer_relate
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_ati_cus_customer_relate
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_customer_relate
+        <include refid="selectSql"/>
+    </select>
+
+</mapper>

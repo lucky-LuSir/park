@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.contract.entity.ElectricityRecordEntity">
+
+    <!--  column对应数据库,property对应Bean-->
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.contract.entity.ElectricityRecordEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="last_meter_record_date" property="lastMeterRecordDate" jdbcType="TIMESTAMP"/>
+        <result column="current_meter_record_date" property="currentMeterRecordDate" jdbcType="TIMESTAMP"/>
+
+        <result column="ele_record_code" property="eleRecordCode" jdbcType="VARCHAR"/>
+        <result column="ele_meter_code" property="eleMeterCode" jdbcType="VARCHAR"/>
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="ele_code" property="eleCode" jdbcType="VARCHAR"/>
+        <result column="ele_meter_name" property="eleMeterName" jdbcType="VARCHAR"/>
+        <result column="electricity_billing_type" property="electricityBillingType" jdbcType="VARCHAR"/>
+        <result column="last_ele_average_degree" property="lastEleAverageDegree" jdbcType="NUMERIC"/>
+        <result column="current_ele_average_degree" property="currentEleAverageDegree" jdbcType="NUMERIC"/>
+        <result column="last_peak_degree" property="lastPeakDegree" jdbcType="NUMERIC"/>
+        <result column="current_peak_degree" property="currentPeakDegree" jdbcType="NUMERIC"/>
+        <result column="last_trough_degree" property="lastTroughDegree" jdbcType="NUMERIC"/>
+        <result column="current_trough_degree" property="currentTroughDegree" jdbcType="NUMERIC"/>
+        <result column="last_flat_degree" property="lastFlatDegree" jdbcType="NUMERIC"/>
+        <result column="current_flat_degree" property="currentFlatDegree" jdbcType="NUMERIC"/>
+        <result column="peak_degree" property="peakDegree" jdbcType="NUMERIC"/>
+        <result column="trough_degree" property="troughDegree" jdbcType="NUMERIC"/>
+        <result column="flat_degree" property="flatDegree" jdbcType="NUMERIC"/>
+        <result column="real_degree" property="realDegree" jdbcType="NUMERIC"/>
+
+        <result column="has_bill" property="hasBill" jdbcType="BOOLEAN"/>
+        <result column="record_month" property="recordMonth" jdbcType="TIMESTAMP"/>
+
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <result column="ct_name" property="ctName" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="ct_status" property="ctStatus" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="relate_name" property="relateName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_con_electricity_record
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.lastMeterRecordDate != null">
+                    last_meter_record_date,
+                </if>
+                <if test="i.currentMeterRecordDate != null">
+                    current_meter_record_date,
+                </if>
+
+                <if test="i.eleRecordCode != null and i.eleRecordCode != ''">
+                    ele_record_code,
+                </if>
+                <if test="i.eleMeterCode != null and i.eleMeterCode != ''">
+                    ele_meter_code,
+                </if>
+                <if test="i.eleCode != null and i.eleCode != ''">
+                    ele_code,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+                <if test="i.eleMeterName != null and i.eleMeterName != ''">
+                    ele_meter_name,
+                </if>
+                <if test="i.electricityBillingType != null">
+                    electricity_billing_type,
+                </if>
+                <if test="i.lastEleAverageDegree != null">
+                    last_ele_average_degree,
+                </if>
+                <if test="i.currentEleAverageDegree != null">
+                    current_ele_average_degree,
+                </if>
+                <if test="i.lastPeakDegree != null">
+                    last_peak_degree,
+                </if>
+                <if test="i.currentPeakDegree != null">
+                    current_peak_degree,
+                </if>
+                <if test="i.lastTroughDegree != null">
+                    last_trough_degree,
+                </if>
+                <if test="i.currentTroughDegree != null">
+                    current_trough_degree,
+                </if>
+                <if test="i.lastFlatDegree != null">
+                    last_flat_degree,
+                </if>
+                <if test="i.currentFlatDegree != null">
+                    current_flat_degree,
+                </if>
+                <if test="i.peakDegree != null">
+                    peak_degree,
+                </if>
+                <if test="i.troughDegree != null">
+                    trough_degree,
+                </if>
+                <if test="i.flatDegree != null">
+                    flat_degree,
+                </if>
+                <if test="i.realDegree != null">
+                    real_degree,
+                </if>
+
+                <if test="i.hasBill != null">
+                    has_bill,
+                </if>
+                <if test="i.recordMonth != null">
+                    record_month,
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.lastMeterRecordDate != null">
+                    #{i.lastMeterRecordDate},
+                </if>
+                <if test="i.currentMeterRecordDate != null">
+                    #{i.currentMeterRecordDate},
+                </if>
+
+                <if test="i.eleRecordCode != null and i.eleRecordCode != ''">
+                    #{i.eleRecordCode},
+                </if>
+                <if test="i.eleMeterCode != null and i.eleMeterCode != ''">
+                    #{i.eleMeterCode},
+                </if>
+                <if test="i.eleCode != null and i.eleCode != ''">
+                    #{i.eleCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+                <if test="i.eleMeterName != null and i.eleMeterName != ''">
+                    #{i.eleMeterName},
+                </if>
+                <if test="i.electricityBillingType != null">
+                    #{i.electricityBillingType},
+                </if>
+                <if test="i.lastEleAverageDegree != null">
+                    #{i.lastEleAverageDegree},
+                </if>
+                <if test="i.currentEleAverageDegree != null">
+                    #{i.currentEleAverageDegree},
+                </if>
+                <if test="i.lastPeakDegree != null">
+                    #{i.lastPeakDegree},
+                </if>
+                <if test="i.currentPeakDegree != null">
+                    #{i.currentPeakDegree},
+                </if>
+                <if test="i.lastTroughDegree != null">
+                    #{i.lastTroughDegree},
+                </if>
+                <if test="i.currentTroughDegree != null">
+                    #{i.currentTroughDegree},
+                </if>
+                <if test="i.lastFlatDegree != null">
+                    #{i.lastFlatDegree},
+                </if>
+                <if test="i.currentFlatDegree != null">
+                    #{i.currentFlatDegree},
+                </if>
+                <if test="i.peakDegree != null">
+                    #{i.peakDegree},
+                </if>
+                <if test="i.troughDegree != null">
+                    #{i.troughDegree},
+                </if>
+                <if test="i.flatDegree != null">
+                    #{i.flatDegree},
+                </if>
+                <if test="i.realDegree != null">
+                    #{i.realDegree},
+                </if>
+
+                <if test="i.hasBill != null">
+                    #{i.hasBill},
+                </if>
+                <if test="i.recordMonth != null">
+                    #{i.recordMonth},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.contract.entity.ElectricityRecordEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_con_electricity_record
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.lastMeterRecordDate != null">
+                    last_meter_record_date = #{i.lastMeterRecordDate},
+                </if>
+                <if test="i.currentMeterRecordDate != null">
+                    current_meter_record_date = #{i.currentMeterRecordDate},
+                </if>
+                <if test="i.eleMeterCode != null and i.eleMeterCode != ''">
+                    ele_meter_code = #{i.eleMeterCode},
+                </if>
+                <if test="i.eleCode != null and i.eleCode != ''">
+                    ele_code = #{i.eleCode},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+                <if test="i.eleMeterName != null and i.eleMeterName != ''">
+                    ele_meter_name = #{i.eleMeterName},
+                </if>
+                <if test="i.electricityBillingType != null">
+                    electricity_billing_type = #{i.electricityBillingType},
+                </if>
+                <if test="i.lastEleAverageDegree != null">
+                    last_ele_average_degree = #{i.lastEleAverageDegree},
+                </if>
+                <if test="i.currentEleAverageDegree != null">
+                    current_ele_average_degree = #{i.currentEleAverageDegree},
+                </if>
+                <if test="i.lastPeakDegree != null">
+                    last_peak_degree = #{i.lastPeakDegree},
+                </if>
+                <if test="i.currentPeakDegree != null">
+                    current_peak_degree = #{i.currentPeakDegree},
+                </if>
+                <if test="i.lastTroughDegree != null">
+                    last_trough_degree = #{i.lastTroughDegree},
+                </if>
+                <if test="i.currentTroughDegree != null">
+                    current_trough_degree = #{i.currentTroughDegree},
+                </if>
+                <if test="i.lastFlatDegree != null">
+                    last_flat_degree = #{i.lastFlatDegree},
+                </if>
+                <if test="i.currentFlatDegree != null">
+                    current_flat_degree = #{i.currentFlatDegree},
+                </if>
+                <if test="i.peakDegree != null">
+                    peak_degree = #{i.peakDegree},
+                </if>
+                <if test="i.troughDegree != null">
+                    trough_degree = #{i.troughDegree},
+                </if>
+                <if test="i.flatDegree != null">
+                    flat_degree = #{i.flatDegree},
+                </if>
+                <if test="i.realDegree != null">
+                    real_degree = #{i.realDegree},
+                </if>
+
+                <if test="i.hasBill != null">
+                    has_bill = #{i.hasBill},
+                </if>
+                <if test="i.recordMonth != null">
+                    record_month = #{i.recordMonth},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.eleRecordCode != null">
+                    AND ele_record_code = #{i.eleRecordCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_con_electricity_record WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+
+            <if test="lastMeterRecordDate != null">
+                AND last_meter_record_date = #{lastMeterRecordDate}
+            </if>
+            <if test="currentMeterRecordDate != null">
+                AND current_meter_record_date = #{currentMeterRecordDate}
+            </if>
+
+            <if test="eleRecordCode != null">
+                AND ele_record_code = #{eleRecordCode}
+            </if>
+            <if test="eleMeterCode != null">
+                AND ele_meter_code = #{eleMeterCode}
+            </if>
+            <if test="eleCode != null">
+                AND ele_code = #{eleCode}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="eleMeterName != null">
+                AND ele_meter_name = #{eleMeterName}
+            </if>
+            <if test="electricityBillingType != null">
+                AND electricity_billing_type = #{electricityBillingType}
+            </if>
+            <if test="lastEleAverageDegree != null">
+                AND last_ele_average_degree = #{lastEleAverageDegree}
+            </if>
+            <if test="currentEleAverageDegree != null">
+                AND current_ele_average_degree = #{currentEleAverageDegree}
+            </if>
+            <if test="lastPeakDegree != null">
+                AND last_peak_degree = #{lastPeakDegree}
+            </if>
+            <if test="currentPeakDegree != null">
+                AND current_peak_degree = #{currentPeakDegree}
+            </if>
+            <if test="lastTroughDegree != null">
+                AND last_trough_degree = #{lastTroughDegree}
+            </if>
+            <if test="currentTroughDegree != null">
+                AND current_trough_degree = #{currentTroughDegree}
+            </if>
+            <if test="lastFlatDegree != null">
+                AND last_flat_degree = #{lastFlatDegree}
+            </if>
+            <if test="currentFlatDegree != null">
+                AND current_flat_degree = #{currentFlatDegree}
+            </if>
+            <if test="peakDegree != null">
+                AND peak_degree = #{peakDegree}
+            </if>
+            <if test="troughDegree != null">
+                AND trough_degree = #{troughDegree}
+            </if>
+            <if test="flatDegree != null">
+                AND flat_degree = #{flatDegree}
+            </if>
+            <if test="realDegree != null">
+                AND real_degree = #{realDegree}
+            </if>
+
+            <if test="hasBill != null">
+                AND has_bill = #{hasBill}
+            </if>
+
+            <if test="recordMonthStart != null">
+                AND record_month <![CDATA[ >= ]]> #{recordMonthStart}
+            </if>
+            <if test="recordMonthEnd != null">
+                AND record_month <![CDATA[ <= ]]> #{recordMonthEnd}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.ElectricityRecordEntity">
+        SELECT * FROM t_yq_ati_con_electricity_record
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_electricity_record
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.ElectricityRecordEntity">
+        SELECT * FROM (
+            SELECT
+                 r.*
+                ,c.ct_name
+                ,c.pk_code
+                ,c.pk_name
+                ,c.ct_status
+                ,c.company_name
+                ,c.relate_name
+            FROM t_yq_ati_con_electricity_record r LEFT JOIN t_yq_ati_con_contract c
+            ON r.ct_code = c.ct_code
+        ) er
+
+        <include refid="selectSql"/>
+
+        <if test="ctName != null and ctName != ''">
+            AND ct_name = #{ctName}
+        </if>
+        <if test="pkCode != null and pkCode != ''">
+            AND pk_code = #{pkCode}
+        </if>
+        <if test="ctStatus != null and ctStatus != ''">
+            AND ct_status = #{ctStatus}
+        </if>
+
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        <!--SELECT count(id) FROM t_yq_ati_con_electricity_record-->
+        <!--<include refid="selectSql"/>-->
+
+        SELECT count(id) FROM (
+            SELECT
+                 r.*
+                ,c.ct_name
+                ,c.pk_code
+                ,c.pk_name
+                ,c.ct_status
+                ,c.company_name
+                ,c.relate_name
+            FROM t_yq_ati_con_electricity_record r LEFT JOIN t_yq_ati_con_contract c
+            ON r.ct_code = c.ct_code
+        ) er
+
+        <include refid="selectSql"/>
+
+        <if test="ctName != null and ctName != ''">
+            AND ct_name = #{ctName}
+        </if>
+        <if test="pkCode != null and pkCode != ''">
+            AND pk_code = #{pkCode}
+        </if>
+        <if test="ctStatus != null and ctStatus != ''">
+            AND ct_status = #{ctStatus}
+        </if>
+    </select>
+
+</mapper>

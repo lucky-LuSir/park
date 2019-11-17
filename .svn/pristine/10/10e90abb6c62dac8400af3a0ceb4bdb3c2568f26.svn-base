@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.task.attract.entity.TaskTargetEntity">
+
+    <resultMap id="BaseResultMap" type="com.kfwy.park.task.attract.entity.TaskTargetEntity">
+        <result column="ID" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="target_code" property="targetCode" jdbcType="VARCHAR"/>
+        <result column="emp_code" property="empCode" jdbcType="VARCHAR"/>
+        <result column="emp_name" property="empName" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="target_date" property="targetDate" jdbcType="TIMESTAMP"/>
+        <result column="leaflets_target" property="leafletsTarget" jdbcType="NUMERIC"/>
+        <result column="banner_target" property="bannerTarget" jdbcType="NUMERIC"/>
+        <result column="friends_share_target" property="friendsShareTarget" jdbcType="NUMERIC"/>
+        <result column="other_channel_target" property="otherChannelTarget" jdbcType="NUMERIC"/>
+        <result column="customer_phone_followup_target" property="customerPhoneFollowupTarget" jdbcType="NUMERIC"/>
+        <result column="customer_visity_followup_target" property="customerVisityFollowupTarget" jdbcType="NUMERIC"/>
+        <result column="customer_count_target" property="customerCountTarget" jdbcType="NUMERIC"/>
+        <result column="sign_area_target" property="signAreaTarget" jdbcType="NUMERIC"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            INSERT INTO t_yq_task_attract_target
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.targetCode != null and i.targetCode != ''">
+                    target_code,
+                </if>
+                <if test="i.empCode != null and i.empCode != ''">
+                    emp_code,
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.targetDate != null">
+                    target_date,
+                </if>
+                <if test="i.leafletsTarget != null">
+                    leaflets_target,
+                </if>
+                <if test="i.bannerTarget != null">
+                    banner_target,
+                </if>
+                <if test="i.friendsShareTarget != null">
+                    friends_share_target,
+                </if>
+                <if test="i.otherChannelTarget != null">
+                    other_channel_target,
+                </if>
+                <if test="i.customerPhoneFollowupTarget != null">
+                    customer_phone_followup_target,
+                </if>
+                <if test="i.customerVisityFollowupTarget != null">
+                    customer_visity_followup_target,
+                </if>
+                <if test="i.signAreaTarget != null">
+                    sign_area_target,
+                </if>
+                <if test="i.customerCountTarget != null">
+                    customer_count_target,
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.targetCode != null and i.targetCode != ''">
+                    #{i.targetCode},
+                </if>
+                <if test="i.empCode != null and i.empCode != ''">
+                    #{i.empCode},
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    #{i.empName},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.targetDate != null">
+                    #{i.targetDate},
+                </if>
+                <if test="i.leafletsTarget != null">
+                    #{i.leafletsTarget},
+                </if>
+                <if test="i.bannerTarget != null">
+                    #{i.bannerTarget},
+                </if>
+                <if test="i.friendsShareTarget != null">
+                    #{i.friendsShareTarget},
+                </if>
+                <if test="i.otherChannelTarget != null">
+                    #{i.otherChannelTarget},
+                </if>
+                <if test="i.customerPhoneFollowupTarget != null">
+                    #{i.customerPhoneFollowupTarget},
+                </if>
+                <if test="i.customerVisityFollowupTarget != null">
+                    #{i.customerVisityFollowupTarget},
+                </if>
+                <if test="i.signAreaTarget != null">
+                    #{i.signAreaTarget},
+                </if>
+                <if test="i.customerCountTarget != null">
+                    #{i.customerCountTarget},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新记录 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.task.attract.entity.TaskTargetEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            update t_yq_task_attract_target
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.targetCode != null and i.targetCode != ''">
+                    target_code = #{i.targetCode},
+                </if>
+                <if test="i.empCode != null and i.empCode != ''">
+                    emp_code = #{i.empCode},
+                </if>
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name = #{i.empName},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.targetDate != null">
+                    target_date = #{i.targetDate},
+                </if>
+                <if test="i.leafletsTarget != null">
+                    leaflets_target = #{i.leafletsTarget},
+                </if>
+                <if test="i.bannerTarget != null">
+                    banner_target = #{i.bannerTarget},
+                </if>
+                <if test="i.friendsShareTarget != null">
+                    friends_share_target = #{i.friendsShareTarget},
+                </if>
+                <if test="i.otherChannelTarget != null">
+                    other_channel_target = #{i.otherChannelTarget},
+                </if>
+                <if test="i.customerPhoneFollowupTarget != null">
+                    customer_phone_followup_target = #{i.customerPhoneFollowupTarget},
+                </if>
+                <if test="i.customerVisityFollowupTarget != null">
+                    customer_visity_followup_target = #{i.customerVisityFollowupTarget},
+                </if>
+                <if test="i.signAreaTarget != null">
+                    sign_area_target = #{i.signAreaTarget},
+                </if>
+                <if test="i.customerCountTarget != null">
+                    customer_count_target = #{i.customerCountTarget},
+                </if>
+
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="and|or">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.targetCode != null">
+                    and target_code = #{i.targetCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!--通过主键批量物理删除数据-->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_task_attract_target WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id">
+                AND id = #{id}
+            </if>
+            <if test="targetCode != null and targetCode != ''">
+                AND target_code = #{targetCode}
+            </if>
+            <if test="empCode != null and empCode != ''">
+                AND emp_code = #{empCode}
+            </if>
+            <if test="empName != null and empName != ''">
+                AND emp_name = #{empName}
+            </if>
+            <if test="pkCode != null and pkCode != ''">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null and pkName != ''">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="targetDate != null">
+                AND target_date = #{targetDate}
+            </if>
+            <if test="targetDateStart != null">
+                AND target_date <![CDATA[ >= ]]> #{targetDateStart}
+            </if>
+            <if test="targetDateEnd != null">
+                AND target_date <![CDATA[ <= ]]> #{targetDateEnd}
+            </if>
+            <if test="leafletsTarget != null">
+                AND leaflets_target = #{leafletsTarget}
+            </if>
+            <if test="bannerTarget != null">
+                AND banner_target = #{bannerTarget}
+            </if>
+            <if test="friendsShareTarget != null">
+                AND friends_share_target = #{friendsShareTarget}
+            </if>
+            <if test="otherChannelTarget != null">
+                AND other_channel_target = #{otherChannelTarget}
+            </if>
+            <if test="customerPhoneFollowupTarget != null">
+                AND customer_phone_followup_target = #{customerPhoneFollowupTarget}
+            </if>
+            <if test="customerVisityFollowupTarget != null">
+                AND customer_visity_followup_target = #{customerVisityFollowupTarget}
+            </if>
+            <if test="signAreaTarget != null">
+                AND sign_area_target = #{signAreaTarget}
+            </if>
+            <if test="customerCountTarget != null">
+                AND customer_count_target = #{customerCountTarget}
+            </if>
+
+            <if test="cpyCode != null and cpyCode != ''">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null and cpyName != ''">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null and ownerCode != ''">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null and ownerName != ''">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null and ownerDeptCode != ''">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null and ownerDeptName != ''">
+                AND owner_dept_name = #{deptName}
+            </if>
+            <if test="createCode != null and createCode != ''">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null and createName != ''">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null and createDeptCode != ''">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null and createDeptName != ''">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null and lastUpdateCode != ''">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null and lastUpdateName != ''">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 统计查询 -->
+    <select id="countByMap" parameterType="map" resultType="int">
+        select count(id) from t_yq_task_attract_target
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 查询符合条件的唯一记录 -->
+    <select id="selectUniqueByProp" parameterType="map" resultMap="BaseResultMap"
+            resultType="com.kfwy.park.task.attract.entity.TaskTargetEntity">
+        select * from t_yq_task_attract_target
+        <include refid="selectSql"></include>
+    </select>
+
+    <!-- 查询符合条件的实体对象 -->
+    <select id="selectByMap" parameterType="map" resultMap="BaseResultMap"
+            resultType="com.kfwy.park.task.attract.entity.TaskTargetEntity">
+        select * from t_yq_task_attract_target
+        <include refid="selectSql"/>
+        <if test="orderBy != null and orderBy != ''">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null and order != ''">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 统计符合条件的实体对象个数 -->
+    <select id="selectByMapCount" parameterType="map" resultType="int">
+        select count(*) from t_yq_task_attract_target
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 查询渠道跟进 -->
+    <select id="selectChannelFollowupCount" parameterType="java.util.Map" resultType="int">
+        SELECT
+        COUNT (id)
+        FROM
+        t_yq_ati_cus_channel_followup
+        WHERE create_time <![CDATA[ >= ]]> #{startDate}
+        AND create_time <![CDATA[ <= ]]> #{endDate}
+        AND is_deleted = FALSE
+        <if test="empCode != null and empCode != ''">
+            AND create_code = #{empCode}
+        </if>
+    </select>
+</mapper>

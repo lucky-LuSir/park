@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.pro.feedback.entity.FeedbackEntity">
+  <resultMap id="baseResultMap" type="com.kfwy.park.pro.feedback.entity.FeedbackEntity">
+      <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+      <result column="fb_code" property="fbCode" jdbcType="VARCHAR"/>
+      <result column="fb_type" property="fbType" jdbcType="VARCHAR"/>
+      <result column="fb_title" property="fbTitle" jdbcType="VARCHAR"/>
+      <result column="fb_description" property="fbDescription" jdbcType="VARCHAR"/>
+      <result column="fb_img" property="fbImg" jdbcType="VARCHAR"/>
+      <result column="fb_status" property="fbStatus" jdbcType="VARCHAR"/>
+      <result column="ask_question_name" property="askQuestionName" jdbcType="VARCHAR"/>
+      <result column="ask_question_phone" property="askQuestionPhone" jdbcType="VARCHAR"/>
+      <result column="deal_question_code" property="dealQuestionCode" jdbcType="VARCHAR"/>
+      <result column="deal_question_name" property="dealQuestionName" jdbcType="VARCHAR"/>
+      <result column="deal_question_phone" property="dealQuestionPhone" jdbcType="VARCHAR"/>
+      <result column="browse_number" property="browseNumber" jdbcType="NUMERIC" javaType="INTEGER"/>
+      <result column="like_number" property="likeNumber" jdbcType="NUMERIC" javaType="INTEGER"/>
+      <result column="comment_number" property="commentNumber" jdbcType="NUMERIC" javaType="INTEGER"/>
+
+
+      <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+      <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+      <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+      <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+      <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+      <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+      <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+      <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+      <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+      <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+      <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+      <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+      <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+      <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+      <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+  </resultMap>
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_pro_feedback
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.fbCode != null and i.fbCode != ''">
+                    fb_code,
+                </if>
+                <if test="i.fbType != null and i.fbType != ''">
+                    fb_type,
+                </if>
+                <if test="i.fbTitle != null and i.fbTitle != ''">
+                    fb_title,
+                </if>
+                <if test="i.fbDescription != null and i.fbDescription != ''">
+                    fb_description,
+                </if>
+                <if test="i.fbImg != null">
+                    fb_img,
+                </if>
+                <if test="i.fbStatus != null and i.fbStatus != ''">
+                    fb_status,
+                </if>
+                <if test="i.askQuestionName != null and i.askQuestionName != ''">
+                    ask_question_name,
+                </if>
+                <if test="i.askQuestionPhone != null and i.askQuestionPhone != ''">
+                    ask_question_phone,
+                </if>
+                <if test="i.dealQuestionCode != null and i.dealQuestionCode != ''">
+                    deal_question_code,
+                </if>
+                <if test="i.dealQuestionName != null and i.dealQuestionName != ''">
+                    deal_question_name,
+                </if>
+                <if test="i.dealQuestionPhone != null and i.dealQuestionPhone != ''">
+                    deal_question_phone,
+                </if>
+                <if test="i.browseNumber != null">
+                    browse_number,
+                </if>
+                <if test="i.likeNumber != null">
+                    like_number,
+                </if>
+                <if test="i.commentNumber != null">
+                    comment_number,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.fbCode != null and i.fbCode != ''">
+                    #{i.fbCode},
+                </if>
+                <if test="i.fbType != null and i.fbType != ''">
+                    #{i.fbType},
+                </if>
+                <if test="i.fbTitle != null and i.fbTitle != ''">
+                    #{i.fbTitle},
+                </if>
+                <if test="i.fbDescription != null and i.fbDescription != ''">
+                    #{i.fbDescription},
+                </if>
+                <if test="i.fbImg != null">
+                    #{i.fbImg},
+                </if>
+                <if test="i.fbStatus != null and i.fbStatus != ''">
+                    #{i.fbStatus},
+                </if>
+                <if test="i.askQuestionName != null and i.askQuestionName != ''">
+                    #{i.askQuestionName},
+                </if>
+                <if test="i.askQuestionPhone != null and i.askQuestionPhone != ''">
+                    #{i.askQuestionPhone},
+                </if>
+                <if test="i.dealQuestionCode != null and i.dealQuestionCode != ''">
+                    #{i.dealQuestionCode},
+                </if>
+                <if test="i.dealQuestionName != null and i.dealQuestionName != ''">
+                    #{i.dealQuestionName},
+                </if>
+                <if test="i.dealQuestionPhone != null and i.dealQuestionPhone != ''">
+                    #{i.dealQuestionPhone},
+                </if>
+                <if test="i.browseNumber != null">
+                    #{i.browseNumber},
+                </if>
+                <if test="i.likeNumber != null">
+                    #{i.likeNumber},
+                </if>
+                <if test="i.commentNumber != null">
+                    #{i.commentNumber},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.feedback.entity.FeedbackEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_feedback
+            <trim prefix="set" suffixOverrides=",">
+                 <if test="i.fbCode != null and i.fbCode != ''">
+                     fb_code = #{i.fbCode},
+                 </if>
+                 <if test="i.fbType != null and i.fbType != ''">
+                     fb_type = #{i.fbType},
+                 </if>
+                 <if test="i.fbTitle != null and i.fbTitle != ''">
+                     fb_title = #{i.fbTitle},
+                 </if>
+                 <if test="i.fbDescription != null and i.fbDescription != ''">
+                     fb_description = #{i.fbDescription},
+                 </if>
+                 <if test="i.fbImg != null">
+                     fb_img = #{i.fbImg},
+                 </if>
+                 <if test="i.fbStatus != null and i.fbStatus != ''">
+                     fb_status = #{i.fbStatus},
+                 </if>
+                <if test="i.askQuestionName != null and i.askQuestionName != ''">
+                    ask_question_name = #{i.askQuestionName},
+                </if>
+                <if test="i.askQuestionPhone != null and i.askQuestionPhone != ''">
+                    ask_question_phone = #{i.askQuestionPhone},
+                </if>
+                <if test="i.dealQuestionCode != null and i.dealQuestionCode != ''">
+                    deal_question_code = #{i.dealQuestionCode},
+                </if>
+                <if test="i.dealQuestionName != null and i.dealQuestionName != ''">
+                    deal_question_name = #{i.dealQuestionName},
+                </if>
+                <if test="i.dealQuestionPhone != null and i.dealQuestionPhone != ''">
+                    deal_question_phone = #{i.dealQuestionPhone},
+                </if>
+                 <if test="i.browseNumber != null">
+                     browse_number = #{i.browseNumber},
+                 </if>
+                 <if test="i.likeNumber != null">
+                     like_number = #{i.likeNumber},
+                 </if>
+                 <if test="i.commentNumber != null">
+                     comment_number = #{i.commentNumber},
+                 </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_feedback WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+        #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+           <if test= "id != null">
+                AND id = #{id}
+           </if>
+            <if test="fbCode != null">
+                AND fb_code = #{fbCode}
+            </if>
+            <if test="fbType != null">
+                AND fb_type = #{fbType}
+            </if>
+            <if test="fbTitle != null">
+                AND fb_title = #{fbTitle}
+            </if>
+            <if test="fbDescription != null">
+                AND fb_description = #{fbDescription}
+            </if>
+            <if test="fbImg != null">
+                AND fb_img = #{fbImg}
+            </if>
+            <if test="fbStatus != null">
+                AND fb_status = #{fbStatus}
+            </if>
+            <if test="askQuestionName != null">
+                AND ask_question_name = #{askQuestionName}
+            </if>
+            <if test="askQuestionPhone != null">
+                AND ask_question_phone = #{askQuestionPhone}
+            </if>
+            <if test="dealQuestionCode != null">
+                AND deal_question_code = #{dealQuestionCode}
+            </if>
+            <if test="dealQuestionName != null">
+                AND deal_question_name = #{dealQuestionName}
+            </if>
+            <if test="dealQuestionPhone != null">
+                AND deal_question_phone = #{dealQuestionPhone}
+            </if>
+            <if test="browseNumber != null">
+                AND browse_number = #{browseNumber}
+            </if>
+            <if test="likeNumber != null">
+                AND like_number = #{likeNumber}
+            </if>
+            <if test="commentNumber != null">
+                AND comment_number = #{commentNumber}
+            </if>
+
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND
+                (
+                fb_code like '%' || #{keyword} ||'%' or
+                fb_title like '%' || #{keyword} ||'%' or
+                create_name like '%' || #{keyword} ||'%'
+                )
+            </if>
+
+        </trim>
+    </sql>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_feedback
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.pro.feedback.entity.FeedbackEntity">
+        SELECT * FROM t_yq_pro_feedback
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+        ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_feedback
+        <include refid="selectSql"/>
+    </select>
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.pro.feedback.entity.FeedbackEntity">
+        SELECT * FROM t_yq_pro_feedback
+        <include refid="selectSql"/>
+    </select>
+
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.report.entity.PremiumReceivableBiEntity">
+
+    <resultMap id="BaseResultMap" type="com.kfwy.park.bi.report.entity.PremiumReceivableBiEntity">
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="ct_name" property="ctName" jdbcType="VARCHAR"/>
+        <result column="ct_status" property="ctStatus" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="relate_name" property="relateName" jdbcType="VARCHAR"/>
+        <result column="contract_start_time" property="contractStartTime" jdbcType="TIMESTAMP"/>
+        <result column="contract_end_time" property="contractEndTime" jdbcType="TIMESTAMP"/>
+
+        <result column="premium_start_date" property="premiumStartDate" jdbcType="TIMESTAMP"/>
+        <result column="premium_end_date" property="premiumEndDate" jdbcType="TIMESTAMP"/>
+        <result column="deadline" property="deadline" jdbcType="TIMESTAMP"/>
+        <result column="receivable_premium" property="receivablePremium" jdbcType="NUMERIC"/>
+        <result column="has_tax" property="hasTax" jdbcType="BOOLEAN"/>
+        <result column="tax_point" property="taxPoint" jdbcType="VARCHAR"/>
+        <result column="tax_price" property="taxPrice" jdbcType="NUMERIC"/>
+        <result column="total_price" property="totalPrice" jdbcType="NUMERIC"/>
+        <result column="paid_price" property="paidPrice" jdbcType="NUMERIC"/>
+        <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 查询应收保险费 -->
+    <select id="selectReceivable" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        c.ct_code,
+        c.ct_name,
+        c.ct_status,
+        c.pk_name,
+        c.company_name,
+        c.relate_name,
+        c.contract_start_time,
+        c.contract_end_time,
+        r.premium_start_date,
+        r.premium_end_date,
+        r.deadline,
+        r.has_tax,
+        r.tax_point,
+        r.receivable_premium,
+        r.total_price,
+        r.paid_price,
+        r.pay_status
+        FROM t_yq_ati_con_rent_premium r LEFT JOIN t_yq_ati_con_contract c ON r.ct_code = c.ct_code
+        WHERE r.deadline BETWEEN #{startDate} AND #{endDate}
+        AND r.is_deleted = FALSE
+        AND c.is_deleted = FALSE
+        AND c.ct_status = #{ctStatus}
+        AND c.cpy_code = #{cpyCode}
+        <if test="contractorDeptCode != null and contractorDeptCode !=''">
+            AND c.contractor_dept_code = #{contractorDeptCode}
+        </if>
+        <if test="pkCode != null and pkCode != ''">
+            AND c.pk_code = #{pkCode}
+        </if>
+        ORDER BY r.deadline
+    </select>
+</mapper>

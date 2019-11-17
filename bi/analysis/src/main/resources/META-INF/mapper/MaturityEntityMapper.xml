@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.analysis.entity.MaturityEntity">
+
+    <resultMap id="BaseResultMap" type="com.kfwy.park.bi.analysis.entity.MaturityEntity">
+        <result column="maturity_year" property="maturityYear" jdbcType="VARCHAR"/>
+        <result column="maturity_month" property="maturityMonth" jdbcType="VARCHAR"/>
+        <result column="maturity_day" property="maturityDay" jdbcType="VARCHAR"/>
+        <result column="maturity_count" property="maturityCount" jdbcType="INTEGER"/>
+
+    </resultMap>
+
+    <!-- 查询合同项目名、合同编号 -->
+    <select id="selectMaturityContract" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT max(to_char(contract_end_time,'yyyy')) as maturity_year,
+               to_char(contract_end_time,'mm') as maturity_month,
+               count(id) as maturity_count FROM t_yq_ati_con_contract
+        WHERE is_deleted = #{isDeleted} AND cpy_code = #{cpyCode} AND to_char(contract_end_time,'yyyy') = #{selectYear} AND ct_status in ('4','9')
+        GROUP BY to_char(contract_end_time,'mm') ORDER BY to_char(contract_end_time,'mm') ASC;
+    </select>
+
+    <!-- 查询合同项目名、合同编号 -->
+    <select id="selectMaturityContractByTimeAndPark" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT to_char(c.contract_end_time,'yyyy') as maturity_year,
+               to_char(c.contract_end_time,'mm') as maturity_month,
+               count(c.id) as maturity_count
+        FROM t_yq_ati_con_contract c
+        left join t_yq_pro_hos_park p on c.pk_code = p.pk_code
+        where c.is_deleted = false
+        and p.is_deleted = false
+        and c.ct_status in ('4', '9')
+        <if test="cpyCode != null">
+            AND c.cpy_code = #{cpyCode}
+            and p.cpy_code = #{cpyCode}
+        </if>
+        <if test="contractEndTimeStart != null">
+            AND c.contract_end_time <![CDATA[ >= ]]> #{contractEndTimeStart}
+        </if>
+        <if test="contractEndTimeEnd != null">
+            AND c.contract_end_time <![CDATA[ <= ]]> #{contractEndTimeEnd}
+        </if>
+        <if test="pkCode != null">
+            and c.pk_code = #{pkCode}
+        </if>
+        <if test="territoryType != null">
+            and p.territory_type = #{territoryType}
+        </if>
+        <if test="cityCode != null">
+            and p.city_code = #{cityCode}
+        </if>
+        GROUP BY maturity_year,maturity_month
+        order by maturity_year,maturity_month ASC
+    </select>
+
+
+</mapper>

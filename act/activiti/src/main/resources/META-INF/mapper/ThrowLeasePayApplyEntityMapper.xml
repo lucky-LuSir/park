@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.act.activiti.entity.ThrowLeasePayApplyEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.act.activiti.entity.ThrowLeasePayApplyEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="apply_code" property="applyCode" jdbcType="VARCHAR"/>
+        <result column="ct_name" property="ctName" jdbcType="VARCHAR"/>
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="throw_lease_apply_code" property="throwLeaseApplyCode" jdbcType="VARCHAR"/>
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        <result column="process_instance_id" property="processInstanceId" jdbcType="VARCHAR"/>
+        <result column="pay_money" property="payMoney" jdbcType="VARCHAR"/>
+        <result column="appoint_pay_time" property="appointPayTime" jdbcType="VARCHAR"/>
+        <result column="is_contract" property="isContract" jdbcType="VARCHAR"/>
+        <result column="is_invoice" property="isInvoice" jdbcType="VARCHAR"/>
+        <result column="invoice_in_time" property="invoiceInTime" jdbcType="TIMESTAMP"/>
+        <result column="pay_company" property="payCompany" jdbcType="VARCHAR"/>
+        <result column="payee" property="payee" jdbcType="VARCHAR"/>
+        <result column="approval_status" property="approvalStatus" jdbcType="VARCHAR"/>
+        <result column="payment_apply_remark" property="paymentApplyRemark" jdbcType="VARCHAR"/>
+        <result column="out_picture" property="outPicture" jdbcType="VARCHAR"/>
+        <result column="reject_reason" property="rejectReason" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 添加 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_act_activiti_throw_lease_pay_apply
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.applyCode != null">
+                    apply_code,
+                </if>
+                <if test="i.pdId != null and i.pdId != ''">
+                    pd_id,
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id,
+                </if>
+                <if test="i.payMoney != null and i.payMoney != ''">
+                    pay_money,
+                </if>
+                <if test="i.appointPayTime != null">
+                    appoint_pay_time,
+                </if>
+                <if test="i.isContract != null and i.isContract != ''">
+                    is_contract,
+                </if>
+
+                <if test="i.isInvoice != null and i.isInvoice !=''">
+                    is_invoice,
+                </if>
+                <if test="i.invoiceInTime != null">
+                    invoice_in_time,
+                </if>
+                <if test="i.payCompany != null and i.payCompany != ''">
+                    pay_company,
+                </if>
+                <if test="i.payee != null and i.payee != ''">
+                    payee,
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    approval_status,
+                </if>
+                <if test="i.paymentApplyRemark != null and i.paymentApplyRemark != ''">
+                    payment_apply_remark ,
+                </if>
+                <if test="i.outPicture != null and i.outPicture != ''">
+                    out_picture,
+                </if>
+                <if test="i.rejectReason != null and i.rejectReason != ''">
+                    reject_reason,
+                </if>
+                <if test="i.throwLeaseApplyCode != null and i.throwLeaseApplyCode != ''">
+                    throw_lease_apply_code,
+                </if>
+                <if test="i.ctName != null and i.ctName != ''">
+                    ct_name,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.applyCode != null">
+                    #{i.applyCode},
+                </if>
+                <if test="i.pdId != null and i.pdId != ''">
+                    #{i.pdId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    #{i.processInstanceId},
+                </if>
+                <if test="i.payMoney != null and i.payMoney != ''">
+                    #{i.payMoney},
+                </if>
+                <if test="i.appointPayTime != null">
+                    #{i.appointPayTime},
+                </if>
+                <if test="i.isContract != null and i.isContract != ''">
+                    #{i.isContract},
+                </if>
+
+                <if test="i.isInvoice != null and i.isInvoice != ''">
+                    #{i.isInvoice},
+                </if>
+                <if test="i.invoiceInTime != null">
+                    #{i.invoiceInTime},
+                </if>
+                <if test="i.payCompany != null and i.payCompany != ''">
+                    #{i.payCompany},
+                </if>
+                <if test="i.payee != null and i.payee != ''">
+                    #{i.payee},
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    #{i.approvalStatus},
+                </if>
+                <if test="i.paymentApplyRemark != null and i.paymentApplyRemark != ''">
+                    #{i.paymentApplyRemark},
+                </if>
+                <if test="i.outPicture != null and i.outPicture != ''">
+                    #{i.outPicture},
+                </if>
+                <if test="i.rejectReason != null and i.rejectReason != ''">
+                    #{i.rejectReason},
+                </if>
+                <if test="i.throwLeaseApplyCode != null and i.throwLeaseApplyCode != ''">
+                    #{i.throwLeaseApplyCode},
+                </if>
+                <if test="i.ctName != null and i.ctName != ''">
+                    #{i.ctName},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <!-- 修改 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.act.activiti.entity.ThrowLeasePayApplyEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_act_activiti_throw_lease_pay_apply
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.pdId != null and i.pdId != ''">
+                    pd_id = #{i.pdId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id = #{i.processInstanceId},
+                </if>
+                <if test="i.payMoney != null and i.payMoney != ''">
+                    pay_money = #{i.payMoney},
+                </if>
+                <if test="i.appointPayTime != null">
+                    appoint_pay_time = #{i.appointPayTime},
+                </if>
+                <if test="i.isContract != null and i.isContract != ''">
+                    is_contract = #{i.isContract},
+                </if>
+
+                <if test="i.isInvoice != null and i.isInvoice != ''">
+                    is_invoice = #{i.isInvoice},
+                </if>
+                <if test="i.invoiceInTime != null">
+                    invoice_in_time = #{i.invoiceInTime},
+                </if>
+                <if test="i.payCompany != null and i.payCompany != ''">
+                    pay_company = #{i.payCompany},
+                </if>
+                <if test="i.payee != null and i.payee != ''">
+                    payee = #{i.payee},
+                </if>
+
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    approval_status = #{i.approvalStatus},
+                </if>
+                <if test="i.paymentApplyRemark != null and i.paymentApplyRemark != ''">
+                    payment_apply_remark = #{i.paymentApplyRemark},
+                </if>
+                <if test="i.outPicture != null and i.outPicture != ''">
+                    out_picture = #{i.outPicture},
+                </if>
+                <if test="i.rejectReason != null and i.rejectReason != ''">
+                    reject_reason = #{i.rejectReason},
+                </if>
+                <if test="i.throwLeaseApplyCode != null and i.throwLeaseApplyCode != ''">
+                    throw_lease_apply_code = #{i.throwLeaseApplyCode},
+                </if>
+                <if test="i.ctName != null and i.ctName != ''">
+                    ct_name = #{i.ctName},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.applyCode != null">
+                    AND apply_code = #{i.applyCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!-- 根据条件查询唯一结果，SQL片段 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="applyCode != null">
+                AND apply_code = #{applyCode}
+            </if>
+            <if test="pdId != null ">
+                AND pd_id = #{pdId}
+            </if>
+            <if test="processInstanceId != null">
+                AND process_instance_id = #{processInstanceId}
+            </if>
+            <if test="payMoney != null ">
+                AND pay_money = #{payMoney}
+            </if>
+            <if test="appointPayTimeStart != null">
+                AND appoint_pay_time <![CDATA[ >= ]]> #{appointPayTimeStart}
+            </if>
+            <if test="appointPayTimeEnd != null">
+                AND appoint_pay_time <![CDATA[ <= ]]> #{appointPayTimeEnd}
+            </if>
+            <if test="isContract != null">
+                AND is_contract = #{isContract}
+            </if>
+
+            <if test="isInvoice != null">
+                AND is_invoice = #{isInvoice}
+            </if>
+            <if test="invoiceInTimeStart != null">
+                AND invoice_in_time <![CDATA[ >= ]]> #{invoiceInTimeStart}
+            </if>
+            <if test="invoiceInTimeEnd != null">
+                AND invoice_in_time <![CDATA[ <= ]]> #{invoiceInTimeEnd}
+            </if>
+            <if test="payCompany != null">
+                AND pay_company = #{payCompany}
+            </if>
+            <if test="payee != null">
+                AND payee = #{payee}
+            </if>
+
+            <if test="approvalStatus != null ">
+                AND approval_status = #{approvalStatus}
+            </if>
+            <if test="paymentApplyRemark != null">
+                AND payment_apply_remark = #{paymentApplyRemark}
+            </if>
+            <if test="outPicture != null ">
+                AND out_picture = #{outPicture}
+            </if>
+            <if test="rejectReason != null">
+                AND reject_reason = #{rejectReason}
+            </if>
+            <if test="throwLeaseApplyCode != null">
+                AND throw_lease_apply_code = #{throwLeaseApplyCode}
+            </if>
+            <if test="ctName != null">
+                AND ct_name = #{ctName}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="keyword != null and keyword !=''">
+                AND(
+                process_instance_id LIKE '%' || #{keyword} || '%'
+                OR create_name LIKE '%' || #{keyword} || '%'
+                OR ct_name LIKE '%' || #{keyword} || '%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_act_activiti_throw_lease_pay_apply
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_act_activiti_throw_lease_pay_apply
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.act.activiti.entity.ThrowLeasePayApplyEntity">
+        SELECT * FROM t_yq_act_activiti_throw_lease_pay_apply
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_act_activiti_throw_lease_pay_apply
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="selectDept" parameterType="java.util.Map" resultType="com.kfwy.park.act.activiti.entity.ThrowLeaseApplyEntity">
+        SELECT DISTINCT create_dept_code as createDeptCode,create_dept_name as createDeptName FROM t_yq_act_activiti_throw_lease_pay_apply
+        <where>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+        </where>
+    </select>
+</mapper>

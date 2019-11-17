@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.analysis.entity.NeedAreaAnalysisEntity">
+
+    <!-- 查询客户需求面积统计 -->
+    <select id="selectNeedAreaAnalysis" parameterType="java.util.Map" resultType="com.kfwy.park.bi.analysis.entity.NeedAreaAnalysisEntity">
+        SELECT count(CASE WHEN main_area <![CDATA[ > ]]>  0 AND main_area <![CDATA[ < ]]> 200 THEN main_area END) AS result1,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 200 AND main_area <![CDATA[ < ]]> 400 THEN main_area END) AS result2,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 400 AND main_area <![CDATA[ < ]]> 600 THEN main_area END) AS result3,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 600 AND main_area <![CDATA[ < ]]> 800 THEN main_area END) AS result4,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 800 AND main_area <![CDATA[ < ]]> 1000 THEN main_area END) AS result5,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 1000 AND main_area <![CDATA[ < ]]> 1200 THEN main_area END) AS result6,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 1200 AND main_area <![CDATA[ < ]]> 1500 THEN main_area END) AS result7,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 1500 AND main_area <![CDATA[ < ]]> 1700 THEN main_area END) AS result8,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 1700 AND main_area <![CDATA[ < ]]> 2000 THEN main_area END) AS result9,
+        count(CASE WHEN main_area <![CDATA[ > ]]> 2000 THEN main_area END) AS result10
+        FROM t_yq_ati_cus_customer WHERE is_deleted = FALSE AND cpy_code = #{cpyCode}
+    </select>
+</mapper>

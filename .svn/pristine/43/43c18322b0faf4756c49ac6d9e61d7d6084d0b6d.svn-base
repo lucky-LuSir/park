@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>parkFollowCountReport</fileName>
+    <!--导出应收租金报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>园区名称</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>一次带看客户数</title>
+        <alias>firstW</alias>
+    </cell>
+
+    <cell>
+        <title>两次带看客户数</title>
+        <alias>secondW</alias>
+    </cell>
+
+    <cell>
+        <title>三次带看客户数</title>
+        <alias>thirdW</alias>
+    </cell>
+
+    <cell>
+        <title>四次带看客户数</title>
+        <alias>fourthW</alias>
+    </cell>
+
+    <cell>
+        <title>五次及以上带看客户数</title>
+        <alias>moreW</alias>
+    </cell>
+</exportFile>

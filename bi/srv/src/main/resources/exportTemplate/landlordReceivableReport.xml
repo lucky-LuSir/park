@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>accountBiReport</fileName>
+    <!--导出大房东合同报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>合同编号</title>
+        <alias>ldCtName</alias>
+    </cell>
+
+    <cell>
+        <title>合同状态</title>
+        <alias>ldCtStatusName</alias>
+    </cell>
+
+    <cell>
+        <title>支付状态</title>
+        <alias>payStatusName</alias>
+    </cell>
+
+    <cell>
+        <title>园区名称</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>房主姓名</title>
+        <alias>landlordName</alias>
+    </cell>
+
+    <cell>
+        <title>合同开始日期</title>
+        <alias>contractStartDate</alias>
+    </cell>
+
+    <cell>
+        <title>合同结束日期</title>
+        <alias>contractEndDate</alias>
+    </cell>
+
+    <cell>
+        <title>费用开始日期</title>
+        <alias>costStartTime</alias>
+    </cell>
+
+    <cell>
+        <title>费用结束日期</title>
+        <alias>costEndTime</alias>
+    </cell>
+
+    <cell>
+        <title>缴费截至日期</title>
+        <alias>deadline</alias>
+    </cell>
+
+    <cell>
+        <title>本期应付</title>
+        <alias>totalPrice</alias>
+    </cell>
+
+    <cell>
+        <title>已付金额</title>
+        <alias>paidPrice</alias>
+    </cell>
+
+    <cell>
+        <title>优惠金额</title>
+        <alias>paidPrice</alias>
+    </cell>
+
+</exportFile>
+

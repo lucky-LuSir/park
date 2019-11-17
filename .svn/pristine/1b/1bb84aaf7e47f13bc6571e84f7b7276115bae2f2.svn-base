@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.act.activiti.entity.ApprovalBaseEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.act.activiti.entity.ApprovalBaseEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="approval_code" property="approvalCode" jdbcType="VARCHAR"/>
+        <result column="apply_code" property="applyCode" jdbcType="VARCHAR"/>
+        <result column="applicant_code" property="applicantCode" jdbcType="VARCHAR"/>
+        <result column="approval_status" property="approvalStatus" jdbcType="VARCHAR"/>
+        <result column="approve_comment" property="approveComment" jdbcType="VARCHAR"/>
+        <result column="task_id" property="taskId" jdbcType="VARCHAR"/>
+        <result column="execution_id" property="executionId" jdbcType="VARCHAR"/>
+        <result column="process_instance_id" property="processInstanceId" jdbcType="VARCHAR"/>
+        <result column="process_definition_id" property="processDefinitionId" jdbcType="VARCHAR"/>
+        <result column="process_definition_key" property="processDefinitionKey" jdbcType="VARCHAR"/>
+
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 添加 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_act_activiti_approval
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.approvalCode != null and i.approvalCode != ''">
+                    approval_code,
+                </if>
+                <if test="i.applyCode != null and i.applyCode != ''">
+                    apply_code,
+                </if>
+                <if test="i.applicantCode != null and i.applicantCode != ''">
+                    applicant_code,
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    approval_status,
+                </if>
+                <if test="i.approveComment != null and i.approveComment != ''">
+                    approve_comment,
+                </if>
+                <if test="i.taskId != null and i.taskId != ''">
+                    task_id,
+                </if>
+                <if test="i.executionId != null and i.executionId != ''">
+                    execution_id,
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id,
+                </if>
+                <if test="i.processDefinitionId != null and i.processDefinitionId != ''">
+                    process_definition_id,
+                </if>
+                <if test="i.processDefinitionKey != null and i.processDefinitionKey != ''">
+                    process_definition_key,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.approvalCode != null and i.approvalCode != ''">
+                    #{i.approvalCode},
+                </if>
+                <if test="i.applyCode != null and i.applyCode != ''">
+                    #{i.applyCode},
+                </if>
+                <if test="i.applicantCode != null and i.applicantCode != ''">
+                    #{i.applicantCode},
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    #{i.approvalStatus},
+                </if>
+                <if test="i.approveComment != null and i.approveComment != ''">
+                    #{i.approveComment},
+                </if>
+                <if test="i.taskId != null and i.taskId != ''">
+                    #{i.taskId},
+                </if>
+                <if test="i.executionId != null and i.executionId != ''">
+                    #{i.executionId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    #{i.processInstanceId},
+                </if>
+                <if test="i.processDefinitionId != null and i.processDefinitionId != ''">
+                    #{i.processDefinitionId},
+                </if>
+                <if test="i.processDefinitionKey != null and i.processDefinitionKey != ''">
+                    #{i.processDefinitionKey},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <!-- 修改 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.act.activiti.entity.ApprovalBaseEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_act_activiti_approval
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.applyCode != null and i.applyCode != ''">
+                    apply_code = #{i.applyCode},
+                </if>
+                <if test="i.applicantCode != null and i.applicantCode != ''">
+                    applicant_code = #{i.applicantCode},
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    approval_status = #{i.approvalStatus},
+                </if>
+                <if test="i.approveComment != null and i.approveComment != ''">
+                    approve_comment = #{i.approveComment},
+                </if>
+                <if test="i.taskId != null and i.taskId != ''">
+                    task_id = #{i.taskId},
+                </if>
+                <if test="i.executionId != null and i.executionId != ''">
+                    execution_id = #{i.executionId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id = #{i.processInstanceId},
+                </if>
+                <if test="i.processDefinitionId != null and i.processDefinitionId != ''">
+                    process_definition_id = #{i.processDefinitionId},
+                </if>
+                <if test="i.processDefinitionKey != null and i.processDefinitionKey != ''">
+                    process_definition_key = #{i.processDefinitionKey},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.approvalCode != null">
+                    AND approval_code = #{i.approvalCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!-- 根据条件查询唯一结果，SQL片段 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="approvalCode != null">
+                AND approval_code = #{approvalCode}
+            </if>
+            <if test="applyCode != null">
+                AND apply_code = #{applyCode}
+            </if>
+            <if test="applicantCode != null">
+                AND applicant_code = #{applicantCode}
+            </if>
+            <if test="approvalStatus != null">
+                AND approval_status = #{approvalStatus}
+            </if>
+            <if test="approveComment != null">
+                AND approve_comment = #{approveComment}
+            </if>
+            <if test="taskId != null">
+                AND task_id = #{taskId}
+            </if>
+            <if test="executionId != null">
+                AND execution_id = #{executionId}
+            </if>
+            <if test="processInstanceId != null">
+                AND process_instance_id = #{processInstanceId}
+            </if>
+            <if test="processDefinitionId != null">
+                AND process_definition_id = #{processDefinitionId}
+            </if>
+            <if test="processDefinitionKey != null">
+                AND process_definition_key = #{processDefinitionKey}
+            </if>
+
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_act_activiti_approval
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_act_activiti_approval
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.act.activiti.entity.ApprovalBaseEntity">
+        SELECT * FROM t_yq_act_activiti_approval
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_act_activiti_approval
+        <include refid="selectSql"/>
+    </select>
+</mapper>

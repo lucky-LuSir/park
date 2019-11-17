@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.report.entity.LandlordReceivableBiEntity">
+    <resultMap id="BaseResultMap" type="com.kfwy.park.bi.report.entity.LandlordReceivableBiEntity">
+        <result column="ld_code" property="ldCode" jdbcType="VARCHAR"/>
+        <result column="ld_ct_name" property="ldCtName" jdbcType="VARCHAR"/>
+        <result column="ld_ct_status" property="ldCtStatus" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="landlord_name" property="landlordName" jdbcType="VARCHAR"/>
+        <result column="contract_start_date" property="contractStartDate" jdbcType="TIMESTAMP"/>
+        <result column="contract_end_date" property="contractEndDate" jdbcType="TIMESTAMP"/>
+
+        <result column="rent_code" property="rentCode" jdbcType="VARCHAR"/>
+        <result column="pay_status" property="payStatus" jdbcType="VARCHAR"/>
+        <result column="total_price" property="totalPrice" jdbcType="VARCHAR"/>
+        <result column="paid_price" property="paidPrice" jdbcType="VARCHAR"/>
+        <result column="discounts_price" property="discountsPrice" jdbcType="VARCHAR"/>
+        <result column="cost_start_time" property="costStartTime" jdbcType="TIMESTAMP"/>
+        <result column="cost_end_time" property="costEndTime" jdbcType="TIMESTAMP"/>
+        <result column="deadline" property="deadline" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="landlordReceivableInfo" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        r.rent_code,
+        r.pay_status,
+        r.total_price,
+        r.paid_price,
+        r.discounts_price,
+        r.cost_start_time,
+        r.cost_end_time,
+        r.deadline,
+        c.ld_code,
+        c.ld_ct_name,
+        c.ld_ct_status,
+        c.pk_name,
+        c.landlord_name,
+        c.contract_start_date,
+        c.contract_end_date
+        FROM t_yq_exp_invpark_contract_landlord_rent r
+        LEFT JOIN t_yq_exp_invpark_contract c
+        ON r.ld_code = c.ld_code
+        <where>
+            <if test="isDeleted != null">
+               AND r.is_deleted = #{isDeleted}
+            </if>
+            <if test="isDeleted != null">
+                AND c.is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyCode != null">
+                AND c.cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyCode != null">
+                AND r.cpy_code = #{cpyCode}
+            </if>
+            <if test="startDate != null and endDate != null">
+                AND r.deadline BETWEEN #{startDate} AND #{endDate}
+            </if>
+            <if test="ldCtStatus != null">
+                AND c.ld_ct_status = #{ldCtStatus}
+            </if>
+            <if test="contractorDeptCode != null">
+                AND c.contractor_dept_code = #{contractorDeptCode}
+            </if>
+            <if test="pkCode != null">
+                AND c.pk_code = #{pkCode}
+            </if>
+        </where>
+
+
+    </select>
+</mapper>

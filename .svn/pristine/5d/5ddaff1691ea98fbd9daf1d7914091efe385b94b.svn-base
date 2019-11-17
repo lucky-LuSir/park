@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.pro.car.entity.CarEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.car.entity.CarEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cm_code" property="cmCode" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="license_num" property="licenseNum" jdbcType="VARCHAR"/>
+        <result column="in_time" property="inTime" jdbcType="TIMESTAMP"/>
+        <result column="out_time" property="outTime" jdbcType="TIMESTAMP"/>
+        <result column="visitor" property="visitor" jdbcType="VARCHAR"/>
+        <result column="visitor_phone" property="visitorPhone" jdbcType="VARCHAR"/>
+        <result column="cus_code" property="cusCode" jdbcType="VARCHAR"/>
+        <result column="company" property="company" jdbcType="VARCHAR"/>
+        <result column="other_company" property="otherCompany" jdbcType="VARCHAR"/>
+        <result column="be_visitor_name" property="beVisitorName" jdbcType="VARCHAR"/>
+        <result column="be_visitor_phone" property="beVisitorPhone" jdbcType="VARCHAR"/>
+        <result column="visitor_id_card" property="visitorIdCard" jdbcType="VARCHAR"/>
+        <result column="visitor_num" property="visitorNum" jdbcType="NUMERIC"/>
+        <result column="visit_purpose" property="visitPurpose" jdbcType="VARCHAR"/>
+        <result column="in_out_type" property="inOutType" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_car
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cmCode != null and i.cmCode != ''">
+                    cm_code,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.licenseNum != null and i.licenseNum != ''">
+                    license_num,
+                </if>
+                <if test="i.inTime != null">
+                    in_time,
+                </if>
+                <if test="i.outTime != null">
+                    out_time,
+                </if>
+                <if test="i.visitor != null and i.visitor != ''">
+                    visitor,
+                </if>
+                <if test="i.visitorPhone != null and i.visitorPhone != ''">
+                    visitor_phone,
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code,
+                </if>
+                <if test="i.company != null and i.company != ''">
+                    company,
+                </if>
+                <if test="i.otherCompany != null and i.otherCompany != ''">
+                    other_company,
+                </if>
+                <if test="i.beVisitorName != null and i.beVisitorName != ''">
+                    be_visitor_name,
+                </if>
+                <if test="i.beVisitorPhone != null and i.beVisitorPhone != ''">
+                    be_visitor_phone,
+                </if>
+                <if test="i.visitorIdCard != null and i.visitorIdCard != ''">
+                    visitor_id_card,
+                </if>
+                <if test="i.visitorNum != null">
+                    visitor_num,
+                </if>
+                <if test="i.visitPurpose != null and i.visitPurpose != ''">
+                    visit_purpose,
+                </if>
+                <if test="i.inOutType != null and i.inOutType != ''">
+                    in_out_type,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cmCode != null and i.cmCode != ''">
+                    #{i.cmCode},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.licenseNum != null and i.licenseNum != ''">
+                    #{i.licenseNum},
+                </if>
+                <if test="i.inTime != null">
+                    #{i.inTime},
+                </if>
+                <if test="i.outTime != null">
+                    #{i.outTime},
+                </if>
+                <if test="i.visitor != null and i.visitor != ''">
+                    #{i.visitor},
+                </if>
+                <if test="i.visitorPhone != null and i.visitorPhone != ''">
+                    #{i.visitorPhone},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    #{i.cusCode},
+                </if>
+                <if test="i.company != null and i.company != ''">
+                    #{i.company},
+                </if>
+                <if test="i.otherCompany != null and i.otherCompany != ''">
+                    #{i.otherCompany},
+                </if>
+                <if test="i.beVisitorName != null and i.beVisitorName != ''">
+                    #{i.beVisitorName},
+                </if>
+                <if test="i.beVisitorPhone != null and i.beVisitorPhone != ''">
+                    #{i.beVisitorPhone},
+                </if>
+                <if test="i.visitorIdCard != null and i.visitorIdCard != ''">
+                    #{i.visitorIdCard},
+                </if>
+                <if test="i.visitorNum != null">
+                    #{i.visitorNum},
+                </if>
+                <if test="i.visitPurpose != null and i.visitPurpose != ''">
+                    #{i.visitPurpose},
+                </if>
+                <if test="i.inOutType != null and i.inOutType != ''">
+                    #{i.inOutType},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.car.entity.CarEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_car
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cmCode != null and i.cmCode != ''">
+                    cm_code = #{i.cmCode},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.licenseNum != null and i.licenseNum != ''">
+                    license_num = #{i.licenseNum},
+                </if>
+                <if test="i.inTime != null">
+                    in_time = #{i.inTime},
+                </if>
+                <if test="i.outTime != null">
+                    out_time = #{i.outTime},
+                </if>
+                <if test="i.visitor != null and i.visitor != ''">
+                    visitor = #{i.visitor},
+                </if>
+                <if test="i.visitorPhone != null and i.visitorPhone != ''">
+                    visitor_phone = #{i.visitorPhone},
+                </if>
+                <if test="i.cusCode != null and i.cusCode != ''">
+                    cus_code = #{i.cusCode},
+                </if>
+                <if test="i.company != null and i.company != ''">
+                    company = #{i.company},
+                </if>
+                <if test="i.otherCompany != null and i.otherCompany != ''">
+                    other_company = #{i.otherCompany},
+                </if>
+                <if test="i.beVisitorName != null and i.beVisitorName != ''">
+                    be_visitor_name = #{i.beVisitorName},
+                </if>
+                <if test="i.beVisitorPhone != null and i.beVisitorPhone != ''">
+                    be_visitor_phone = #{i.beVisitorPhone},
+                </if>
+                <if test="i.visitorIdCard != null and i.visitorIdCard != ''">
+                    visitor_id_card = #{i.visitorIdCard},
+                </if>
+                <if test="i.visitorNum != null">
+                    visitor_num = #{i.visitorNum},
+                </if>
+                <if test="i.visitPurpose != null and i.visitPurpose != ''">
+                    visit_purpose = #{i.visitPurpose},
+                </if>
+                <if test="i.inOutType != null and i.inOutType != ''">
+                    in_out_type = #{i.inOutType},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id}
+            </if>
+            <if test="cmCode != null and cmCode != ''">
+                AND cm_code = #{cmCode}
+            </if>
+            <if test="pkCode != null and pkCode != ''">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null and pkName != ''">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="licenseNum != null and licenseNum != ''">
+                AND license_num = #{licenseNum}
+            </if>
+            <if test="inTime != null">
+                AND in_time = #{inTime}
+            </if>
+            <if test="outTime != null">
+                AND out_time = #{outTime}
+            </if>
+            <if test="visitor != null and visitor != ''">
+                AND visitor = #{visitor}
+            </if>
+            <if test="visitorPhone != null and visitorPhone != ''">
+                AND visitor_phone = #{visitorPhone}
+            </if>
+            <if test="cusCode != null and cusCode != ''">
+                AND cus_code = #{cusCode}
+            </if>
+            <if test="company != null and company != ''">
+                AND company = #{company}
+            </if>
+            <if test="otherCompany != null and otherCompany != ''">
+                AND other_company = #{otherCompany}
+            </if>
+            <if test="beVisitorName != null and beVisitorName != ''">
+                AND be_visitor_name = #{beVisitorName}
+            </if>
+            <if test="beVisitorPhone != null and beVisitorPhone != ''">
+                AND be_visitor_phone = #{beVisitorPhone}
+            </if>
+            <if test="visitorIdCard != null and visitorIdCard != ''">
+                AND visitor_id_card = #{visitorIdCard}
+            </if>
+            <if test="visitorNum != null">
+                AND visitor_num = #{visitorNum}
+            </if>
+            <if test="visitPurpose != null and visitPurpose != ''">
+                AND visit_purpose = #{visitPurpose}
+            </if>
+            <if test="inOutType != null and inOutType != ''">
+                and in_out_type = #{inOutType}
+            </if>
+
+            <if test="cpyCode != null and cpyCode != ''">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null and cpyName != ''">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="createCode != null and createCode != ''">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null and createName != ''">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null and createDeptCode != ''">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="lastUpdateCode != null and lastUpdateCode != ''">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null and lastUpdateName != ''">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="outDateStart != null">
+                AND out_time <![CDATA[ >= ]]> #{outDateStart}
+            </if>
+            <if test="outDateEnd != null">
+                AND out_time <![CDATA[ <= ]]> #{outDateEnd}
+            </if>
+            <if test="keyword != null">
+                AND
+                (visitor LIKE '%' || #{keyword} ||'%' or
+                company LIKE '%' || #{keyword} ||'%' or
+                license_num LIKE '%' || #{keyword} ||'%')
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_car WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.car.entity.CarEntity">
+        SELECT * FROM t_yq_pro_car
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_car
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.car.entity.CarEntity">
+        SELECT * FROM t_yq_pro_car
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_car
+        <include refid="selectSql"/>
+    </select>
+
+    <update id="updateAll" parameterType="com.kfwy.park.pro.car.entity.CarEntity">
+        UPDATE t_yq_pro_car
+        SET
+        pk_code = #{pkCode}, pk_name = #{pkName}, license_num = #{licenseNum}, in_time = #{inTime}, out_time =#{outTime},visitor = #{visitor},visitor_phone = #{visitorPhone},
+        cus_code = #{cusCode}, company = #{company},other_company = #{otherCompany},visitor_num=#{visitorNum}, visit_purpose=#{visitPurpose}, remark = #{remark}
+        ,be_visitor_name = #{beVisitorName}, be_visitor_phone = #{beVisitorPhone}, visitor_id_card = #{visitorIdCard}
+        ,last_update_time = #{lastUpdateTime}, last_update_code = #{lastUpdateCode}, last_update_name = #{lastUpdateName}
+        ,in_out_type = #{inOutType}
+        WHERE id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.pro.inspect.entity.InspectScoreEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.inspect.entity.InspectScoreEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="inspect_code" property="inspectCode" jdbcType="VARCHAR"/>
+        <result column="obj_rl_code" property="objRlCode" jdbcType="VARCHAR"/>
+        <result column="obj_rl_name" property="objRlName" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="OTHER"/>
+        <result column="score" property="score" jdbcType="OTHER"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="parent_code" property="parentCode" jdbcType="VARCHAR"/>
+        <result column="describe" property="describe" jdbcType="VARCHAR"/>
+        <result column="file_code" property="fileCode" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_inspect_score
+            <trim prefix="(" suffix=")" suffixOverrides=",">   
+                <if test="i.inspectCode != null and i.inspectCode != ''">
+                     inspect_code,
+                </if>
+                <if test="i.objRlCode != null and i.objRlCode != ''">
+                    obj_rl_code,
+                </if>
+                <if test="i.objRlName != null and i.objRlName != ''">
+                    obj_rl_name,
+                </if>
+                <if test="i.grade != null">
+                     grade,
+                </if>
+                <if test="i.score != null">
+                     score,
+                </if>
+                <if test="i.type != null and i.type != ''">
+                     type,
+                </if>
+                <if test="i.parentCode != null and i.parentCode != ''">
+                     parent_code,
+                </if>
+                <if test="i.describe != null and i.describe != ''">
+                     describe,
+                </if>
+                <if test="i.fileCode != null and i.fileCode != ''">
+                     file_code,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                 <if test="i.inspectCode != null and i.inspectCode != ''">
+                     #{i.inspectCode},
+                 </if>
+                <if test="i.objRlCode != null and i.objRlCode != ''">
+                    #{i.objRlCode},
+                </if>
+                <if test="i.objRlName != null and i.objRlName != ''">
+                    #{i.objRlName},
+                </if>
+                 <if test="i.grade != null">
+                     #{i.grade},
+                 </if>
+                 <if test="i.score != null">
+                     #{i.score},
+                 </if>
+                 <if test="i.type != null and i.type != ''">
+                     #{i.type},
+                 </if>
+                 <if test="i.parentCode != null and i.parentCode != ''">
+                     #{i.parentCode},
+                 </if>
+                 <if test="i.describe != null and i.describe != ''">
+                     #{i.describe},
+                 </if>
+                 <if test="i.fileCode != null and i.fileCode != ''">
+                     #{i.fileCode},
+                 </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+            </trim>
+         </foreach>
+     </insert>
+            
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.inspect.entity.InspectScoreEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_inspect_score
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.inspectCode != null and i.inspectCode != ''">
+                     inspect_code = #{i.inspectCode},
+                </if>
+                <if test="i.objRlCode != null and i.objRlCode != ''">
+                    obj_rl_code = #{i.objRlCode},
+                </if>
+                <if test="i.objRlName != null and i.objRlName != ''">
+                    obj_rl_name = #{i.objRlName},
+                </if>
+                <if test="i.grade != null">
+                     grade = #{i.grade},
+                </if>
+                <if test="i.score != null">
+                     score = #{i.score},
+                </if>
+                <if test="i.type != null and i.type != ''">
+                     type = #{i.type},
+                </if>
+                <if test="i.parentCode != null and i.parentCode != ''">
+                     parent_code = #{i.parentCode},
+                </if>
+                <if test="i.describe != null and i.describe != ''">
+                     describe = #{i.describe},
+                </if>
+                <if test="i.fileCode != null and i.fileCode != ''">
+                     file_code = #{i.fileCode},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+            </trim>
+        </foreach>
+    </update>                          
+                
+     <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+             <if test="id != null">
+                AND ID = #{id}
+             </if>
+             <if test="inspectCode != null and inspectCode != ''">
+                 AND inspect_code = #{inspectCode}
+             </if>
+            <if test="objRlCode != null and objRlCode != ''">
+                AND obj_rl_code = #{objRlCode}
+            </if>
+            <if test="objRlName != null and objRlName != ''">
+                AND obj_rl_name = #{objRlName}
+            </if>
+             <if test="grade != null">
+                 AND grade = #{grade}
+             </if>
+             <if test="score != null">
+                 AND score = #{score}
+             </if>
+             <if test="type != null and type != ''">
+                 AND type = #{type}
+             </if>
+             <if test="parentCode != null and parentCode != ''">
+                 AND parent_code = #{parentCode}
+             </if>
+             <if test="describe != null and describe != ''">
+                 AND describe = #{describe}
+             </if>
+             <if test="fileCode != null and fileCode != ''">
+                 AND file_code = #{fileCode}
+             </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+    
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_inspect_score WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+          
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.inspect.entity.InspectScoreEntity">
+        SELECT * FROM t_yq_pro_inspect_score
+        <include refid="selectSql"/>
+    </select>     
+    
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_inspect_score
+        <include refid="selectSql"/>
+    </select>
+          
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.inspect.entity.InspectScoreEntity">
+        SELECT * FROM t_yq_pro_inspect_score
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+    
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_inspect_score
+        <include refid="selectSql"/>
+    </select>
+</mapper>

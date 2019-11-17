@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>parkAreaAnalysis</fileName>
+    <!--导出园区数据异常报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>园区名称</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>楼栋名称</title>
+        <alias>bdName</alias>
+    </cell>
+
+    <cell>
+        <title>楼层名称</title>
+        <alias>thisFloor</alias>
+    </cell>
+
+    <cell>
+        <title>楼层总面积</title>
+        <alias>investArea</alias>
+    </cell>
+
+    <cell>
+        <title>楼层可租面积</title>
+        <alias>rentableArea</alias>
+    </cell>
+
+    <cell>
+        <title>楼层已租面积</title>
+        <alias>rentedArea</alias>
+    </cell>
+
+    <cell>
+        <title>该楼层合同已租面积</title>
+        <alias>contractRentedArea</alias>
+    </cell>
+
+    <cell>
+        <title>是否异常</title>
+        <alias>checked</alias>
+    </cell>
+
+</exportFile>
+

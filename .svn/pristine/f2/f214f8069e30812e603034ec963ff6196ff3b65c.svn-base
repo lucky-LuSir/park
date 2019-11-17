@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.ati.contract.entity.ContractHouseEntity">
+
+    <!--  column对应数据库,property对应Bean-->
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.contract.entity.ContractHouseEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="rent_hos_code" property="rentHosCode" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="bd_code" property="bdCode" jdbcType="VARCHAR"/>
+        <result column="bd_name" property="bdName" jdbcType="VARCHAR"/>
+        <result column="fl_code" property="flCode" jdbcType="VARCHAR"/>
+        <result column="fl_count" property="flCount" jdbcType="INTEGER"/>
+        <result column="room_number" property="roomNumber" jdbcType="VARCHAR"/>
+        <result column="rent_area" property="rentArea" jdbcType="NUMERIC"/>
+        <result column="invest_area" property="investArea" jdbcType="NUMERIC"/>
+        <result column="area_rate" property="areaRate" jdbcType="VARCHAR"/>
+        <result column="unit_price" property="unitPrice" jdbcType="NUMERIC"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="monthly_rent" property="monthlyRent" jdbcType="NUMERIC"/>
+        <result column="property_unit_price" property="propertyUnitPrice" jdbcType="NUMERIC"/>
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_con_contract_house
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+                <if test="i.rentHosCode != null and i.rentHosCode != ''">
+                    rent_hos_code,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    bd_code,
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name,
+                </if>
+                <if test="i.flCode != null and i.flCode != ''">
+                    fl_code,
+                </if>
+                <if test="i.flCount != null">
+                    fl_count,
+                </if>
+                <if test="i.roomNumber != null and i.roomNumber != ''">
+                    room_number,
+                </if>
+                <if test="i.rentArea != null">
+                    rent_area,
+                </if>
+                <if test="i.investArea != null">
+                    invest_area,
+                </if>
+                <if test="i.areaRate != null and i.areaRate != ''">
+                    area_rate,
+                </if>
+                <if test="i.unitPrice != null">
+                    unit_price,
+                </if>
+                <if test="i.unit != null and i.unit != ''">
+                    unit,
+                </if>
+                <if test="i.monthlyRent != null">
+                    monthly_rent,
+                </if>
+                <if test="i.propertyUnitPrice != null">
+                    property_unit_price,
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+                <if test="i.rentHosCode != null and i.rentHosCode != ''">
+                    #{i.rentHosCode},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    #{i.bdCode},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    #{i.bdName},
+                </if>
+                <if test="i.flCode != null and i.flCode != ''">
+                    #{i.flCode},
+                </if>
+                <if test="i.flCount != null">
+                    #{i.flCount},
+                </if>
+                <if test="i.roomNumber != null and i.roomNumber != ''">
+                    #{i.roomNumber},
+                </if>
+                <if test="i.rentArea != null">
+                    #{i.rentArea},
+                </if>
+                <if test="i.investArea != null">
+                    #{i.investArea},
+                </if>
+                <if test="i.areaRate != null and i.areaRate != ''">
+                    #{i.areaRate},
+                </if>
+                <if test="i.unitPrice != null">
+                    #{i.unitPrice},
+                </if>
+                <if test="i.unit != null and i.unit != ''">
+                    #{i.unit},
+                </if>
+                <if test="i.monthlyRent != null">
+                    #{i.monthlyRent},
+                </if>
+                <if test="i.propertyUnitPrice != null">
+                    #{i.propertyUnitPrice},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.contract.entity.ContractHouseEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_con_contract_house
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+                <if test="i.rentHosCode != null and i.rentHosCode != ''">
+                    rent_hos_code = #{i.rentHosCode},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    bd_code = #{i.bdCode},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name = #{i.bdName},
+                </if>
+                <if test="i.flCode != null and i.flCode != ''">
+                    fl_code = #{i.flCode},
+                </if>
+                <if test="i.flCount != null">
+                    fl_count = #{i.flCount},
+                </if>
+                <if test="i.roomNumber != null and i.roomNumber != ''">
+                    room_number = #{i.roomNumber},
+                </if>
+                <if test="i.rentArea != null">
+                    rent_area = #{i.rentArea},
+                </if>
+                <if test="i.investArea != null">
+                    invest_area = #{i.investArea},
+                </if>
+                <if test="i.areaRate != null and i.areaRate != ''">
+                    area_rate = #{i.areaRate},
+                </if>
+                <if test="i.unitPrice != null">
+                    unit_price = #{i.unitPrice},
+                </if>
+                <if test="i.unit != null and i.unit != ''">
+                    unit = #{i.unit},
+                </if>
+                <if test="i.monthlyRent != null">
+                    monthly_rent = #{i.monthlyRent},
+                </if>
+                <if test="i.propertyUnitPrice != null">
+                    property_unit_price = #{i.propertyUnitPrice},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.rentHosCode != null">
+                    AND rent_hos_code = #{i.rentHosCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_con_contract_house WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="rentHosCode != null">
+                AND rent_hos_code = #{rentHosCode}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="pkName != null">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="bdCode != null">
+                AND bd_code = #{bdCode}
+            </if>
+            <if test="bdName != null">
+                AND bd_name = #{bdName}
+            </if>
+            <if test="flCode != null">
+                AND fl_code = #{flCode}
+            </if>
+            <if test="flCount != null">
+                AND fl_count = #{flCount}
+            </if>
+            <if test="roomNumber != null">
+                AND room_number = #{roomNumber}
+            </if>
+            <if test="rentArea != null">
+                AND rent_area = #{rentArea}
+            </if>
+            <if test="investArea != null">
+                AND invest_area = #{investArea}
+            </if>
+            <if test="areaRate != null">
+                AND area_rate = #{areaRate}
+            </if>
+            <if test="unitPrice != null">
+                AND unit_price = #{unitPrice}
+            </if>
+            <if test="unit != null">
+                AND unit = #{unit}
+            </if>
+            <if test="monthlyRent != null">
+                AND monthly_rent = #{monthlyRent}
+            </if>
+            <if test="propertyUnitPrice != null">
+                AND property_unit_price = #{propertyUnitPrice}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.ContractHouseEntity">
+        SELECT * FROM t_yq_ati_con_contract_house
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_contract_house
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.contract.entity.ContractHouseEntity">
+        SELECT * FROM t_yq_ati_con_contract_house
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_con_contract_house
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 楼层信息显示合同、合同房源的数据，用于园区详情和楼栋详情中的层信息展示 -->
+    <select id="selectFloorAndContractHouse" parameterType="java.util.Map" resultType="com.kfwy.park.ati.contract.entity.ContractHouseEntity">
+        SELECT h.id AS id,
+               h.cpy_code AS cpyCode,
+               h.cpy_name AS cpyName,
+               h.ct_code AS ctCode,
+               h.rent_hos_code AS rentHosCode,
+               h.pk_code AS pkCode,
+               h.pk_name AS pkName,
+               h.bd_code AS bdCode,
+               h.bd_name AS bdName,
+               h.fl_code AS flCode,
+               h.fl_count AS flCount,
+               h.room_number AS roomNumber,
+               h.rent_area AS rentArea,
+               h.invest_area AS investArea,
+               h.area_rate AS areaRate,
+               h.unit_price AS unitPrice,
+               h.unit AS unit,
+               h.monthly_rent AS monthlyRent,
+               h.property_unit_price AS propertyUnitPrice,
+               h.create_code AS createCode,
+               h.create_name AS createName,
+               h.last_update_code AS lastUpdateCode,
+               h.last_update_name AS lastUpdateName,
+               h.create_time AS createTime,
+               h.last_update_time AS lastUpdateTime,
+               h.is_deleted AS isDeleted,
+               h.remark AS remark,
+               c.ct_name AS ctName,
+               c.company_name AS companyName,
+			   c.relate_name AS relateName
+        FROM t_yq_ati_con_contract_house h LEFT JOIN t_yq_ati_con_contract c ON c.ct_code = h.ct_code
+        WHERE h.is_deleted = false AND
+              c.is_deleted = false AND
+              c.pk_code = #{pkCode} AND
+              c.cpy_code = #{cpyCode} AND
+              c.ct_status in ('4','9')
+    </select>
+
+    <select id="selectInvestAreaByFlCode" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT invest_area
+        FROM t_yq_ati_con_contract_house h
+        LEFT JOIN t_yq_ati_con_contract c
+        ON c.ct_code = h.ct_code
+        WHERE h.fl_code = #{flCode}
+        AND h.is_deleted = false
+        AND c.is_deleted = false
+        AND c.cpy_code = #{cpyCode}
+        AND h.cpy_code = #{cpyCode}
+        AND c.ct_status  in ('4','9')
+    </select>
+
+    <!-- 去化毛利率报表：获取一层楼在某月的盈利金额 -->
+    <select id="selectByFlCode" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT h.*
+        FROM t_yq_ati_con_contract_house h
+        LEFT JOIN t_yq_ati_con_contract c
+        ON c.ct_code = h.ct_code
+        WHERE h.fl_code = #{flCode}
+        AND h.is_deleted = false
+        AND c.is_deleted = false
+        AND c.cpy_code = #{cpyCode}
+        AND h.cpy_code = #{cpyCode}
+        AND c.ct_status  in ('4','9','7')
+        <if test="startTime != null and endTime != null">
+            AND( c.contract_start_time BETWEEN #{startTime} AND #{endTime}
+            OR (c.contract_start_time <![CDATA[ <= ]]> #{startTime} AND c.contract_end_time <![CDATA[ >= ]]>#{startTime})
+            )
+        </if>
+    </select>
+
+    <select id="selectThreeMonthExpiredArea" parameterType="java.util.List" resultType="java.math.BigDecimal">
+        select sum(invest_area)
+        from t_yq_ati_con_contract_house
+        where
+        ct_code in
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+        and is_deleted = false
+    </select>
+</mapper>

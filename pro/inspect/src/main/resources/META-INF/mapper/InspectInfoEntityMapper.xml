@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.pro.inspect.entity.InspectInfoEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.inspect.entity.InspectInfoEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="inspect_code" property="inspectCode" jdbcType="VARCHAR"/>
+        <result column="template_code" property="templateCode" jdbcType="VARCHAR"/>
+        <result column="task_code" property="taskCode" jdbcType="VARCHAR"/>
+        <result column="inspect_time" property="inspectTime" jdbcType="TIMESTAMP"/>
+        <result column="be_inspected_emp_code" property="beInspectedEmpCode" jdbcType="VARCHAR"/>
+        <result column="be_inspected_emp_name" property="beInspectedEmpName" jdbcType="VARCHAR"/>
+        <result column="inspect_emp_code" property="inspectEmpCode" jdbcType="VARCHAR"/>
+        <result column="inspect_emp_name" property="inspectEmpName" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="total_grade" property="totalGrade" jdbcType="NUMERIC"/>
+        <result column="total_score" property="totalScore" jdbcType="NUMERIC"/>
+        <result column="inspect_type" property="inspectType" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_inspect_info
+            <trim prefix="(" suffix=")" suffixOverrides=",">   
+                <if test="i.inspectCode != null and i.inspectCode != ''">
+                     inspect_code,
+                </if>
+                <if test="i.templateCode != null and i.templateCode != ''">
+                    template_code,
+                </if>
+                <if test="i.taskCode != null and i.taskCode != ''">
+                    task_code,
+                </if>
+                <if test="i.inspectTime != null">
+                     inspect_time,
+                </if>
+                <if test="i.beInspectedEmpCode != null and i.beInspectedEmpCode != ''">
+                     be_inspected_emp_code,
+                </if>
+                <if test="i.beInspectedEmpName != null and i.beInspectedEmpName != ''">
+                     be_inspected_emp_name,
+                </if>
+                <if test="i.inspectEmpCode != null and i.inspectEmpCode != ''">
+                     inspect_emp_code,
+                </if>
+                <if test="i.inspectEmpName != null and i.inspectEmpName != ''">
+                     inspect_emp_name,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                     pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                     pk_name,
+                </if>
+                <if test="i.totalGrade != null">
+                     total_grade,
+                </if>
+                <if test="i.totalScore != null">
+                     total_score,
+                </if>
+                <if test="i.inspectType != null and i.inspectType != null">
+                    inspect_type,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                     cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                     cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                     owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                     owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                     owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                     owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                     create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                     create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                     create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                     create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                     last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                     last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                     create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                     last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                     is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                     remark,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                 <if test="i.inspectCode != null and i.inspectCode != ''">
+                     #{i.inspectCode},
+                 </if>
+                <if test="i.templateCode != null and i.templateCode != ''">
+                    #{i.templateCode},
+                </if>
+                <if test="i.taskCode != null and i.taskCode != ''">
+                    #{i.taskCode},
+                </if>
+                 <if test="i.inspectTime != null">
+                     #{i.inspectTime},
+                 </if>
+                 <if test="i.beInspectedEmpCode != null and i.beInspectedEmpCode != ''">
+                     #{i.beInspectedEmpCode},
+                 </if>
+                 <if test="i.beInspectedEmpName != null and i.beInspectedEmpName != ''">
+                     #{i.beInspectedEmpName},
+                 </if>
+                 <if test="i.inspectEmpCode != null and i.inspectEmpCode != ''">
+                     #{i.inspectEmpCode},
+                 </if>
+                 <if test="i.inspectEmpName != null and i.inspectEmpName != ''">
+                     #{i.inspectEmpName},
+                 </if>
+                 <if test="i.pkCode != null and i.pkCode != ''">
+                     #{i.pkCode},
+                 </if>
+                 <if test="i.pkName != null and i.pkName != ''">
+                     #{i.pkName},
+                 </if>
+                 <if test="i.totalGrade != null">
+                     #{i.totalGrade},
+                 </if>
+                 <if test="i.totalScore != null">
+                     #{i.totalScore},
+                 </if>
+                <if test="i.inspectType != null and i.inspectType != null">
+                    #{i.inspectType},
+                </if>
+
+                 <if test="i.cpyCode != null and i.cpyCode != ''">
+                     #{i.cpyCode},
+                 </if>
+                 <if test="i.cpyName != null and i.cpyName != ''">
+                     #{i.cpyName},
+                 </if>
+                 <if test="i.ownerCode != null and i.ownerCode != ''">
+                     #{i.ownerCode},
+                 </if>
+                 <if test="i.ownerName != null and i.ownerName != ''">
+                     #{i.ownerName},
+                 </if>
+                 <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                     #{i.ownerDeptCode},
+                 </if>
+                 <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                     #{i.ownerDeptName},
+                 </if>
+                 <if test="i.createCode != null and i.createCode != ''">
+                     #{i.createCode},
+                 </if>
+                 <if test="i.createName != null and i.createName != ''">
+                     #{i.createName},
+                 </if>
+                 <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                     #{i.createDeptCode},
+                 </if>
+                 <if test="i.createDeptName != null and i.createDeptName != ''">
+                     #{i.createDeptName},
+                 </if>
+                 <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                     #{i.lastUpdateCode},
+                 </if>
+                 <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                     #{i.lastUpdateName},
+                 </if>
+                 <if test="i.createTime != null">
+                     #{i.createTime},
+                 </if>
+                 <if test="i.lastUpdateTime != null">
+                     #{i.lastUpdateTime},
+                 </if>
+                 <if test="i.isDeleted != null">
+                     #{i.isDeleted},
+                 </if>
+                 <if test="i.remark != null and i.remark != ''">
+                     #{i.remark},
+                 </if>
+            </trim>
+         </foreach>
+     </insert>
+            
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.inspect.entity.InspectInfoEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_inspect_info
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.inspectCode != null and i.inspectCode != ''">
+                     inspect_code = #{i.inspectCode},
+                </if>
+                <if test="i.templateCode != null and i.templateCode != ''">
+                    template_code = #{i.templateCode},
+                </if>
+                <if test="i.taskCode != null and i.taskCode != ''">
+                    task_code = #{i.taskCode},
+                </if>
+                <if test="i.inspectTime != null">
+                     inspect_time = #{i.inspectTime},
+                </if>
+                <if test="i.beInspectedEmpCode != null and i.beInspectedEmpCode != ''">
+                     be_inspected_emp_code = #{i.beInspectedEmpCode},
+                </if>
+                <if test="i.beInspectedEmpName != null and i.beInspectedEmpName != ''">
+                     be_inspected_emp_name = #{i.beInspectedEmpName},
+                </if>
+                <if test="i.inspectEmpCode != null and i.inspectEmpCode != ''">
+                     inspect_emp_code = #{i.inspectEmpCode},
+                </if>
+                <if test="i.inspectEmpName != null and i.inspectEmpName != ''">
+                     inspect_emp_name = #{i.inspectEmpName},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                     pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                     pk_name = #{i.pkName},
+                </if>
+                <if test="i.totalGrade != null">
+                     total_grade = #{i.totalGrade},
+                </if>
+                <if test="i.totalScore != null">
+                    total_score = #{i.totalScore},
+                </if>
+                <if test="i.inspectType != null and i.inspectType != null">
+                    inspect_type = #{i.inspectType},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                     cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                     cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                     owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                     owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                     owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                     owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                     create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                     create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                     create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                     create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                     last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                     last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                     create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                     last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                     is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                     remark = #{i.remark},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+            </trim>
+        </foreach>
+    </update>                          
+                
+     <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+             <if test="id != null">
+                AND ID = #{id}
+             </if>
+             <if test="inspectCode != null and inspectCode != ''">
+                 AND inspect_code = #{inspectCode}
+             </if>
+            <if test="templateCode != null and templateCode != ''">
+                AND template_code = #{templateCode}
+            </if>
+            <if test="taskCode != null and taskCode != ''">
+                AND task_code = #{taskCode}
+            </if>
+             <if test="inspectTime != null">
+                 AND inspect_time = #{inspectTime}
+             </if>
+             <if test="beInspectedEmpCode != null and beInspectedEmpCode != ''">
+                 AND be_inspected_emp_code = #{beInspectedEmpCode}
+             </if>
+             <if test="beInspectedEmpName != null and beInspectedEmpName != ''">
+                 AND be_inspected_emp_name = #{beInspectedEmpName}
+             </if>
+             <if test="inspectEmpCode != null and inspectEmpCode != ''">
+                 AND inspect_emp_code = #{inspectEmpCode}
+             </if>
+             <if test="inspectEmpName != null and inspectEmpName != ''">
+                 AND inspect_emp_name = #{inspectEmpName}
+             </if>
+             <if test="pkCode != null and pkCode != ''">
+                 AND pk_code = #{pkCode}
+             </if>
+             <if test="pkName != null and pkName != ''">
+                 AND pk_name = #{pkName}
+             </if>
+             <if test="totalGrade != null">
+                 AND total_grade = #{totalGrade}
+             </if>
+             <if test="totalScore != null">
+                 AND total_score = #{totalScore}
+             </if>
+            <if test="inspectType != null">
+                and inspect_type = #{inspectType}
+            </if>
+
+             <if test="cpyCode != null and cpyCode != ''">
+                 AND cpy_code = #{cpyCode}
+             </if>
+             <if test="cpyName != null and cpyName != ''">
+                 AND cpy_name = #{cpyName}
+             </if>
+             <if test="ownerCode != null and ownerCode != ''">
+                 AND owner_code = #{ownerCode}
+             </if>
+             <if test="ownerName != null and ownerName != ''">
+                 AND owner_name = #{ownerName}
+             </if>
+             <if test="ownerDeptCode != null and ownerDeptCode != ''">
+                 AND owner_dept_code = #{ownerDeptCode}
+             </if>
+             <if test="ownerDeptName != null and ownerDeptName != ''">
+                 AND owner_dept_name = #{ownerDeptName}
+             </if>
+             <if test="createCode != null and createCode != ''">
+                 AND create_code = #{createCode}
+             </if>
+             <if test="createName != null and createName != ''">
+                 AND create_name = #{createName}
+             </if>
+             <if test="createDeptCode != null and createDeptCode != ''">
+                 AND create_dept_code = #{createDeptCode}
+             </if>
+             <if test="createDeptName != null and createDeptName != ''">
+                 AND create_dept_name = #{createDeptName}
+             </if>
+             <if test="lastUpdateCode != null and lastUpdateCode != ''">
+                 AND last_update_code = #{lastUpdateCode}
+             </if>
+             <if test="lastUpdateName != null and lastUpdateName != ''">
+                 AND last_update_name = #{lastUpdateName}
+             </if>
+             <if test="createTime != null">
+                 AND create_time = #{createTime}
+             </if>
+             <if test="lastUpdateTime != null">
+                 AND last_update_time = #{lastUpdateTime}
+             </if>
+             <if test="isDeleted != null">
+                 AND is_deleted = #{isDeleted}
+             </if>
+             <if test="remark != null and remark != ''">
+                 AND remark = #{remark}
+             </if>
+             <if test="inspectStartTime != null">
+                 and inspect_time <![CDATA[ >= ]]> #{inspectStartTime}
+             </if>
+             <if test="inspectEndTime != null">
+                 and inspect_time <![CDATA[ <= ]]> #{inspectEndTime}
+             </if>
+             <if test="keyword != null and keyword != ''">
+                 and be_inspected_emp_name like '%'||#{keyword}||'%'
+             </if>
+        </trim>
+    </sql>
+    
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_inspect_info WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+          
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.inspect.entity.InspectInfoEntity">
+        SELECT * FROM t_yq_pro_inspect_info
+        <include refid="selectSql"/>
+    </select>     
+    
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_inspect_info
+        <include refid="selectSql"/>
+    </select>
+          
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.inspect.entity.InspectInfoEntity">
+        SELECT * FROM t_yq_pro_inspect_info
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+    
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_inspect_info
+        <include refid="selectSql"/>
+    </select>
+</mapper>

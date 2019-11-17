@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.pro.inspect.entity.InspectTaskObjEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.inspect.entity.InspectTaskObjEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="task_code" property="taskCode" jdbcType="VARCHAR"/>
+        <result column="obj_rl_code" property="objRlCode" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_inspect_task_obj
+            <trim prefix="(" suffix=")" suffixOverrides=",">   
+                <if test="i.taskCode != null and i.taskCode != ''">
+                     task_code,
+                </if>
+                <if test="i.objRlCode != null and i.objRlCode != ''">
+                     obj_rl_code,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                 <if test="i.taskCode != null and i.taskCode != ''">
+                     #{i.taskCode},
+                 </if>
+                 <if test="i.objRlCode != null and i.objRlCode != ''">
+                     #{i.objRlCode},
+                 </if>
+            </trim>
+         </foreach>
+     </insert>
+            
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.inspect.entity.InspectTaskObjEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_inspect_task_obj
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.taskCode != null and i.taskCode != ''">
+                     task_code = #{i.taskCode},
+                </if>
+                <if test="i.objRlCode != null and i.objRlCode != ''">
+                     obj_rl_code = #{i.objRlCode},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+            </trim>
+        </foreach>
+    </update>                          
+                
+     <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+             <if test="id != null">
+                AND ID = #{id}
+             </if>
+             <if test="taskCode != null and taskCode != ''">
+                 AND task_code = #{taskCode}
+             </if>
+             <if test="objRlCode != null and objRlCode != ''">
+                 AND obj_rl_code = #{objRlCode}
+             </if>
+        </trim>
+    </sql>
+    
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_inspect_task_obj WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+          
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.inspect.entity.InspectTaskObjEntity">
+        SELECT * FROM t_yq_pro_inspect_task_obj
+        <include refid="selectSql"/>
+    </select>     
+    
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_inspect_task_obj
+        <include refid="selectSql"/>
+    </select>
+          
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.inspect.entity.InspectTaskObjEntity">
+        SELECT * FROM t_yq_pro_inspect_task_obj
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+    
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_inspect_task_obj
+        <include refid="selectSql"/>
+    </select>
+
+    <delete id="deleteByTaskCode" parameterType="java.util.Map">
+        delete FROM t_yq_pro_inspect_task_obj where task_code = #{taskCode}
+    </delete>
+</mapper>

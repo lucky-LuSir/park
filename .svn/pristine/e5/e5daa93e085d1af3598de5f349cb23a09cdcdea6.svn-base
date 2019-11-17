@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>merchantsBiReport</fileName>
+    <!--导出应收租金报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>姓名</title>
+        <alias>empName</alias>
+    </cell>
+
+    <cell>
+        <title>横幅</title>
+        <alias>banner</alias>
+    </cell>
+
+    <cell>
+        <title>宣传单</title>
+        <alias>leaflets</alias>
+    </cell>
+
+    <cell>
+        <title>朋友圈</title>
+        <alias>friendsShare</alias>
+    </cell>
+
+    <cell>
+        <title>电话跟进</title>
+        <alias>customerPhoneFollowup</alias>
+    </cell>
+
+    <cell>
+        <title>电话带看</title>
+        <alias>customerVisityFollowup</alias>
+    </cell>
+
+    <cell>
+        <title>主动获客</title>
+        <alias>initiative</alias>
+    </cell>
+
+    <cell>
+        <title>中介带看</title>
+        <alias>agent</alias>
+    </cell>
+
+    <cell>
+        <title>库房无忧</title>
+        <alias>kuFangWuYou</alias>
+    </cell>
+
+    <cell>
+        <title>获客数</title>
+        <alias>cusCount</alias>
+    </cell>
+
+    <cell>
+        <title>所有谈判中</title>
+        <alias>cusNegotiateCount</alias>
+    </cell>
+
+    <cell>
+        <title>入驻客户</title>
+        <alias>cusEntryCount</alias>
+    </cell>
+
+    <cell>
+        <title>去化面积</title>
+        <alias>signAreaMonth</alias>
+    </cell>
+
+</exportFile>
+

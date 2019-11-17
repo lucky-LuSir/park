@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.pro.house.building.entity.FloorEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.house.building.entity.FloorEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="bd_code" property="bdCode" jdbcType="VARCHAR"/>
+        <result column="bd_name" property="bdName" jdbcType="VARCHAR"/>
+        <result column="fl_code" property="flCode" jdbcType="VARCHAR"/>
+        <result column="use_type" property="useType" jdbcType="VARCHAR"/>
+        <result column="decoration_type" property="decorationType" jdbcType="VARCHAR"/>
+        <result column="floor_type" property="floorType" jdbcType="VARCHAR"/>
+        <result column="floor_status" property="floorStatus" jdbcType="VARCHAR"/>
+
+        <result column="floor_bear_weight" property="floorBearWeight" jdbcType="NUMERIC"/>
+        <result column="this_floor" property="thisFloor" jdbcType="VARCHAR"/>
+        <result column="invest_area" property="investArea" jdbcType="NUMERIC"/>
+        <result column="rentable_area" property="rentableArea" jdbcType="NUMERIC"/>
+        <result column="rented_area" property="rentedArea" jdbcType="NUMERIC"/>
+        <result column="floor_height" property="floorHeight" jdbcType="NUMERIC"/>
+        <result column="pillar_spacing" property="pillarSpacing" jdbcType="NUMERIC"/>
+        <result column="floor_deep" property="floorDeep" jdbcType="VARCHAR"/>
+        <result column="has_elevator" property="hasElevator" jdbcType="BOOLEAN"/>
+        <result column="has_driving" property="hasDriving" jdbcType="BOOLEAN"/>
+        <result column="has_bathroom" property="hasBathroom" jdbcType="BOOLEAN"/>
+        <result column="has_office_area" property="hasOfficeArea" jdbcType="BOOLEAN"/>
+        <result column="out_picture" property="outPicture" jdbcType="VARCHAR"/>
+        <result column="aerial_view" property="aerialView" jdbcType="VARCHAR"/>
+        <result column="internal_diagram" property="internalDiagram" jdbcType="VARCHAR"/>
+        <result column="floor_price" property="floorPrice" jdbcType="NUMERIC"/>
+
+        <result column="floor_unit_price" property="floorUnitPrice" jdbcType="NUMERIC"/>
+        <result column="price_unit" property="priceUnit" jdbcType="VARCHAR"/>
+        <result column="tenant_price" property="tenantPrice" jdbcType="NUMERIC"/>
+        <result column="tenant_unit" property="tenantUnit" jdbcType="VARCHAR"/>
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_hos_floor
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    bd_code,
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name,
+                </if>
+                <if test="i.flCode != null and i.flCode!=''">
+                    fl_code,
+                </if>
+                <if test="i.useType != null and i.useType != ''">
+                    use_type,
+                </if>
+                <if test="i.decorationType != null and i.decorationType != ''">
+                    decoration_type,
+                </if>
+                <if test="i.floorType != null and i.floorType != ''">
+                    floor_type,
+                </if>
+                <if test="i.floorStatus != null and i.floorStatus != ''">
+                    floor_status,
+                </if>
+                <if test="i.floorBearWeight != null">
+                    floor_bear_weight,
+                </if>
+                <if test="i.thisFloor != null and i.thisFloor != ''">
+                    this_floor,
+                </if>
+                <if test="i.investArea != null">
+                    invest_area,
+                </if>
+                <if test="i.rentableArea != null">
+                    rentable_area,
+                </if>
+                <if test="i.rentedArea != null">
+                    rented_area,
+                </if>
+                <if test="i.floorHeight != null">
+                    floor_height,
+                </if>
+                <if test="i.pillarSpacing != null">
+                    pillar_spacing,
+                </if>
+                <if test="i.floorDeep != null and i.floorDeep != ''">
+                    floor_deep,
+                </if>
+                <if test="i.hasElevator != null">
+                    has_elevator,
+                </if>
+                <if test="i.hasDriving != null">
+                    has_driving,
+                </if>
+
+                <if test="i.hasBathroom != null">
+                    has_bathroom,
+                </if>
+
+                <if test="i.hasOfficeArea != null">
+                    has_office_area,
+                </if>
+
+                <if test="i.outPicture != null and i.outPicture != ''">
+                    out_picture,
+                </if>
+                <if test="i.aerialView != null and i.aerialView != ''">
+                    aerial_view,
+                </if>
+                <if test="i.internalDiagram != null and i.internalDiagram != ''">
+                    internal_diagram,
+                </if>
+                <if test="i.floorPrice != null">
+                    floor_price,
+                </if>
+
+                <if test="i.floorUnitPrice != null">
+                    floor_unit_price,
+                </if>
+                <if test="i.priceUnit != null and i.priceUnit != ''">
+                    price_unit,
+                </if>
+                <if test="i.tenantPrice != null">
+                    tenant_price,
+                </if>
+                <if test="i.tenantUnit != null and i.tenantUnit != ''">
+                    tenant_unit,
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    #{i.bdCode},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    #{i.bdName},
+                </if>
+                <if test="i.flCode != null and i.flCode!=''">
+                    #{i.flCode},
+                </if>
+                <if test="i.useType != null and i.useType != ''">
+                    #{i.useType},
+                </if>
+                <if test="i.decorationType != null and i.decorationType != ''">
+                    #{i.decorationType},
+                </if>
+                <if test="i.floorType != null and i.floorType != ''">
+                    #{i.floorType},
+                </if>
+                <if test="i.floorStatus != null and i.floorStatus != ''">
+                    #{i.floorStatus},
+                </if>
+                <if test="i.floorBearWeight != null">
+                    #{i.floorBearWeight},
+                </if>
+                <if test="i.thisFloor != null and i.thisFloor != ''">
+                    #{i.thisFloor},
+                </if>
+                <if test="i.investArea != null">
+                    #{i.investArea},
+                </if>
+                <if test="i.rentableArea != null">
+                    #{i.rentableArea},
+                </if>
+                <if test="i.rentedArea != null">
+                    #{i.rentedArea},
+                </if>
+                <if test="i.floorHeight != null">
+                    #{i.floorHeight},
+                </if>
+                <if test="i.pillarSpacing != null">
+                    #{i.pillarSpacing},
+                </if>
+                <if test="i.floorDeep != null and i.floorDeep != ''">
+                    #{i.floorDeep},
+                </if>
+                <if test="i.hasElevator != null">
+                    #{i.hasElevator},
+                </if>
+                <if test="i.hasDriving != null">
+                    #{i.hasDriving},
+                </if>
+
+                <if test="i.hasBathroom != null">
+                    #{i.hasBathroom},
+                </if>
+
+                <if test="i.hasOfficeArea != null">
+                    #{i.hasOfficeArea},
+                </if>
+                <if test="i.outPicture != null and i.outPicture != ''">
+                    #{i.outPicture},
+                </if>
+                <if test="i.aerialView != null and i.aerialView != ''">
+                    #{i.aerialView},
+                </if>
+                <if test="i.internalDiagram != null and i.internalDiagram != ''">
+                    #{i.internalDiagram},
+                </if>
+                <if test="i.floorPrice != null">
+                    #{i.floorPrice},
+                </if>
+
+                <if test="i.floorUnitPrice != null">
+                    #{i.floorUnitPrice},
+                </if>
+                <if test="i.priceUnit != null and i.priceUnit != ''">
+                    #{i.priceUnit},
+                </if>
+                <if test="i.tenantPrice != null">
+                    #{i.tenantPrice},
+                </if>
+                <if test="i.tenantUnit != null and i.tenantUnit != ''">
+                    #{i.tenantUnit},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.house.building.entity.FloorEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_pro_hos_floor
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    bd_code = #{i.bdCode},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name = #{i.bdName},
+                </if>
+                <if test="i.flCode != null and i.flCode!=''">
+                    fl_code = #{i.flCode},
+                </if>
+                <if test="i.useType != null and i.useType != ''">
+                    use_type = #{i.useType},
+                </if>
+                <if test="i.decorationType != null and i.decorationType != ''">
+                    decoration_type = #{i.decorationType},
+                </if>
+                <if test="i.floorType != null and i.floorType != ''">
+                    floor_type = #{i.floorType},
+                </if>
+                <if test="i.floorStatus != null and i.floorStatus != ''">
+                    floor_status = #{i.floorStatus},
+                </if>
+                <if test="i.floorBearWeight != null">
+                    floor_bear_weight = #{i.floorBearWeight},
+                </if>
+                <if test="i.thisFloor != null and i.thisFloor != ''">
+                    this_floor = #{i.thisFloor},
+                </if>
+                <if test="i.investArea != null">
+                    invest_area = #{i.investArea},
+                </if>
+                <if test="i.rentableArea != null">
+                    rentable_area = #{i.rentableArea},
+                </if>
+                <if test="i.rentedArea != null">
+                    rented_area = #{i.rentedArea},
+                </if>
+                <if test="i.floorHeight != null">
+                    floor_height = #{i.floorHeight},
+                </if>
+                <if test="i.pillarSpacing != null">
+                    pillar_spacing = #{i.pillarSpacing},
+                </if>
+                <if test="i.floorDeep != null and i.floorDeep != ''">
+                    floor_deep = #{i.floorDeep},
+                </if>
+                <if test="i.hasElevator != null">
+                    has_elevator = #{i.hasElevator},
+                </if>
+                <if test="i.hasDriving != null">
+                    has_driving = #{i.hasDriving},
+                </if>
+
+                <if test="i.hasBathroom != null">
+                    has_bathroom = #{i.hasBathroom},
+                </if>
+
+                <if test="i.hasOfficeArea != null">
+                    has_office_area = #{i.hasOfficeArea},
+                </if>
+                <if test="i.outPicture != null">
+                    out_picture = #{i.outPicture},
+                </if>
+                <if test="i.aerialView != null">
+                    aerial_view = #{i.aerialView},
+                </if>
+                <if test="i.internalDiagram != null">
+                    internal_diagram = #{i.internalDiagram},
+                </if>
+                <if test="i.floorPrice != null">
+                    floor_price = #{i.floorPrice},
+                </if>
+
+                <if test="i.floorUnitPrice != null">
+                    floor_unit_price = #{i.floorUnitPrice},
+                </if>
+                <if test="i.priceUnit != null and i.priceUnit != ''">
+                    price_unit = #{i.priceUnit},
+                </if>
+                <if test="i.tenantPrice != null">
+                    tenant_price = #{i.tenantPrice},
+                </if>
+                <if test="i.tenantUnit != null and i.tenantUnit != ''">
+                    tenant_unit = #{i.tenantUnit},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.flCode != null">
+                    AND fl_code = #{i.flCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_hos_floor WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="flCode != null">
+                AND fl_code = #{flCode}
+            </if>
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="bdCode != null">
+                AND bd_code = #{bdCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="pkName != null">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="bdName != null">
+                AND bd_name = #{bdName}
+            </if>
+            <if test="useType != null">
+                AND use_type = #{useType}
+            </if>
+            <if test="decorationType != null">
+                AND decoration_type = #{decorationType}
+            </if>
+            <if test="floorType != null">
+                AND floor_type = #{floorType}
+            </if>
+            <if test="floorStatus != null">
+                AND floor_status = #{floorStatus}
+            </if>
+            <if test="floorBearWeight != null">
+                AND floor_bear_weight = #{floorBearWeight}
+            </if>
+            <if test="thisFloor != null">
+                AND this_floor = #{thisFloor}
+            </if>
+            <if test="investArea != null">
+                AND invest_area = #{investArea}
+            </if>
+            <if test="rentableArea != null">
+                AND rentable_area = #{rentableArea}
+            </if>
+            <if test="rentedArea != null">
+                AND rented_area = #{rentedArea}
+            </if>
+            <if test="floorHeight != null">
+                AND floor_height = #{floorHeight}
+            </if>
+            <if test="pillarSpacing != null">
+                AND pillar_spacing = #{pillarSpacing}
+            </if>
+            <if test="floorDeep != null">
+                AND floor_deep = #{floorDeep}
+            </if>
+            <if test="hasElevator != null">
+                AND has_elevator = #{hasElevator}
+            </if>
+            <if test="hasDriving != null">
+                AND has_driving = #{hasDriving}
+            </if>
+
+            <if test="hasBathroom != null">
+                AND has_bathroom = #{hasBathroom}
+            </if>
+
+            <if test="hasOfficeArea != null">
+                AND has_office_area = #{i.hasOfficeArea}
+            </if>
+            <if test="outPicture != null">
+                AND out_picture = #{outPicture}
+            </if>
+            <if test="aerialView != null">
+                AND aerial_view = #{aerialView}
+            </if>
+            <if test="internalDiagram != null">
+                AND internal_diagram = #{internalDiagram}
+            </if>
+            <if test="floorPrice != null">
+                AND floor_price = #{floorPrice}
+            </if>
+
+            <if test="floorUnitPrice != null">
+                AND floor_unit_price = #{floorUnitPrice}
+            </if>
+            <if test="priceUnit != null">
+                AND price_unit = #{priceUnit}
+            </if>
+            <if test="tenantPrice != null">
+                AND tenant_price = #{tenantPrice}
+            </if>
+            <if test="tenantUnit != null">
+                AND tenant_unit = #{tenantUnit}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.house.building.entity.FloorEntity">
+        SELECT * FROM t_yq_pro_hos_floor
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_hos_floor
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.house.building.entity.FloorEntity">
+        SELECT * FROM t_yq_pro_hos_floor
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_hos_floor
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 同步冗余字段pkName -->
+    <update id="updateBypkCode" parameterType="com.kfwy.park.pro.house.building.entity.FloorEntity">
+        UPDATE t_yq_pro_hos_floor
+        <trim prefix="set" suffixOverrides=",">
+            <if test="pkName != null and pkName != ''">
+                pk_name = #{pkName}
+            </if>
+            <if test="bdName != null and bdName != ''">
+                bd_name = #{bdName}
+            </if>
+        </trim>
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="bdCode != null">
+                AND bd_code = #{bdCode}
+            </if>
+        </trim>
+    </update>
+
+    <select id="selectWithPark" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT f.* FROM t_yq_pro_hos_floor f
+        LEFT JOIN t_yq_pro_hos_park p
+        ON f.pk_code = p.pk_code
+        <where>
+            f.is_deleted = FALSE
+            AND p.is_deleted = FALSE
+            <if test="cpyCode != null">
+                AND f.cpy_code = #{cpyCode}
+                AND p.cpy_code = #{cpyCode}
+            </if>
+            <if test="pkCode != null and pkCode !=''">
+                AND f.pk_code = #{pkCode}
+            </if>
+            <if test="territoryType != null and territoryType !=''">
+                AND p.territory_type = #{territoryType}
+            </if>
+        </where>
+        ORDER  BY f.pk_code
+    </select>
+
+</mapper>

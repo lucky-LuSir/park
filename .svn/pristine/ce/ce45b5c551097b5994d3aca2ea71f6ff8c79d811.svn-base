@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.act.activiti.entity.ThrowLeaseApplyEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.act.activiti.entity.ThrowLeaseApplyEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="apply_code" property="applyCode" jdbcType="VARCHAR"/>
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        <result column="process_instance_id" property="processInstanceId" jdbcType="VARCHAR"/>
+        <result column="ct_code" property="ctCode" jdbcType="VARCHAR"/>
+        <result column="ct_name" property="ctName" jdbcType="VARCHAR"/>
+        <result column="approval_status" property="approvalStatus" jdbcType="VARCHAR"/>
+
+        <result column="throw_lease_type" property="throwLeaseType" jdbcType="VARCHAR"/>
+        <result column="duty_type" property="dutyType" jdbcType="VARCHAR"/>
+        <result column="money_type" property="moneyType" jdbcType="VARCHAR"/>
+        <result column="money" property="money" jdbcType="NUMERIC"/>
+
+        <result column="party_a" property="partyA" jdbcType="VARCHAR"/>
+        <result column="party_a_address" property="partyAAddress" jdbcType="VARCHAR"/>
+        <result column="party_a_legal_representative" property="partyALegalRepresentative" jdbcType="VARCHAR"/>
+        <result column="party_a_phone" property="partyAPhone" jdbcType="VARCHAR"/>
+
+        <result column="party_b" property="partyB" jdbcType="VARCHAR"/>
+        <result column="party_b_address" property="partyBAddress" jdbcType="VARCHAR"/>
+        <result column="party_b_legal_representative" property="partyBLegalRepresentative" jdbcType="VARCHAR"/>
+        <result column="party_b_phone" property="partyBPhone" jdbcType="VARCHAR"/>
+
+        <result column="throw_lease_date" property="throwLeaseDate" jdbcType="TIMESTAMP"/>
+        <result column="leased_area" property="leasedArea" jdbcType="VARCHAR"/>
+        <result column="throw_lease_area" property="throwLeaseArea" jdbcType="NUMERIC"/>
+        <result column="monthly_rent" property="monthlyRent" jdbcType="NUMERIC"/>
+        <result column="refund_bank" property="refundBank" jdbcType="VARCHAR"/>
+        <result column="refund_account_name" property="refundAccountName" jdbcType="VARCHAR"/>
+        <result column="refund_account_number" property="refundAccountNumber" jdbcType="VARCHAR"/>
+        <result column="throw_lease_remark" property="throwLeaseRemark" jdbcType="VARCHAR"/>
+
+        <result column="contract_start_time" property="contractStartTime" jdbcType="TIMESTAMP"/>
+        <result column="rent_total" property="rentTotal" jdbcType="NUMERIC"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 添加 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_act_activiti_throw_lease_apply
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.applyCode != null">
+                    apply_code,
+                </if>
+                <if test="i.pdId != null">
+                    pd_id,
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id,
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code,
+                </if>
+                <if test="i.ctName != null and i.ctName != ''">
+                    ct_name,
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    approval_status,
+                </if>
+
+                <if test="i.throwLeaseType != null and i.throwLeaseType != ''">
+                    throw_lease_type,
+                </if>
+                <if test="i.dutyType != null and i.dutyType != ''">
+                    duty_type,
+                </if>
+                <if test="i.moneyType != null and i.moneyType != ''">
+                    money_type,
+                </if>
+                <if test="i.money != null">
+                    money,
+                </if>
+
+                <if test="i.partyA != null and i.partyA != ''">
+                    party_a,
+                </if>
+                <if test="i.partyAAddress != null and i.partyAAddress != ''">
+                    party_a_address,
+                </if>
+                <if test="i.partyALegalRepresentative != null and i.partyALegalRepresentative != ''">
+                    party_a_legal_representative,
+                </if>
+                <if test="i.partyAPhone != null and i.partyAPhone != ''">
+                    party_a_phone,
+                </if>
+
+                <if test="i.partyB != null and i.partyB != ''">
+                    party_b,
+                </if>
+                <if test="i.partyBAddress != null and i.partyBAddress != ''">
+                    party_b_address,
+                </if>
+                <if test="i.partyBLegalRepresentative != null and i.partyBLegalRepresentative != ''">
+                    party_b_legal_representative,
+                </if>
+                <if test="i.partyBPhone != null and i.partyBPhone != ''">
+                    party_b_phone,
+                </if>
+
+                <if test="i.throwLeaseDate != null">
+                    throw_lease_date,
+                </if>
+                <if test="i.leasedArea != null and i.leasedArea != ''">
+                    leased_area,
+                </if>
+                <if test="i.throwLeaseArea != null">
+                    throw_lease_area,
+                </if>
+                <if test="i.monthlyRent != null">
+                    monthly_rent,
+                </if>
+                <if test="i.refundBank != null and i.refundBank != ''">
+                    refund_bank,
+                </if>
+                <if test="i.refundAccountName != null and i.refundAccountName != ''">
+                    refund_account_name,
+                </if>
+                <if test="i.refundAccountNumber != null and i.refundAccountNumber != ''">
+                    refund_account_number,
+                </if>
+                <if test="i.throwLeaseRemark != null and i.throwLeaseRemark != ''">
+                    throw_lease_remark,
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.applyCode != null">
+                    #{i.applyCode},
+                </if>
+                <if test="i.pdId != null">
+                    #{i.pdId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    #{i.processInstanceId},
+                </if>
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    #{i.ctCode},
+                </if>
+                <if test="i.ctName != null and i.ctName != ''">
+                    #{i.ctName},
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    #{i.approvalStatus},
+                </if>
+
+                <if test="i.throwLeaseType != null and i.throwLeaseType != ''">
+                    #{i.throwLeaseType},
+                </if>
+                <if test="i.dutyType != null and i.dutyType != ''">
+                    #{i.dutyType},
+                </if>
+                <if test="i.moneyType != null and i.moneyType != ''">
+                    #{i.moneyType},
+                </if>
+                <if test="i.money != null">
+                    #{i.money},
+                </if>
+
+                <if test="i.partyA != null and i.partyA != ''">
+                    #{i.partyA},
+                </if>
+                <if test="i.partyAAddress != null and i.partyAAddress != ''">
+                    #{i.partyAAddress},
+                </if>
+                <if test="i.partyALegalRepresentative != null and i.partyALegalRepresentative != ''">
+                    #{i.partyALegalRepresentative},
+                </if>
+                <if test="i.partyAPhone != null and i.partyAPhone != ''">
+                    #{i.partyAPhone},
+                </if>
+
+                <if test="i.partyB != null and i.partyB != ''">
+                    #{i.partyB},
+                </if>
+                <if test="i.partyBAddress != null and i.partyBAddress != ''">
+                    #{i.partyBAddress},
+                </if>
+                <if test="i.partyBLegalRepresentative != null and i.partyBLegalRepresentative != ''">
+                    #{i.partyBLegalRepresentative},
+                </if>
+                <if test="i.partyBPhone != null and i.partyBPhone != ''">
+                    #{i.partyBPhone},
+                </if>
+
+                <if test="i.throwLeaseDate != null">
+                    #{i.throwLeaseDate},
+                </if>
+                <if test="i.leasedArea != null and i.leasedArea != ''">
+                    #{i.leasedArea},
+                </if>
+                <if test="i.throwLeaseArea != null">
+                    #{i.throwLeaseArea},
+                </if>
+                <if test="i.monthlyRent != null">
+                    #{i.monthlyRent},
+                </if>
+                <if test="i.refundBank != null and i.refundBank != ''">
+                    #{i.refundBank},
+                </if>
+                <if test="i.refundAccountName != null and i.refundAccountName != ''">
+                    #{i.refundAccountName},
+                </if>
+                <if test="i.refundAccountNumber != null and i.refundAccountNumber != ''">
+                    #{i.refundAccountNumber},
+                </if>
+                <if test="i.throwLeaseRemark != null and i.throwLeaseRemark != ''">
+                    #{i.throwLeaseRemark},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <!-- 修改 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.act.activiti.entity.ThrowLeaseApplyEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_act_activiti_throw_lease_apply
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.ctCode != null and i.ctCode != ''">
+                    ct_code = #{i.ctCode},
+                </if>
+                <if test="i.pdId != null and i.pdId != ''">
+                    pd_id = #{i.pdId},
+                </if>
+                <if test="i.processInstanceId != null and i.processInstanceId != ''">
+                    process_instance_id = #{i.processInstanceId},
+                </if>
+                <if test="i.ctName != null and i.ctName != ''">
+                    ct_name = #{i.ctName},
+                </if>
+                <if test="i.approvalStatus != null and i.approvalStatus != ''">
+                    approval_status = #{i.approvalStatus},
+                </if>
+
+                <if test="i.throwLeaseType != null and i.throwLeaseType != ''">
+                    throw_lease_type = #{i.throwLeaseType},
+                </if>
+                <if test="i.dutyType != null and i.dutyType != ''">
+                    duty_type = #{i.dutyType},
+                </if>
+                <if test="i.moneyType != null and i.moneyType != ''">
+                    money_type = #{i.moneyType},
+                </if>
+                <if test="i.money != null">
+                    money = #{i.money},
+                </if>
+
+                <if test="i.partyA != null and i.partyA != ''">
+                    party_a = #{i.partyA},
+                </if>
+                <if test="i.partyAAddress != null and i.partyAAddress != ''">
+                    party_a_address = #{i.partyAAddress},
+                </if>
+                <if test="i.partyALegalRepresentative != null and i.partyALegalRepresentative != ''">
+                    party_a_legal_representative = #{i.partyALegalRepresentative},
+                </if>
+                <if test="i.partyAPhone != null and i.partyAPhone != ''">
+                    party_a_phone = #{i.partyAPhone},
+                </if>
+
+                <if test="i.partyB != null and i.partyB != ''">
+                    party_b = #{i.partyB},
+                </if>
+                <if test="i.partyBAddress != null and i.partyBAddress != ''">
+                    party_b_address = #{i.partyBAddress},
+                </if>
+                <if test="i.partyBLegalRepresentative != null and i.partyBLegalRepresentative != ''">
+                    party_b_legal_representative = #{i.partyBLegalRepresentative},
+                </if>
+                <if test="i.partyBPhone != null and i.partyBPhone != ''">
+                    party_b_phone = #{i.partyBPhone},
+                </if>
+
+                <if test="i.throwLeaseDate != null">
+                    throw_lease_date = #{i.throwLeaseDate},
+                </if>
+                <if test="i.leasedArea != null and i.leasedArea != ''">
+                    leased_area = #{i.leasedArea},
+                </if>
+                <if test="i.throwLeaseArea != null">
+                    throw_lease_area = #{i.throwLeaseArea},
+                </if>
+                <if test="i.monthlyRent != null">
+                    monthly_rent = #{i.monthlyRent},
+                </if>
+                <if test="i.refundBank != null and i.refundBank != ''">
+                    refund_bank = #{i.refundBank},
+                </if>
+                <if test="i.refundAccountName != null and i.refundAccountName != ''">
+                    refund_account_name = #{i.refundAccountName},
+                </if>
+                <if test="i.refundAccountNumber != null and i.refundAccountNumber != ''">
+                    refund_account_number = #{i.refundAccountNumber},
+                </if>
+                <if test="i.throwLeaseRemark != null and i.throwLeaseRemark != ''">
+                    throw_lease_remark = #{i.throwLeaseRemark},
+                </if>
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.applyCode != null">
+                    AND apply_code = #{i.applyCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!-- 根据条件查询唯一结果，SQL片段 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="applyCode != null">
+                AND apply_code = #{applyCode}
+            </if>
+            <if test="pdId != null">
+                AND pd_id = #{pdId}
+            </if>
+            <if test="processInstanceId != null">
+                AND process_instance_id = #{processInstanceId}
+            </if>
+            <if test="ctCode != null">
+                AND ct_code = #{ctCode}
+            </if>
+            <if test="ctName != null">
+                AND ct_name = #{ct_name}
+            </if>
+            <if test="approvalStatus != null">
+                AND approval_status = #{approvalStatus}
+            </if>
+
+            <if test="throwLeaseType != null">
+                AND throw_lease_type = #{approvalStatus}
+            </if>
+            <if test="dutyType != null">
+                AND duty_type = #{dutyType}
+            </if>
+            <if test="moneyType != null">
+                AND money_type = #{moneyType}
+            </if>
+            <if test="money != null">
+                AND money = #{money}
+            </if>
+
+            <if test="partyA != null">
+                AND party_a = #{partyA}
+            </if>
+            <if test="partyAAddress != null">
+                AND party_a_address = #{partyAAddress}
+            </if>
+            <if test="partyALegalRepresentative != null">
+                AND party_a_legal_representative = #{partyALegalRepresentative}
+            </if>
+            <if test="partyAPhone != null">
+                AND party_a_phone = #{partyAPhone}
+            </if>
+
+            <if test="partyB != null">
+                AND party_b = #{partyB}
+            </if>
+            <if test="partyBAddress != null">
+                AND party_b_address = #{partyBAddress}
+            </if>
+            <if test="partyBLegalRepresentative != null">
+                AND party_b_legal_representative = #{partyBLegalRepresentative}
+            </if>
+            <if test="partyBPhone != null">
+                AND party_b_phone = #{partyBPhone}
+            </if>
+
+            <if test="throwLeaseDate != null">
+                AND throw_lease_date = #{throwLeaseDate}
+            </if>
+            <if test="leasedArea != null">
+                AND leased_area = #{leasedArea}
+            </if>
+            <if test="throwLeaseArea != null">
+                AND throw_lease_area = #{throwLeaseArea}
+            </if>
+            <if test="monthlyRent != null">
+                AND monthly_rent = #{monthlyRent}
+            </if>
+            <if test="refundBank != null">
+                AND refund_bank = #{refundBank}
+            </if>
+            <if test="refundAccountName != null">
+                AND refund_account_name = #{refundAccountName}
+            </if>
+            <if test="refundAccountNumber != null">
+                AND refund_account_number = #{refundAccountNumber}
+            </if>
+            <if test="throwLeaseRemark != null">
+                AND throw_lease_remark = #{throwLeaseRemark}
+            </if>
+
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null">
+                AND owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="keyword != null and keyword !=''">
+                AND(
+                process_instance_id LIKE '%' || #{keyword} || '%'
+                OR create_name LIKE '%' || #{keyword} || '%'
+                OR ct_name LIKE '%' || #{keyword} || '%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_act_activiti_throw_lease_apply
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_act_activiti_throw_lease_apply
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.act.activiti.entity.ThrowLeaseApplyEntity">
+        SELECT * FROM t_yq_act_activiti_throw_lease_apply
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_act_activiti_throw_lease_apply
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="selectDept" parameterType="java.util.Map" resultType="com.kfwy.park.act.activiti.entity.ThrowLeaseApplyEntity">
+        SELECT DISTINCT create_dept_code as createDeptCode,create_dept_name as createDeptName FROM t_yq_act_activiti_throw_lease_apply
+        <where>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+        </where>
+    </select>
+
+<!--    获取6个月营收,根据合同时间获取退租信息-->
+    <select id="selectByContractTime" parameterType="java.util.Map" resultMap="baseResultMap">
+        select t.ct_code, t.throw_lease_date, c.rent_total , c.contract_start_time
+        from t_yq_act_activiti_throw_lease_apply t
+        inner join t_yq_ati_con_contract c
+        on t.ct_code = c.ct_code
+        left join t_yq_pro_hos_park p
+        on c.pk_code = p.pk_code
+        where
+        t.is_deleted = #{isDeleted}
+        and c.is_deleted = #{isDeleted}
+        and t.cpy_code = #{cpyCode}
+        and c.cpy_code = #{cpyCode}
+        AND( c.contract_start_time BETWEEN #{monthBegin} AND #{monthEnd}
+            OR (c.contract_start_time <![CDATA[ <= ]]> #{monthBegin} AND c.contract_end_time <![CDATA[ >= ]]>#{monthBegin})
+            )
+        and t.approval_status != '2'
+        and p.cpy_code = #{cpyCode}
+        and p.is_deleted = #{isDeleted}
+        <if test="pkCode != null">
+            and p.pk_code = #{pkCode}
+        </if>
+        <if test="territoryType != null">
+            and p.territory_type = #{territoryType}
+        </if>
+        <if test="cityCode != null">
+            and p.city_code = #{cityCode}
+        </if>
+    </select>
+</mapper>

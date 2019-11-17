@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>eleReceivableBiReport</fileName>
+    <!--导出应收租金报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>合同编号</title>
+        <alias>ctName</alias>
+    </cell>
+
+    <cell>
+        <title>合同状态</title>
+        <alias>ctStatusName</alias>
+    </cell>
+
+    <cell>
+        <title>支付状态</title>
+        <alias>payStatusName</alias>
+    </cell>
+
+    <cell>
+        <title>项目名称</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>公司名称</title>
+        <alias>companyName</alias>
+    </cell>
+
+    <cell>
+        <title>联系人</title>
+        <alias>relateName</alias>
+    </cell>
+
+    <cell>
+        <title>合同开始日期</title>
+        <alias>contractStartTime</alias>
+    </cell>
+
+    <cell>
+        <title>合同结束日期</title>
+        <alias>contractEndTime</alias>
+    </cell>
+
+    <cell>
+        <title>上次抄表时间</title>
+        <alias>lastBillingTime</alias>
+    </cell>
+
+    <cell>
+        <title>本次抄表时间</title>
+        <alias>currentBillingTime</alias>
+    </cell>
+
+    <cell>
+        <title>缴费截至日期</title>
+        <alias>receivingDate</alias>
+    </cell>
+
+    <cell>
+        <title>水费</title>
+        <alias>receivablePrice</alias>
+    </cell>
+
+    <cell>
+        <title>水费是否含税</title>
+        <alias>hasTax</alias>
+    </cell>
+
+    <cell>
+        <title>税点</title>
+        <alias>taxPointName</alias>
+    </cell>
+
+    <cell>
+        <title>本期应收</title>
+        <alias>totalPrice</alias>
+    </cell>
+
+</exportFile>
+

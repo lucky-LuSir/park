@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.bi.analysis.entity.ChannelAnalysisEntity">
+
+    <!-- 查询客户需求面积统计 -->
+    <select id="selectChannelAnalysis" parameterType="java.util.Map" resultType="com.kfwy.park.bi.analysis.entity.ChannelAnalysisEntity">
+         SELECT count(CASE WHEN ditch = '1' THEN ditch END) AS app58,
+                count(CASE WHEN ditch = '2' THEN ditch END) AS streamer,
+                count(CASE WHEN ditch = '3' THEN ditch END) AS advertising,
+                count(CASE WHEN ditch = '4' THEN ditch END) AS friendsShare,
+                count(CASE WHEN ditch = '5' THEN ditch END) AS buildingAdvertising,
+                count(CASE WHEN ditch = '6' THEN ditch END) AS callPhone,
+                count(CASE WHEN ditch = '7' THEN ditch END) AS middleman,
+                count(CASE WHEN ditch = '8' THEN ditch END) AS pluralistic,
+                count(CASE WHEN ditch = '9' THEN ditch END) AS other,
+                count(CASE WHEN ditch = '10' THEN ditch END) AS kfwy
+        FROM t_yq_ati_cus_customer WHERE is_deleted = FALSE AND  cpy_code = #{cpyCode}
+    </select>
+</mapper>

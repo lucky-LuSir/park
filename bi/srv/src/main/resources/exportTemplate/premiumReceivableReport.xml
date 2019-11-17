@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>waterReceivableBiReport</fileName>
+    <!--导出应收保险费报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>合同编号</title>
+        <alias>ctName</alias>
+    </cell>
+
+    <cell>
+        <title>合同状态</title>
+        <alias>ctStatusName</alias>
+    </cell>
+
+    <cell>
+        <title>支付状态</title>
+        <alias>payStatusName</alias>
+    </cell>
+
+    <cell>
+        <title>项目名称</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>公司名称</title>
+        <alias>companyName</alias>
+    </cell>
+
+    <cell>
+        <title>联系人</title>
+        <alias>relateName</alias>
+    </cell>
+
+    <cell>
+        <title>合同开始日期</title>
+        <alias>contractStartTime</alias>
+    </cell>
+
+    <cell>
+        <title>合同结束日期</title>
+        <alias>contractEndTime</alias>
+    </cell>
+
+    <cell>
+        <title>费用开始日期</title>
+        <alias>premiumStartDate</alias>
+    </cell>
+
+    <cell>
+        <title>费用结束日期</title>
+        <alias>premiumEndDate</alias>
+    </cell>
+
+    <cell>
+        <title>缴费截至日期</title>
+        <alias>deadline</alias>
+    </cell>
+
+    <cell>
+        <title>保险费</title>
+        <alias>receivablePremium</alias>
+    </cell>
+
+    <cell>
+        <title>是否含税</title>
+        <alias>hasTax</alias>
+    </cell>
+
+    <cell>
+        <title>税点</title>
+        <alias>taxPointName</alias>
+    </cell>
+
+    <cell>
+        <title>已收</title>
+        <alias>paidPrice</alias>
+    </cell>
+
+    <cell>
+        <title>本期应收</title>
+        <alias>totalPrice</alias>
+    </cell>
+
+</exportFile>
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.hrm.org.bi.entity.EmpBiEntity">
+
+    <resultMap id="BaseResultMap" type="com.kfwy.park.hrm.org.bi.entity.EmpBiEntity">
+        <result column="ID" property="id" jdbcType="NUMERIC" javaType="long"/>
+
+        <result column="rank_num" property="rankNum" jdbcType="NUMERIC" javaType="int"/>
+        <result column="emp_code" property="empCode" jdbcType="VARCHAR"/>
+
+        <result column="emp_name" property="empName" jdbcType="VARCHAR"/>
+        <result column="emp_phone" property="empPhone" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+
+        <result column="cus_receive_count" property="cusReceiveCount" jdbcType="NUMERIC" javaType="int"/>
+        <result column="cus_negotiate_count" property="cusNegotiateCount" jdbcType="NUMERIC" javaType="int"/>
+        <result column="cus_entry_count" property="cusEntryCount" jdbcType="NUMERIC" javaType="int"/>
+        <result column="cus_count" property="cusCount" jdbcType="NUMERIC" javaType="int"/>
+        <result column="sign_area_month" property="signAreaMonth" jdbcType="NUMERIC" javaType="BigDecimal"/>
+    </resultMap>
+
+    <!-- 查询一个员工姓名,电话 -->
+    <select id="selectEmployee" parameterType="java.util.Map" resultMap="BaseResultMap"  resultType="com.kfwy.park.hrm.org.bi.entity.EmpBiEntity">
+        SELECT emp_name,emp_phone FROM t_yq_hrm_org_employee WHERE emp_code=#{empCode};
+    </select>
+
+    <!-- 查询一个员工,本月接待客户 -->
+    <!--<select id="selectCusReceiveCount" parameterType="java.util.Map"   resultType="int">-->
+        <!--SELECT-->
+        <!--COUNT (id)-->
+        <!--FROM-->
+        <!--t_yq_ati_cus_followup-->
+        <!--WHERE-->
+        <!--create_time <![CDATA[ >= ]]> #{weekOne}-->
+        <!--AND create_time <![CDATA[ <= ]]> #{weekSunday}-->
+        <!--AND create_code = #{empCode};-->
+    <!--</select>-->
+
+    <!--查询一个招商人员，本月的获客数量，不含不合适、谈判中等状态-->
+    <select id="selectCustomerCount" parameterType="java.util.Map"   resultType="int">
+        SELECT
+            COUNT( id )
+        FROM
+            t_yq_ati_cus_customer
+        WHERE
+            create_code = #{empCode}
+            AND create_time BETWEEN #{weekOne}
+            AND #{weekSunday}
+    </select>
+
+
+    <!-- 查询一个员工本月谈判中的客户 -->
+    <select id="selectCusNegotiateCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_yq_ati_cus_customer WHERE
+        cus_status = '1'
+        AND create_code=#{empCode}
+    </select>
+
+    <!-- 查询一个员工,本月入驻客户 -->
+    <select id="selectCusEntryCount" parameterType="java.util.Map"   resultType="int">
+        SELECT
+        COUNT (id)
+        FROM
+        t_yq_ati_cus_customer
+        WHERE
+        create_time <![CDATA[ >= ]]> #{weekOne}
+        AND create_time <![CDATA[ <= ]]> #{weekSunday}
+        AND cus_status in ('3', '6')
+        AND emp_code = #{empCode};
+    </select>
+
+    <!-- 查询一个员工,本月去化面积 -->
+    <select id="selectSignAreaMonth" parameterType="java.util.Map"   resultType="BigDecimal">
+        SELECT
+        SUM (h.invest_area)
+        FROM
+        t_yq_ati_con_contract_house h
+        LEFT JOIN  t_yq_ati_con_contract c on c.ct_code = h.ct_code
+        WHERE
+        c.contractor_code = #{empCode}
+        AND c.ct_status in ('4','9','7')
+        AND h.create_time <![CDATA[ >= ]]> #{weekOne}
+        AND h.create_time <![CDATA[ <= ]]> #{weekSunday};
+    </select>
+
+</mapper>

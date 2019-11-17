@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.sys.board.entity.ProgramEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.sys.board.entity.ProgramEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+
+        <result column="pg_code" property="pgCode" jdbcType="VARCHAR"/>
+        <result column="pg_name" property="pgName" jdbcType="VARCHAR"/>
+        <result column="program_type" property="programType" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="default_param" property="defaultParam" jdbcType="VARCHAR"/>
+
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_sys_board_program
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.pgCode != null and i.pgCode != ''">
+                    pg_code,
+                </if>
+                <if test="i.pgName != null and i.pgName != ''">
+                    pg_name,
+                </if>
+                <if test="i.programType != null and i.programType != ''">
+                    program_type,
+                </if>
+                <if test="i.url != null and i.url != ''">
+                    url,
+                </if>
+                <if test="i.defaultParam != null and i.defaultParam !=''">
+                    default_param,
+                </if>
+
+                <if test="i.remark != null and i.remark!=''">
+                    remark,
+                </if>
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.pgCode != null and i.pgCode != ''">
+                    #{i.pgCode},
+                </if>
+                <if test="i.pgName != null and i.pgName != ''">
+                    #{i.pgName},
+                </if>
+                <if test="i.programType != null and i.programType !=''">
+                    #{i.programType},
+                </if>
+                <if test="i.url != null and i.url !=''">
+                    #{i.url},
+                </if>
+                <if test="i.defaultParam != null and i.defaultParam !=''">
+                    #{i.defaultParam},
+                </if>
+
+
+
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark},
+                </if>
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.sys.board.entity.ProgramEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_sys_board_program
+            <trim prefix="set" suffixOverrides=",">
+
+                <if test="i.pgCode != null and i.pgCode != ''">
+                    pg_code = #{i.pgCode},
+                </if>
+                <if test="i.pgName != null and i.pgName != ''">
+                    pg_name = #{i.pgName},
+                </if>
+                <if test="i.programType != null and i.programType !=''">
+                    program_type = #{i.programType},
+                </if>
+                <if test="i.url != null and i.url !=''">
+                    url = #{i.url},
+                </if>
+                <if test="i.defaultParam != null and i.defaultParam !=''">
+                    default_param = #{i.defaultParam},
+                </if>
+
+
+
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                user_code = #{i.userCode}
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="pgCode != null">
+                AND pg_code = #{pgCode}
+            </if>
+            <if test="pgName != null">
+                AND pg_name = #{pgName}
+            </if>
+            <if test="programType != null">
+                AND program_type = #{programType}
+            </if>
+            <if test="url != null">
+                AND url = #{url}
+            </if>
+            <if test="defaultParam != null">
+                AND default_param = #{defaultParam}
+            </if>
+
+
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+            <if test="isDeleted != null">
+                AND IS_DELETED = #{isDeleted}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+
+            <if test="keyword != null and keyword != ''">
+                AND
+                (
+                pg_name like '%' || #{keyword} ||'%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.sys.board.entity.ProgramEntity">
+        SELECT * FROM t_yq_sys_board_program
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_sys_board_program
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.sys.board.entity.ProgramEntity">
+        SELECT * FROM t_yq_sys_board_program
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_sys_board_program
+        <include refid="selectSql"/>
+    </select>
+
+
+</mapper>

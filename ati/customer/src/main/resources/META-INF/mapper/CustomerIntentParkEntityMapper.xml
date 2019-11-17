@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="followup_code" property="followupCode" jdbcType="VARCHAR"/>
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="region_code" property="regionCode" jdbcType="VARCHAR"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="pk_address" property="pkAddress" jdbcType="VARCHAR"/>
+        <result column="bd_code" property="bdCode" jdbcType="VARCHAR"/>
+        <result column="fl_code" property="flCode" jdbcType="VARCHAR"/>
+        <result column="rentable_area" property="rentableArea" jdbcType="NUMERIC"/>
+        <result column="fl_status" property="flStatus" jdbcType="VARCHAR"/>
+        <result column="cus_appraisal" property="cusAppraisal" jdbcType="VARCHAR"/>
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_cus_intent_park
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    followup_code,
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.provinceCode != null and i.provinceCode != ''">
+                    province_code,
+                </if>
+                <if test="i.provinceName != null and i.provinceName != ''">
+                    province_name,
+                </if>
+                <if test="i.cityCode != null and i.cityCode != ''">
+                    city_code,
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    city_name,
+                </if>
+                <if test="i.regionCode != null and i.regionCode != ''">
+                    region_code,
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    region_name,
+                </if>
+                <if test="i.pkAddress != null and i.pkAddress != ''">
+                    pk_address,
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    bd_code,
+                </if>
+                <if test="i.flCode != null and i.flCode != ''">
+                    fl_code,
+                </if>
+                <if test="i.rentableArea != null">
+                    rentable_area,
+                </if>
+                <if test="i.flStatus != null and i.flStatus != ''">
+                    fl_status,
+                </if>
+                <if test="i.cusAppraisal != null and i.cusAppraisal != ''">
+                    cus_appraisal,
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    #{i.followupCode},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.provinceCode != null and i.provinceCode != ''">
+                    #{i.provinceCode},
+                </if>
+                <if test="i.provinceName != null and i.provinceName != ''">
+                    #{i.provinceName},
+                </if>
+                <if test="i.cityCode != null and i.cityCode != ''">
+                    #{i.cityCode},
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    #{i.cityName},
+                </if>
+                <if test="i.regionCode != null and i.regionCode != ''">
+                    #{i.regionCode},
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    #{i.regionName},
+                </if>
+                <if test="i.pkAddress != null and i.pkAddress != ''">
+                    #{i.pkAddress},
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    #{i.bdCode},
+                </if>
+                <if test="i.flCode != null and i.flCode != ''">
+                    #{i.flCode},
+                </if>
+                <if test="i.rentableArea != null">
+                    #{i.rentableArea},
+                </if>
+                <if test="i.flStatus != null and i.flStatus != ''">
+                    #{i.flStatus},
+                </if>
+                <if test="i.cusAppraisal != null and i.cusAppraisal != ''">
+                    #{i.cusAppraisal},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_cus_intent_park
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.followupCode != null and i.followupCode != ''">
+                    followup_code = #{i.followupCode},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.provinceCode != null and i.provinceCode != ''">
+                    province_code = #{i.provinceCode},
+                </if>
+                <if test="i.provinceName != null and i.provinceName != ''">
+                    province_name = #{i.provinceName},
+                </if>
+                <if test="i.cityCode != null and i.cityCode != ''">
+                    city_code = #{i.cityCode},
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    city_name = #{i.cityName},
+                </if>
+                <if test="i.regionCode != null and i.regionCode != ''">
+                    region_code = #{i.regionCode},
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    region_name = #{i.regionName},
+                </if>
+                <if test="i.pkAddress != null and i.pkAddress != ''">
+                    pk_address = #{i.pkAddress},
+                </if>
+                <if test="i.bdCode != null and i.bdCode != ''">
+                    bd_code = #{i.bdCode},
+                </if>
+                <if test="i.flCode != null and i.flCode != ''">
+                    fl_code = #{i.flCode},
+                </if>
+                <if test="i.rentableArea != null">
+                    rentable_area = #{i.rentableArea},
+                </if>
+                <if test="i.flStatus != null and i.flStatus != ''">
+                    fl_status = #{i.flStatus},
+                </if>
+                <if test="i.cusAppraisal != null and i.cusAppraisal != ''">
+                    cus_appraisal = #{i.cusAppraisal},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.followupCode != null">
+                    AND followup_code = #{i.followupCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_cus_intent_park WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过followupCode物理删除数据 -->
+    <delete id="deletedByFollowupCode" parameterType="String">
+        DELETE FROM t_yq_ati_cus_intent_park WHERE followup_code = #{followupCode} AND is_deleted = FALSE
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="followupCode != null">
+                AND followup_code = #{followupCode}
+            </if>
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="provinceCode != null">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="provinceName != null">
+                AND province_name = #{provinceName}
+            </if>
+            <if test="cityCode != null">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="cityName != null">
+                AND city_name = #{cityName}
+            </if>
+            <if test="regionCode != null">
+                AND region_code = #{regionCode}
+            </if>
+            <if test="regionName != null">
+                AND region_name = #{regionName}
+            </if>
+            <if test="pkAddress != null">
+                AND pk_address = #{pkAddress}
+            </if>
+            <if test="bdCode != null">
+                AND bd_code = #{bdCode}
+            </if>
+            <if test="flCode != null">
+                AND fl_code = #{flCode}
+            </if>
+            <if test="rentableArea != null">
+                AND rentable_area = #{rentableArea}
+            </if>
+            <if test="flStatus != null">
+                AND fl_status = #{flStatus}
+            </if>
+            <if test="cusAppraisal != null">
+                AND cus_appraisal = #{cusAppraisal}
+            </if>
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity">
+        SELECT * FROM t_yq_ati_cus_intent_park
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_intent_park
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerIntentParkEntity">
+        SELECT * FROM t_yq_ati_cus_intent_park
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_intent_park
+        <include refid="selectSql"/>
+    </select>
+
+</mapper>

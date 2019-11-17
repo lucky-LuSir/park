@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportFile>
+    <fileName>parkCustomInfoReport</fileName>
+    <!--导出应收租金报表模板-->
+    <exportType>0</exportType>
+    <cell>
+        <title>园区项目</title>
+        <alias>pkName</alias>
+    </cell>
+
+    <cell>
+        <title>客户名称</title>
+        <alias>relateName</alias>
+    </cell>
+
+    <cell>
+        <title>公司名称</title>
+        <alias>companyName</alias>
+    </cell>
+
+    <cell>
+        <title>所属行业</title>
+        <alias>tradeName</alias>
+    </cell>
+
+    <cell>
+        <title>签约面积</title>
+        <alias>totalRentalArea</alias>
+    </cell>
+
+    <cell>
+        <title>租金/月</title>
+        <alias>rentTotal</alias>
+    </cell>
+
+    <cell>
+        <title>物业费/月</title>
+        <alias>propertyTotal</alias>
+    </cell>
+
+    <cell>
+        <title>合同开始日期</title>
+        <alias>contractStartTime</alias>
+    </cell>
+
+    <cell>
+        <title>合同结束日期</title>
+        <alias>contractEndTime</alias>
+    </cell>
+
+</exportFile>
+

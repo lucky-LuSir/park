@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kfwy.park.ati.customer.entity.CustomerChannelEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.ati.customer.entity.CustomerChannelEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+
+        <result column="channel_code" property="channelCode" jdbcType="VARCHAR"/>
+        <result column="channel_status" property="channelStatus" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="post" property="post" jdbcType="VARCHAR"/>
+        <result column="company_code" property="companyCode" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+
+        <association property="channelCpyEntity" columnPrefix="cp_" resultMap="customerChannelCpyEntity">
+        </association>
+
+    </resultMap>
+
+    <resultMap id="customerChannelCpyEntity" type="com.kfwy.park.ati.customer.entity.CustomerChannelCpyEntity">
+        <result column="company_code" property="companyCode" jdbcType="VARCHAR"/>
+        <result column="channel_cpy_name" property="channelCpyName" jdbcType="VARCHAR"/>
+        <result column="channel_cpy_remark" property="channelCpyRemark" jdbcType="VARCHAR"/>
+        <result column="channel_cpy_address" property="channelCpyAddress" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_ati_cus_channel
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    channel_code,
+                </if>
+                <if test="i.channelStatus != null and i.channelStatus != ''">
+                    channel_status,
+                </if>
+                <if test="i.userName != null and i.userName != ''">
+                    user_name,
+                </if>
+                <if test="i.phone != null and i.phone != ''">
+                    phone,
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    sex,
+                </if>
+                <if test="i.post != null and i.post != ''">
+                    post,
+                </if>
+                <if test="i.companyCode != null and i.companyCode != ''">
+                    company_code,
+                </if>
+
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    #{i.channelCode},
+                </if>
+                <if test="i.channelStatus != null and i.channelStatus != ''">
+                    #{i.channelStatus},
+                </if>
+                <if test="i.userName != null and i.userName != ''">
+                    #{i.userName},
+                </if>
+                <if test="i.phone != null and i.phone != ''">
+                    #{i.phone},
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    #{i.sex},
+                </if>
+                <if test="i.post != null and i.post != ''">
+                    #{i.post},
+                </if>
+                <if test="i.companyCode != null and i.companyCode != ''">
+                    #{i.companyCode},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.ati.customer.entity.CustomerChannelEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_ati_cus_channel
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+
+                <if test="i.channelCode != null and i.channelCode != ''">
+                    channel_code = #{i.channelCode},
+                </if>
+                <if test="i.channelStatus != null and i.channelStatus != ''">
+                    channel_status = #{i.channelStatus},
+                </if>
+                <if test="i.userName != null and i.userName != ''">
+                    user_name = #{i.userName},
+                </if>
+                <if test="i.phone != null and i.phone != ''">
+                    phone = #{i.phone},
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    sex = #{i.sex},
+                </if>
+                <if test="i.post != null and i.post != ''">
+                    post = #{i.post},
+                </if>
+                <if test="i.companyCode != null and i.companyCode != ''">
+                    company_code = #{i.companyCode},
+                </if>
+
+
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.channelCode != null">
+                    AND channel_code = #{i.channelCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_ati_cus_channel WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="channelCode != null">
+                AND channel_code = #{channelCode}
+            </if>
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="channelStatus != null">
+                AND channel_status = #{channelStatus}
+            </if>
+            <if test="userName != null">
+                AND user_name = #{userName}
+            </if>
+            <if test="phone != null">
+                AND phone = #{phone}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex}
+            </if>
+            <if test="post != null">
+                AND post = #{post}
+            </if>
+            <if test="companyCode != null">
+                AND company_code = #{companyCode}
+            </if>
+            <if test="channelCpyName != null">
+                AND cp_channel_cpy_name LIKE '%' || #{channelCpyName} || '%'
+            </if>
+            <if test="channelCpyAddress != null">
+                AND cp_channel_cpy_address LIKE '%' || #{channelCpyAddress} || '%'
+            </if>
+
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND last_update_time  <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="createDeptCode != null">
+                AND dept_code = #{createDeptCode}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+
+            <if test="keyword != null and keyword != ''">
+                AND
+                (
+                user_name like '%' || #{keyword} || '%' or
+                phone like '%' || #{keyword} || '%' or
+                cp_channel_cpy_name like '%' || #{keyword} || '%' or
+                cp_channel_cpy_address like '%' || #{keyword} || '%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerChannelEntity">
+        SELECT * FROM t_yq_ati_cus_channel
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_ati_cus_channel
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.ati.customer.entity.CustomerChannelEntity">
+        select * from
+        (SELECT c.*,
+            cp.company_code as cp_company_code,
+            cp.channel_cpy_name as cp_channel_cpy_name,
+            cp.channel_cpy_remark as cp_channel_cpy_remark,
+            cp.channel_cpy_address as cp_channel_cpy_address,
+            emp.dept_code
+        FROM t_yq_ati_cus_channel c
+        left join t_yq_ati_cus_channel_cpy cp
+        on cp.company_code = c.company_code
+        left join t_yq_hrm_org_employee emp
+        on c.create_code = emp.emp_code
+        ) td
+        <include refid="selectSql"/>
+
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from (
+        SELECT c.*,
+        cp.company_code as cp_company_code,
+        cp.channel_cpy_name as cp_channel_cpy_name,
+        cp.channel_cpy_remark as cp_channel_cpy_remark,
+        cp.channel_cpy_address as cp_channel_cpy_address,
+        emp.dept_code
+        FROM t_yq_ati_cus_channel c
+        left join t_yq_ati_cus_channel_cpy cp
+        on cp.company_code = c.company_code
+        left join t_yq_hrm_org_employee emp
+        on c.create_code = emp.emp_code
+        ) td
+        <include refid="selectSql"/>
+    </select>
+
+     <!--查询渠道、渠道单位-->
+    <select id="selectChannelCpy" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT a.channel_code
+               ,a.user_name
+               ,a.phone
+               ,a.company_code
+               ,b.company_code as cp_company_code
+               ,b.channel_cpy_name as cp_channel_cpy_name
+               ,b.channel_cpy_address as cp_channel_cpy_address
+        FROM t_yq_ati_cus_channel a LEFT JOIN t_yq_ati_cus_channel_cpy b on a.company_code = b.company_code
+        where a.is_deleted = #{isDeleted} and a.cpy_code = #{cpyCode}
+          AND a.user_name like '%' || #{keyword} || '%' or
+                a.phone like '%' || #{keyword} || '%'
+    </select>
+
+    <!--查询渠道、渠道单位-->
+    <select id="selectChannelAndCpy" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT a.channel_code
+        ,a.user_name
+        ,a.sex
+        ,a.phone
+        ,a.company_code
+        ,b.channel_cpy_name as cp_channel_cpy_name
+        ,b.channel_cpy_remark as cp_channel_cpy_remark
+        ,b.channel_cpy_address as cp_channel_cpy_address
+        FROM t_yq_ati_cus_channel a LEFT JOIN t_yq_ati_cus_channel_cpy b on a.company_code = b.company_code
+        where a.is_deleted = #{isDeleted} and a.channel_code = #{channelCode} and a.cpy_code = #{cpyCode}
+    </select>
+
+</mapper>

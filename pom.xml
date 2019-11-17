@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.gniuu</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kfwy.park</groupId>
+    <artifactId>park</artifactId>
+    <packaging>pom</packaging>
+    <name>park</name>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>common</module>
+        <!-- Human Resource Manage人力资源管理-->
+        <module>hrm</module>
+        <!-- System Manager 系统管理-->
+        <module>sys</module>
+        <!-- expand 拓展 -->
+        <module>exp</module>
+        <!-- attract investment 招商引资-->
+        <module>ati</module>
+        <!-- property 物业-->
+        <module>pro</module>
+        <!-- Business Intelligence 商业智能(报表)-->
+        <module>bi</module>
+        <!-- Office Automation办公-->
+        <module>oa</module>
+        <!-- task任务-->
+        <module>task</module>
+        <!-- war包服务-->
+        <module>service</module>
+        <!-- act工作流 -->
+        <module>act</module>
+    </modules>
+    <properties>
+        <kupatframework_version>1.0-SNAPSHOT</kupatframework_version>
+
+        <!--<nexus_content_public_url>http://www.wzitech.com/nexus/content/groups/public/</nexus_content_public_url>-->
+        <nexus_kupat_public_url>http://nexus.gniuu.com/nexus/content/groups/gniuu-nexus/</nexus_kupat_public_url>
+
+        <!--<nexus.content.public.url>http://nexus.kupat.cn/nexus/content/groups/public/</nexus.content.public.url>-->
+        <nexus.deploy.snapshot.url>http://nexus.gniuu.com/nexus/content/repositories/snapshots/
+        </nexus.deploy.snapshot.url>
+        <nexus.deploy.release.url>http://nexus.gniuu.com/nexus/content/repositories/releases/</nexus.deploy.release.url>
+    </properties>
+
+    <repositories>
+        <!--<repository>
+            <id>wzitech_nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>${nexus_content_public_url}</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>-->
+        <repository>
+            <id>kupat_nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>${nexus_kupat_public_url}</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Official Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.gniuu.framework</groupId>
+                <artifactId>gniuu-framework</artifactId>
+                <version>${kupatframework_version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- test start -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- test start -->
+    </dependencies>
+
+</project>

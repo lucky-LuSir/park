@@ -1,0 +1,1404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.exp.house.building.entity.InvparkEntity">
+
+    <resultMap id="baseResultMap" type="com.kfwy.park.exp.house.building.entity.InvparkEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="item_code" property="itemCode" jdbcType="VARCHAR"/>
+
+        <result column="park_owner_cpy_name" property="parkOwnerCpyName" jdbcType="VARCHAR"/>
+        <result column="park_owner_name" property="parkOwnerName" jdbcType="VARCHAR"/>
+        <result column="park_owner_sex" property="parkOwnerSex" jdbcType="VARCHAR"/>
+        <result column="park_owner_phone" property="parkOwnerPhone" jdbcType="VARCHAR"/>
+        <result column="park_owner_reserve_contact_name" property="parkOwnerReserveContactName" jdbcType="VARCHAR"/>
+        <result column="park_owner_reserve_contact_sex" property="parkOwnerReserveContactSex" jdbcType="VARCHAR"/>
+        <result column="park_owner_reserve_contact_phone" property="parkOwnerReserveContactPhone" jdbcType="VARCHAR"/>
+
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="region_code" property="regionCode" jdbcType="VARCHAR"/>
+        <result column="street_code" property="streetCode" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="street_name" property="streetName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+
+        <result column="distance_downtown" property="distanceDowntown" jdbcType="NUMERIC"/>
+        <result column="distance_nearby_life_region" property="distanceNearbyLifeRegion" jdbcType="NUMERIC"/>
+        <result column="manufacturing_district" property="manufacturingDistrict" jdbcType="VARCHAR"/>
+        <result column="distance_freeway_entrance" property="distanceFreewayEntrance" jdbcType="NUMERIC"/>
+        <result column="has_public_traffic" property="hasPublicTraffic" jdbcType="BOOLEAN"/>
+        <result column="distance_main_street" property="distanceMainStreet" jdbcType="NUMERIC"/>
+        <result column="lane_quantity" property="laneQuantity" jdbcType="INTEGER"/>
+        <result column="nearby_price" property="nearbyPrice" jdbcType="NUMERIC"/>
+
+        <result column="has_new_plant" property="hasNewPlant" jdbcType="BOOLEAN"/>
+        <result column="plant_remark" property="plantRemark" jdbcType="VARCHAR"/>
+        <result column="plant_decoration" property="plantDecoration" jdbcType="VARCHAR"/>
+        <result column="decoration_remark" property="decorationRemark" jdbcType="VARCHAR"/>
+        <result column="plant_electricity" property="plantElectricity" jdbcType="VARCHAR"/>
+        <result column="electricity_remark" property="electricityRemark" jdbcType="VARCHAR"/>
+
+        <result column="park_area" property="parkArea" jdbcType="NUMERIC"/>
+        <result column="park_building_area" property="parkBuildingArea" jdbcType="NUMERIC"/>
+        <result column="single_floor_quantity" property="singleFloorQuantity" jdbcType="INTEGER"/>
+        <result column="single_floor_area" property="singleFloorArea" jdbcType="NUMERIC"/>
+        <result column="single_floor_height" property="singleFloorHeight" jdbcType="NUMERIC"/>
+        <result column="single_floor_remark" property="singleFloorRemark" jdbcType="VARCHAR"/>
+        <result column="more_floor_quantity" property="moreFloorQuantity" jdbcType="INTEGER"/>
+        <result column="more_floor_area" property="moreFloorArea" jdbcType="NUMERIC"/>
+        <result column="more_floor_height" property="moreFloorHeight" jdbcType="NUMERIC"/>
+        <result column="more_floor_remark" property="moreFloorRemark" jdbcType="VARCHAR"/>
+
+        <result column="more_floor_elevator_quantity" property="moreFloorElevatorQuantity" jdbcType="INTEGER"/>
+        <result column="elevator_location" property="elevatorLocation" jdbcType="VARCHAR"/>
+        <result column="office_building_quantity" property="officeBuildingQuantity" jdbcType="INTEGER"/>
+        <result column="office_building_area" property="officeBuildingArea" jdbcType="NUMERIC"/>
+        <result column="office_building_height" property="officeBuildingHeight" jdbcType="NUMERIC"/>
+        <result column="office_building_remark" property="officeBuildingRemark" jdbcType="VARCHAR"/>
+        <result column="other_building_quantity" property="otherBuildingQuantity" jdbcType="INTEGER"/>
+        <result column="other_building_area" property="otherBuildingArea" jdbcType="NUMERIC"/>
+        <result column="other_building_rate" property="otherBuildingRate" jdbcType="NUMERIC"/>
+        <result column="other_building_remark" property="otherBuildingRemark" jdbcType="VARCHAR"/>
+        <result column="vacancy_soil_area" property="vacancySoilArea" jdbcType="NUMERIC"/>
+        <result column="vacancy_soil_remark" property="vacancySoilRemark" jdbcType="VARCHAR"/>
+
+        <result column="total_electricity" property="totalElectricity" jdbcType="NUMERIC"/>
+        <result column="firefighting_level" property="firefightingLevel" jdbcType="VARCHAR"/>
+
+        <result column="estate_year" property="estateYear" jdbcType="NUMERIC"/>
+        <result column="contract_year" property="contractYear" jdbcType="NUMERIC"/>
+        <result column="belong_area" property="belongArea" jdbcType="VARCHAR"/>
+        <result column="has_house_certificate" property="hasHouseCertificate" jdbcType="BOOLEAN"/>
+        <result column="has_eia_certificate" property="hasEiaCertificate" jdbcType="BOOLEAN"/>
+        <result column="has_sewage_certificate" property="hasSewageCertificate" jdbcType="BOOLEAN"/>
+        <result column="has_firefighting_certificate" property="hasFirefightingCertificate" jdbcType="BOOLEAN"/>
+        <result column="certificate_remark" property="certificateRemark" jdbcType="VARCHAR"/>
+        <result column="unit_price" property="unitPrice" jdbcType="NUMERIC"/>
+        <result column="strata_fee" property="strataFee" jdbcType="NUMERIC"/>
+        <result column="free_rent_date" property="freeRentDate" jdbcType="NUMERIC"/>
+        <result column="pay_rule" property="payRule" jdbcType="NUMERIC"/>
+        <result column="increase_rule" property="increaseRule" jdbcType="NUMERIC"/>
+        <result column="tax_request" property="taxRequest" jdbcType="VARCHAR"/>
+        <result column="taxes" property="taxes" jdbcType="VARCHAR"/>
+        <result column="restrict_industry" property="restrictIndustry" jdbcType="VARCHAR"/>
+        <result column="show_video" property="showVideo" jdbcType="VARCHAR"/>
+        <result column="show_picture" property="showPicture" jdbcType="VARCHAR"/>
+        <result column="exp_emp_code" property="expEmpCode" jdbcType="VARCHAR"/>
+        <result column="exp_emp_name" property="expEmpName" jdbcType="VARCHAR"/>
+        <result column="exp_emp_phone" property="expEmpPhone" jdbcType="VARCHAR"/>
+        <result column="exp_emp_cpy_name" property="expEmpCpyName" jdbcType="VARCHAR"/>
+        <result column="score" property="score" jdbcType="DOUBLE"/>
+        <result column="assess_result" property="assessResult" jdbcType="VARCHAR"/>
+        <result column="exp_status" property="expStatus" jdbcType="VARCHAR"/>
+
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+        <result column="owner_code" property="ownerCode" jdbcType="VARCHAR"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR"/>
+        <result column="owner_dept_code" property="ownerDeptCode" jdbcType="VARCHAR"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR"/>
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 添加 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            insert into t_yq_exp_invpark_building
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.itemCode != null and i.itemCode != ''">
+                    item_code,
+                </if>
+
+                <if test="i.parkOwnerCpyName != null and i.parkOwnerCpyName != ''">
+                    park_owner_cpy_name,
+                </if>
+                <if test="i.parkOwnerName != null and i.parkOwnerName != ''">
+                    park_owner_name,
+                </if>
+                <if test="i.parkOwnerSex != null and i.parkOwnerSex != ''">
+                    park_owner_sex,
+                </if>
+                <if test="i.parkOwnerPhone != null and i.parkOwnerPhone != ''">
+                    park_owner_phone,
+                </if>
+                <if test="i.parkOwnerReserveContactName != null and i.parkOwnerReserveContactName != ''">
+                    park_owner_reserve_contact_name,
+                </if>
+                <if test="i.parkOwnerReserveContactSex != null and i.parkOwnerReserveContactSex != ''">
+                    park_owner_reserve_contact_sex,
+                </if>
+                <if test="i.parkOwnerReserveContactPhone != null and i.parkOwnerReserveContactPhone != ''">
+                    park_owner_reserve_contact_phone,
+                </if>
+
+                <if test="i.provinceCode != null and i.provinceCode != ''">
+                    province_code,
+                </if>
+                <if test="i.cityCode != null and i.cityCode != ''">
+                    city_code,
+                </if>
+                <if test="i.regionCode != null and i.regionCode != ''">
+                    region_code,
+                </if>
+                <if test="i.streetCode != null and i.streetCode != ''">
+                    street_code,
+                </if>
+                <if test="i.provinceName != null and i.provinceName != ''">
+                    province_name,
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    city_name,
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    region_name,
+                </if>
+                <if test="i.streetName != null and i.streetName != ''">
+                    street_name,
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address,
+                </if>
+
+
+                <if test="i.distanceDowntown != null">
+                    distance_downtown,
+                </if>
+                <if test="i.distanceNearbyLifeRegion != null">
+                    distance_nearby_life_region,
+                </if>
+                <if test="i.manufacturingDistrict != null and i.manufacturingDistrict != ''">
+                    manufacturing_district,
+                </if>
+                <if test="i.distanceFreewayEntrance != null">
+                    distance_freeway_entrance,
+                </if>
+                <if test="i.hasPublicTraffic != null">
+                    has_public_traffic,
+                </if>
+                <if test="i.distanceMainStreet != null">
+                    distance_main_street,
+                </if>
+                <if test="i.laneQuantity != null">
+                    lane_quantity,
+                </if>
+                <if test="i.nearbyPrice != null">
+                    nearby_price,
+                </if>
+
+
+                <if test="i.hasNewPlant != null">
+                    has_new_plant,
+                </if>
+                <if test="i.plantRemark != null and i.plantRemark != ''">
+                    plant_remark,
+                </if>
+                <if test="i.plantDecoration != null and i.plantDecoration != ''">
+                    plant_decoration,
+                </if>
+                <if test="i.decorationRemark != null and i.decorationRemark != ''">
+                    decoration_remark,
+                </if>
+                <if test="i.plantElectricity != null and i.plantElectricity != ''">
+                    plant_electricity,
+                </if>
+                <if test="i.electricityRemark != null and i.electricityRemark != ''">
+                    electricity_remark,
+                </if>
+
+
+                <if test="i.parkArea != null">
+                    park_area,
+                </if>
+                <if test="i.parkBuildingArea != null">
+                    park_building_area,
+                </if>
+                <if test="i.singleFloorQuantity != null">
+                    single_floor_quantity,
+                </if>
+                <if test="i.singleFloorArea != null">
+                    single_floor_area,
+                </if>
+                <if test="i.singleFloorHeight != null">
+                    single_floor_height,
+                </if>
+                <if test="i.singleFloorRemark != null and i.singleFloorRemark != ''">
+                    single_floor_remark,
+                </if>
+                <if test="i.moreFloorQuantity != null">
+                    more_floor_quantity,
+                </if>
+                <if test="i.moreFloorArea != null">
+                    more_floor_area,
+                </if>
+                <if test="i.moreFloorHeight != null">
+                    more_floor_height,
+                </if>
+                <if test="i.moreFloorRemark != null">
+                    more_floor_remark,
+                </if>
+                <if test="i.moreFloorElevatorQuantity != null">
+                    more_floor_elevator_quantity,
+                </if>
+                <if test="i.elevatorLocation != null and i.elevatorLocation != ''">
+                    elevator_location,
+                </if>
+                <if test="i.officeBuildingQuantity != null">
+                    office_building_quantity,
+                </if>
+                <if test="i.officeBuildingArea != null">
+                    office_building_area,
+                </if>
+                <if test="i.officeBuildingHeight != null">
+                    office_building_height,
+                </if>
+                <if test="i.officeBuildingRemark != null and i.officeBuildingRemark != ''">
+                    office_building_remark,
+                </if>
+                <if test="i.otherBuildingQuantity != null">
+                    other_building_quantity,
+                </if>
+                <if test="i.otherBuildingArea != null">
+                    other_building_area,
+                </if>
+                <if test="i.otherBuildingRate != null">
+                    other_building_rate,
+                </if>
+                <if test="i.otherBuildingRemark != null and i.otherBuildingRemark != ''">
+                    other_building_remark,
+                </if>
+                <if test="i.vacancySoilArea != null">
+                    vacancy_soil_area,
+                </if>
+                <if test="i.vacancySoilRemark != null and i.vacancySoilRemark != ''">
+                    vacancy_soil_remark,
+                </if>
+
+
+                <if test="i.totalElectricity != null">
+                    total_electricity,
+                </if>
+                <if test="i.firefightingLevel != null and i.firefightingLevel != ''">
+                    firefighting_level,
+                </if>
+
+
+                <if test="i.estateYear != null">
+                    estate_year,
+                </if>
+                <if test="i.contractYear != null">
+                    contract_year,
+                </if>
+                <if test="i.belongArea != null and i.belongArea != ''">
+                    belong_area,
+                </if>
+                <if test="i.hasHouseCertificate != null">
+                    has_house_certificate,
+                </if>
+                <if test="i.hasEiaCertificate != null">
+                    has_eia_certificate,
+                </if>
+                <if test="i.hasSewageCertificate != null">
+                    has_sewage_certificate,
+                </if>
+                <if test="i.hasFirefightingCertificate != null">
+                    has_firefighting_certificate,
+                </if>
+                <if test="i.certificateRemark != null and i.certificateRemark != ''">
+                    certificate_remark,
+                </if>
+                <if test="i.unitPrice != null">
+                    unit_price,
+                </if>
+                <if test="i.strataFee != null">
+                    strata_fee,
+                </if>
+                <if test="i.freeRentDate != null">
+                    free_rent_date,
+                </if>
+                <if test="i.payRule != null">
+                    pay_rule,
+                </if>
+                <if test="i.increaseRule != null">
+                    increase_rule,
+                </if>
+                <if test="i.taxRequest != null and i.taxRequest != ''">
+                    tax_request,
+                </if>
+                <if test="i.taxes != null and i.taxes != ''">
+                    taxes,
+                </if>
+                <if test="i.restrictIndustry != null and i.restrictIndustry != ''">
+                    restrict_industry,
+                </if>
+                <if test="i.showVideo != null and i.showVideo != ''">
+                    show_video,
+                </if>
+                <if test="i.showPicture != null and i.showPicture != ''">
+                    show_picture,
+                </if>
+                <if test="i.expEmpCode != null and i.expEmpCode != ''">
+                    exp_emp_code,
+                </if>
+                <if test="i.expEmpName != null and i.expEmpName != ''">
+                    exp_emp_name,
+                </if>
+                <if test="i.expEmpPhone != null and i.expEmpPhone != ''">
+                    exp_emp_phone,
+                </if>
+                <if test="i.expEmpCpyName != null and i.expEmpCpyName != ''">
+                    exp_emp_cpy_name,
+                </if>
+                <if test="i.score != null">
+                    score,
+                </if>
+                <if test="i.assessResult != null and i.assessResult != ''">
+                    assess_result,
+                </if>
+                <if test="i.expStatus != null and i.expStatus != ''">
+                    exp_status,
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.itemCode != null and i.itemCode != ''">
+                    #{i.itemCode},
+                </if>
+
+
+                <if test="i.parkOwnerCpyName != null and i.parkOwnerCpyName != ''">
+                    #{i.parkOwnerCpyName},
+                </if>
+                <if test="i.parkOwnerName != null and i.parkOwnerName != ''">
+                    #{i.parkOwnerName},
+                </if>
+                <if test="i.parkOwnerSex != null and i.parkOwnerSex != ''">
+                    #{i.parkOwnerSex},
+                </if>
+                <if test="i.parkOwnerPhone != null and i.parkOwnerPhone != ''">
+                    #{i.parkOwnerPhone},
+                </if>
+                <if test="i.parkOwnerReserveContactName != null and i.parkOwnerReserveContactName != ''">
+                    #{i.parkOwnerReserveContactName},
+                </if>
+                <if test="i.parkOwnerReserveContactSex != null and i.parkOwnerReserveContactSex != ''">
+                    #{i.parkOwnerReserveContactSex},
+                </if>
+                <if test="i.parkOwnerReserveContactPhone != null and i.parkOwnerReserveContactPhone != ''">
+                    #{i.parkOwnerReserveContactPhone},
+                </if>
+
+
+                <if test="i.provinceCode != null and i.provinceCode != ''">
+                    #{i.provinceCode},
+                </if>
+                <if test="i.cityCode != null and i.cityCode != ''">
+                    #{i.cityCode},
+                </if>
+                <if test="i.regionCode != null and i.regionCode != ''">
+                    #{i.regionCode},
+                </if>
+                <if test="i.streetCode != null and i.streetCode != ''">
+                    #{i.streetCode},
+                </if>
+                <if test="i.provinceName != null and i.provinceName != ''">
+                    #{i.provinceName},
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    #{i.cityName},
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    #{i.regionName},
+                </if>
+                <if test="i.streetName != null and i.streetName != ''">
+                    #{i.streetName},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    #{i.address},
+                </if>
+
+
+                <if test="i.distanceDowntown != null">
+                    #{i.distanceDowntown},
+                </if>
+                <if test="i.distanceNearbyLifeRegion != null">
+                    #{i.distanceNearbyLifeRegion},
+                </if>
+                <if test="i.manufacturingDistrict != null and i.manufacturingDistrict != ''">
+                    #{i.manufacturingDistrict},
+                </if>
+                <if test="i.distanceFreewayEntrance != null">
+                    #{i.distanceFreewayEntrance},
+                </if>
+                <if test="i.hasPublicTraffic != null">
+                    #{i.hasPublicTraffic},
+                </if>
+                <if test="i.distanceMainStreet != null">
+                    #{i.distanceMainStreet},
+                </if>
+                <if test="i.laneQuantity != null">
+                    #{i.laneQuantity},
+                </if>
+                <if test="i.nearbyPrice != null">
+                    #{i.nearbyPrice},
+                </if>
+
+
+                <if test="i.hasNewPlant != null">
+                    #{i.hasNewPlant},
+                </if>
+                <if test="i.plantRemark != null and i.plantRemark != ''">
+                    #{i.plantRemark},
+                </if>
+                <if test="i.plantDecoration != null and i.plantDecoration != ''">
+                    #{i.plantDecoration},
+                </if>
+                <if test="i.decorationRemark != null and i.decorationRemark != ''">
+                    #{i.decorationRemark},
+                </if>
+                <if test="i.plantElectricity != null and i.plantElectricity != ''">
+                    #{i.plantElectricity},
+                </if>
+                <if test="i.electricityRemark != null and i.electricityRemark != ''">
+                    #{i.electricityRemark},
+                </if>
+
+
+                <if test="i.parkArea != null">
+                    #{i.parkArea},
+                </if>
+                <if test="i.parkBuildingArea != null">
+                    #{i.parkBuildingArea},
+                </if>
+                <if test="i.singleFloorQuantity != null">
+                    #{i.singleFloorQuantity},
+                </if>
+                <if test="i.singleFloorArea != null">
+                    #{i.singleFloorArea},
+                </if>
+                <if test="i.singleFloorHeight != null">
+                    #{i.singleFloorHeight},
+                </if>
+                <if test="i.singleFloorRemark != null and i.singleFloorRemark != ''">
+                    #{i.singleFloorRemark},
+                </if>
+                <if test="i.moreFloorQuantity != null">
+                    #{i.moreFloorQuantity},
+                </if>
+                <if test="i.moreFloorArea != null">
+                    #{i.moreFloorArea},
+                </if>
+                <if test="i.moreFloorHeight != null">
+                    #{i.moreFloorHeight},
+                </if>
+                <if test="i.moreFloorRemark != null">
+                    #{i.moreFloorRemark},
+                </if>
+                <if test="i.moreFloorElevatorQuantity != null and i.moreFloorElevatorQuantity != ''">
+                    #{i.moreFloorElevatorQuantity},
+                </if>
+                <if test="i.elevatorLocation != null and i.elevatorLocation != ''">
+                    #{i.elevatorLocation},
+                </if>
+                <if test="i.officeBuildingQuantity != null">
+                    #{i.officeBuildingQuantity},
+                </if>
+                <if test="i.officeBuildingArea != null">
+                    #{i.officeBuildingArea},
+                </if>
+                <if test="i.officeBuildingHeight != null">
+                    #{i.officeBuildingHeight},
+                </if>
+                <if test="i.officeBuildingRemark != null and i.officeBuildingRemark != ''">
+                    #{i.officeBuildingRemark},
+                </if>
+                <if test="i.otherBuildingQuantity != null">
+                    #{i.otherBuildingQuantity},
+                </if>
+                <if test="i.otherBuildingArea != null">
+                    #{i.otherBuildingArea},
+                </if>
+                <if test="i.otherBuildingRate != null">
+                    #{i.otherBuildingRate},
+                </if>
+                <if test="i.otherBuildingRemark != null and i.otherBuildingRemark != ''">
+                    #{i.otherBuildingRemark},
+                </if>
+                <if test="i.vacancySoilArea != null">
+                    #{i.vacancySoilArea},
+                </if>
+                <if test="i.vacancySoilRemark != null and i.vacancySoilRemark != ''">
+                    #{i.vacancySoilRemark},
+                </if>
+
+
+                <if test="i.totalElectricity != null">
+                    #{i.totalElectricity},
+                </if>
+                <if test="i.firefightingLevel != null and i.firefightingLevel != ''">
+                    #{i.firefightingLevel},
+                </if>
+
+
+                <if test="i.estateYear != null">
+                    #{i.estateYear},
+                </if>
+                <if test="i.contractYear != null">
+                    #{i.contractYear},
+                </if>
+                <if test="i.belongArea != null and i.belongArea != ''">
+                    #{i.belongArea},
+                </if>
+                <if test="i.hasHouseCertificate != null">
+                    #{i.hasHouseCertificate},
+                </if>
+                <if test="i.hasEiaCertificate != null">
+                    #{i.hasEiaCertificate},
+                </if>
+                <if test="i.hasSewageCertificate != null">
+                    #{i.hasSewageCertificate},
+                </if>
+                <if test="i.hasFirefightingCertificate != null">
+                    #{i.hasFirefightingCertificate},
+                </if>
+                <if test="i.certificateRemark != null and i.certificateRemark != ''">
+                    #{i.certificateRemark},
+                </if>
+                <if test="i.unitPrice != null">
+                    #{i.unitPrice},
+                </if>
+                <if test="i.strataFee != null">
+                    #{i.strataFee},
+                </if>
+                <if test="i.freeRentDate != null">
+                    #{i.freeRentDate},
+                </if>
+                <if test="i.payRule != null">
+                    #{i.payRule},
+                </if>
+                <if test="i.increaseRule != null">
+                    #{i.increaseRule},
+                </if>
+                <if test="i.taxRequest != null and i.taxRequest != ''">
+                    #{i.taxRequest},
+                </if>
+                <if test="i.taxes != null and i.taxes != ''">
+                    #{i.taxes},
+                </if>
+                <if test="i.restrictIndustry != null and i.restrictIndustry != ''">
+                    #{i.restrictIndustry},
+                </if>
+                <if test="i.showVideo != null and i.showVideo != ''">
+                    #{i.showVideo},
+                </if>
+                <if test="i.showPicture != null and i.showPicture != ''">
+                    #{i.showPicture},
+                </if>
+                <if test="i.expEmpCode != null and i.expEmpCode != ''">
+                    #{i.expEmpCode},
+                </if>
+                <if test="i.expEmpName != null and i.expEmpName != ''">
+                    #{i.expEmpName},
+                </if>
+                <if test="i.expEmpPhone != null and i.expEmpPhone != ''">
+                    #{i.expEmpPhone},
+                </if>
+                <if test="i.expEmpCpyName != null and i.expEmpCpyName != ''">
+                    #{i.expEmpCpyName},
+                </if>
+                <if test="i.score != null">
+                    #{i.score},
+                </if>
+                <if test="i.assessResult != null and i.assessResult != ''">
+                    #{i.assessResult},
+                </if>
+                <if test="i.expStatus != null and i.expStatus != ''">
+                    #{i.expStatus},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+
+    <!-- 修改 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.exp.house.building.entity.InvparkEntity">
+        <foreach collection="list" item="i" separator=";">
+            UPDATE t_yq_exp_invpark_building
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.parkOwnerCpyName != null and i.parkOwnerCpyName != ''">
+                    park_owner_cpy_name = #{i.parkOwnerCpyName},
+                </if>
+                <if test="i.parkOwnerName != null and i.parkOwnerName != ''">
+                    park_owner_name = #{i.parkOwnerName},
+                </if>
+                <if test="i.parkOwnerSex != null and i.parkOwnerSex != ''">
+                    park_owner_sex = #{i.parkOwnerSex},
+                </if>
+                <if test="i.parkOwnerPhone != null and i.parkOwnerPhone != ''">
+                    park_owner_phone = #{i.parkOwnerPhone},
+                </if>
+                <if test="i.parkOwnerReserveContactName != null and i.parkOwnerReserveContactName != ''">
+                    park_owner_reserve_contact_name = #{i.parkOwnerReserveContactName},
+                </if>
+                <if test="i.parkOwnerReserveContactSex != null and i.parkOwnerReserveContactSex != ''">
+                    park_owner_reserve_contact_sex = #{i.parkOwnerReserveContactSex},
+                </if>
+                <if test="i.parkOwnerReserveContactPhone != null and i.parkOwnerReserveContactPhone != ''">
+                    park_owner_reserve_contact_phone = #{i.parkOwnerReserveContactPhone},
+                </if>
+
+
+                <if test="i.provinceCode != null and i.provinceCode != ''">
+                    province_code = #{i.provinceCode},
+                </if>
+                <if test="i.cityCode != null and i.cityCode != ''">
+                    city_code = #{i.cityCode},
+                </if>
+                <if test="i.regionCode != null and i.regionCode != ''">
+                    region_code = #{i.regionCode},
+                </if>
+                <if test="i.streetCode != null and i.streetCode != ''">
+                    street_code = #{i.streetCode},
+                </if>
+                <if test="i.provinceName != null and i.provinceName != ''">
+                    province_name = #{i.provinceName},
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    city_name = #{i.cityName},
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    region_name = #{i.regionName},
+                </if>
+                <if test="i.streetName != null and i.streetName != ''">
+                    street_name = #{i.streetName},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address = #{i.address},
+                </if>
+
+
+                <if test="i.distanceDowntown != null">
+                    distance_downtown = #{i.distanceDowntown},
+                </if>
+                <if test="i.distanceNearbyLifeRegion != null">
+                    distance_nearby_life_region = #{i.distanceNearbyLifeRegion},
+                </if>
+                <if test="i.manufacturingDistrict != null and i.manufacturingDistrict != ''">
+                    manufacturing_district = #{i.manufacturingDistrict},
+                </if>
+                <if test="i.distanceFreewayEntrance != null">
+                    distance_freeway_entrance = #{i.distanceFreewayEntrance},
+                </if>
+                <if test="i.hasPublicTraffic != null">
+                    has_public_traffic = #{i.hasPublicTraffic},
+                </if>
+                <if test="i.distanceMainStreet != null">
+                    distance_main_street = #{i.distanceMainStreet},
+                </if>
+                <if test="i.laneQuantity != null">
+                    lane_quantity = #{i.laneQuantity},
+                </if>
+                <if test="i.nearbyPrice != null">
+                    nearby_price = #{i.nearbyPrice},
+                </if>
+
+
+                <if test="i.hasNewPlant != null">
+                    has_new_plant = #{i.hasNewPlant},
+                </if>
+                <if test="i.plantRemark != null and i.plantRemark != ''">
+                    plant_remark = #{i.plantRemark},
+                </if>
+                <if test="i.plantDecoration != null and i.plantDecoration != ''">
+                    plant_decoration = #{i.plantDecoration},
+                </if>
+                <if test="i.decorationRemark != null and i.decorationRemark != ''">
+                    decoration_remark = #{i.decorationRemark},
+                </if>
+                <if test="i.plantElectricity != null and i.plantElectricity != ''">
+                    plant_electricity = #{i.plantElectricity},
+                </if>
+                <if test="i.electricityRemark != null and i.electricityRemark != ''">
+                    electricity_remark = #{i.electricityRemark},
+                </if>
+
+
+                <if test="i.parkArea != null">
+                    park_area = #{i.parkArea},
+                </if>
+                <if test="i.parkBuildingArea != null">
+                    park_building_area = #{i.parkBuildingArea},
+                </if>
+                <if test="i.singleFloorQuantity != null">
+                    single_floor_quantity = #{i.singleFloorQuantity},
+                </if>
+                <if test="i.singleFloorArea != null">
+                    single_floor_area = #{i.singleFloorArea},
+                </if>
+                <if test="i.singleFloorHeight != null">
+                    single_floor_height = #{i.singleFloorHeight},
+                </if>
+                <if test="i.singleFloorRemark != null and i.singleFloorRemark != ''">
+                    single_floor_remark = #{i.singleFloorRemark},
+                </if>
+                <if test="i.moreFloorQuantity != null">
+                    more_floor_quantity = #{i.moreFloorQuantity},
+                </if>
+                <if test="i.moreFloorArea != null">
+                    more_floor_area = #{i.moreFloorArea},
+                </if>
+                <if test="i.moreFloorHeight != null">
+                    more_floor_height = #{i.moreFloorHeight},
+                </if>
+                <if test="i.moreFloorRemark != null">
+                    more_floor_remark = #{i.moreFloorRemark},
+                </if>
+                <if test="i.moreFloorElevatorQuantity != null">
+                    more_floor_elevator_quantity = #{i.moreFloorElevatorQuantity},
+                </if>
+                <if test="i.elevatorLocation != null and i.elevatorLocation != ''">
+                    elevator_location = #{i.elevatorLocation},
+                </if>
+                <if test="i.officeBuildingQuantity != null">
+                    office_building_quantity = #{i.officeBuildingQuantity},
+                </if>
+                <if test="i.officeBuildingArea != null">
+                    office_building_area = #{i.officeBuildingArea},
+                </if>
+                <if test="i.officeBuildingHeight != null">
+                    office_building_height = #{i.officeBuildingHeight},
+                </if>
+                <if test="i.officeBuildingRemark != null and i.officeBuildingRemark != ''">
+                    office_building_remark = #{i.officeBuildingRemark},
+                </if>
+                <if test="i.otherBuildingQuantity != null">
+                    other_building_quantity = #{i.otherBuildingQuantity},
+                </if>
+                <if test="i.otherBuildingArea != null">
+                    other_building_area = #{i.otherBuildingArea},
+                </if>
+                <if test="i.otherBuildingRate != null">
+                    other_building_rate = #{i.otherBuildingRate},
+                </if>
+                <if test="i.otherBuildingRemark != null and i.otherBuildingRemark != ''">
+                    other_building_remark = #{i.otherBuildingRemark},
+                </if>
+                <if test="i.vacancySoilArea != null">
+                    vacancy_soil_area = #{i.vacancySoilArea},
+                </if>
+                <if test="i.vacancySoilRemark != null and i.vacancySoilRemark != ''">
+                    vacancy_soil_remark = #{i.vacancySoilRemark},
+                </if>
+
+
+                <if test="i.totalElectricity != null">
+                    total_electricity = #{i.totalElectricity},
+                </if>
+                <if test="i.firefightingLevel != null and i.firefightingLevel != ''">
+                    firefighting_level = #{i.firefightingLevel},
+                </if>
+
+
+                <if test="i.estateYear != null">
+                    estate_year = #{i.estateYear},
+                </if>
+                <if test="i.contractYear != null">
+                    contract_year = #{i.contractYear},
+                </if>
+                <if test="i.belongArea != null and i.belongArea != ''">
+                    belong_area = #{i.belongArea},
+                </if>
+                <if test="i.hasHouseCertificate != null">
+                    has_house_certificate = #{i.hasHouseCertificate},
+                </if>
+                <if test="i.hasEiaCertificate != null">
+                    has_eia_certificate = #{i.hasEiaCertificate},
+                </if>
+                <if test="i.hasSewageCertificate != null">
+                    has_sewage_certificate = #{i.hasSewageCertificate},
+                </if>
+                <if test="i.hasFirefightingCertificate != null">
+                    has_firefighting_certificate = #{i.hasFirefightingCertificate},
+                </if>
+                <if test="i.certificateRemark != null and i.certificateRemark != ''">
+                    certificate_remark = #{i.certificateRemark},
+                </if>
+                <if test="i.unitPrice != null">
+                    unit_price = #{i.unitPrice},
+                </if>
+                <if test="i.strataFee != null">
+                    strata_fee = #{i.strataFee},
+                </if>
+                <if test="i.freeRentDate != null">
+                    free_rent_date = #{i.freeRentDate},
+                </if>
+                <if test="i.payRule != null">
+                    pay_rule = #{i.payRule},
+                </if>
+                <if test="i.increaseRule != null">
+                    increase_rule = #{i.increaseRule},
+                </if>
+                <if test="i.taxRequest != null and i.taxRequest != ''">
+                    tax_request = #{i.taxRequest},
+                </if>
+                <if test="i.taxes != null and i.taxes != ''">
+                    taxes = #{i.taxes},
+                </if>
+                <if test="i.restrictIndustry != null and i.restrictIndustry != ''">
+                    restrict_industry = #{i.restrictIndustry},
+                </if>
+                <if test="i.showVideo != null and i.showVideo != ''">
+                    show_video = #{i.showVideo},
+                </if>
+                <if test="i.showPicture != null and i.showPicture != ''">
+                    show_picture = #{i.showPicture},
+                </if>
+                <if test="i.expEmpCode != null and i.expEmpCode != ''">
+                    exp_emp_code = #{i.expEmpCode},
+                </if>
+                <if test="i.expEmpName != null and i.expEmpName != ''">
+                    exp_emp_name = #{i.expEmpName},
+                </if>
+                <if test="i.expEmpPhone != null and i.expEmpPhone != ''">
+                    exp_emp_phone = #{i.expEmpPhone},
+                </if>
+                <if test="i.expEmpCpyName != null and i.expEmpCpyName != ''">
+                    exp_emp_cpy_name = #{i.expEmpCpyName},
+                </if>
+                <if test="i.score != null">
+                    score = #{i.score},
+                </if>
+                <if test="i.assessResult != null and i.assessResult != ''">
+                    assess_result = #{i.assessResult},
+                </if>
+                <if test="i.expStatus != null and i.expStatus != ''">
+                    exp_status = #{i.expStatus},
+                </if>
+
+
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.ownerCode != null and i.ownerCode != ''">
+                    owner_code = #{i.ownerCode},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptCode != null and i.ownerDeptCode != ''">
+                    owner_dept_code = #{i.ownerDeptCode},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.itemCode != null">
+                    AND item_code = #{i.itemCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+
+    <!-- 根据条件查询唯一结果，SQL片段 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND id = #{id}
+            </if>
+            <if test="itemCode != null">
+                AND item_code = #{itemCode}
+            </if>
+            <if test="parkOwnerCpyName != null and parkOwnerCpyName != ''">
+                AND park_owner_cpy_name = #{parkOwnerCpyName}
+            </if>
+            <if test="parkOwnerName != null and parkOwnerName != ''">
+                AND park_owner_name = #{parkOwnerName}
+            </if>
+            <if test="parkOwnerSex != null and parkOwnerSex != ''">
+                AND park_owner_sex = #{parkOwnerSex}
+            </if>
+            <if test="parkOwnerPhone != null and parkOwnerPhone != ''">
+                AND park_owner_phone = #{parkOwnerPhone}
+            </if>
+            <if test="parkOwnerReserveContactName != null and parkOwnerReserveContactName != ''">
+                AND park_owner_reserve_contact_name = #{parkOwnerReserveContactName}
+            </if>
+            <if test="parkOwnerReserveContactSex != null and parkOwnerReserveContactSex != ''">
+                AND park_owner_reserve_contact_sex = #{parkOwnerReserveContactSex}
+            </if>
+            <if test="parkOwnerReserveContactPhone != null and parkOwnerReserveContactPhone != ''">
+                AND park_owner_reserve_contact_phone = #{parkOwnerReserveContactPhone}
+            </if>
+
+
+            <if test="provinceCode != null and provinceCode != ''">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null and cityCode != ''">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="regionCode != null and regionCode != ''">
+                AND region_code = #{regionCode}
+            </if>
+            <if test="streetCode != null and streetCode != ''">
+                AND street_code = #{streetCode}
+            </if>
+            <if test="provinceName != null and provinceName != ''">
+                AND province_name = #{provinceName}
+            </if>
+            <if test="cityName != null and cityName != ''">
+                AND city_name = #{cityName}
+            </if>
+            <if test="regionName != null and regionName != ''">
+                AND region_name = #{regionName}
+            </if>
+            <if test="streetName != null and streetName != ''">
+                AND street_name = #{streetName}
+            </if>
+            <if test="address != null and address != ''">
+                AND address = #{address}
+            </if>
+
+
+            <if test="distanceDowntown != null">
+                AND distance_downtown = #{distanceDowntown}
+            </if>
+            <if test="distanceNearbyLifeRegion != null">
+                AND distance_nearby_life_region = #{distanceNearbyLifeRegion}
+            </if>
+            <if test="manufacturingDistrict != null and manufacturingDistrict != ''">
+                AND manufacturing_district = #{manufacturingDistrict}
+            </if>
+            <if test="distanceFreewayEntrance != null">
+                AND distance_freeway_entrance = #{distanceFreewayEntrance}
+            </if>
+            <if test="hasPublicTraffic != null">
+                AND has_public_traffic = #{hasPublicTraffic}
+            </if>
+            <if test="distanceMainStreet != null">
+                AND distance_main_street = #{distanceMainStreet}
+            </if>
+            <if test="laneQuantity != null">
+                AND lane_quantity = #{laneQuantity}
+            </if>
+            <if test="nearbyPrice != null">
+                AND nearby_price = #{nearbyPrice}
+            </if>
+
+
+            <if test="hasNewPlant != null">
+                AND has_new_plant = #{hasNewPlant}
+            </if>
+            <if test="plantRemark != null and plantRemark != ''">
+                AND plant_remark = #{plantRemark}
+            </if>
+            <if test="plantDecoration != null and plantDecoration != ''">
+                AND plant_decoration = #{plantDecoration}
+            </if>
+            <if test="decorationRemark != null and decorationRemark != ''">
+                AND decoration_remark = #{decorationRemark}
+            </if>
+            <if test="plantElectricity != null and plantElectricity != ''">
+                AND plant_electricity = #{plantElectricity}
+            </if>
+            <if test="electricityRemark != null and electricityRemark != ''">
+                AND electricity_remark = #{electricityRemark}
+            </if>
+
+
+            <if test="parkArea != null">
+                AND park_area = #{parkArea}
+            </if>
+            <if test="parkBuildingArea != null">
+                AND park_building_area = #{parkBuildingArea}
+            </if>
+            <if test="singleFloorQuantity != null">
+                AND single_floor_quantity = #{singleFloorQuantity}
+            </if>
+            <if test="singleFloorArea != null">
+                AND single_floor_area = #{singleFloorArea}
+            </if>
+            <if test="singleFloorHeight != null">
+                AND single_floor_height = #{singleFloorHeight}
+            </if>
+            <if test="singleFloorRemark != null and singleFloorRemark != ''">
+                AND single_floor_remark = #{singleFloorRemark}
+            </if>
+            <if test="moreFloorQuantity != null">
+                AND more_floor_quantity = #{moreFloorQuantity}
+            </if>
+            <if test="moreFloorArea != null">
+                AND more_floor_area = #{moreFloorArea}
+            </if>
+            <if test="moreFloorHeight != null">
+                AND more_floor_height = #{moreFloorHeight}
+            </if>
+            <if test="moreFloorRemark != null">
+                AND more_floor_remark = #{moreFloorRemark}
+            </if>
+            <if test="moreFloorHeight != null">
+                AND more_floor_height = #{moreFloorHeight}
+            </if>
+            <if test="moreFloorElevatorQuantity != null">
+                AND more_floor_elevator_quantity = #{moreFloorElevatorQuantity}
+            </if>
+            <if test="elevatorLocation != null and elevatorLocation != ''">
+                AND elevator_location = #{elevatorLocation}
+            </if>
+            <if test="officeBuildingQuantity != null">
+                AND office_building_quantity = #{officeBuildingQuantity}
+            </if>
+            <if test="officeBuildingArea != null">
+                AND office_building_area = #{officeBuildingArea}
+            </if>
+            <if test="officeBuildingHeight != null">
+                AND office_building_height = #{officeBuildingHeight}
+            </if>
+            <if test="officeBuildingRemark != null and officeBuildingRemark != ''">
+                AND office_building_remark = #{officeBuildingRemark}
+            </if>
+            <if test="otherBuildingQuantity != null">
+                AND other_building_quantity = #{otherBuildingQuantity}
+            </if>
+            <if test="otherBuildingArea != null">
+                AND other_building_area = #{otherBuildingArea}
+            </if>
+            <if test="otherBuildingRate != null">
+                AND other_building_rate = #{otherBuildingRate}
+            </if>
+            <if test="otherBuildingRemark != null and otherBuildingRemark != ''">
+                AND other_building_remark = #{otherBuildingRemark}
+            </if>
+            <if test="vacancySoilArea != null">
+                AND vacancy_soil_area = #{vacancySoilArea}
+            </if>
+            <if test="vacancySoilRemark != null and vacancySoilRemark != ''">
+                AND vacancy_soil_remark = #{vacancySoilRemark}
+            </if>
+
+
+            <if test="totalElectricity != null">
+                AND total_electricity = #{totalElectricity}
+            </if>
+            <if test="firefightingLevel != null and firefightingLevel != ''">
+                AND firefighting_level = #{firefightingLevel}
+            </if>
+
+
+            <if test="estateYear != null">
+                AND estate_year = #{estateYear}
+            </if>
+            <if test="contractYear != null">
+                AND contract_year = #{contractYear}
+            </if>
+            <if test="belongArea != null and belongArea != ''">
+                AND belong_area = #{belongArea}
+            </if>
+            <if test="hasHouseCertificate != null">
+                AND has_house_certificate = #{hasHouseCertificate}
+            </if>
+            <if test="hasEiaCertificate != null">
+                AND has_eia_certificate = #{hasEiaCertificate}
+            </if>
+            <if test="hasSewageCertificate != null">
+                AND has_sewage_certificate = #{hasSewageCertificate}
+            </if>
+            <if test="hasFirefightingCertificate != null">
+                AND has_firefighting_certificate = #{hasFirefightingCertificate}
+            </if>
+            <if test="certificateRemark != null and certificateRemark != ''">
+                AND certificate_remark = #{certificateRemark}
+            </if>
+            <if test="unitPrice != null">
+                AND unit_price = #{unitPrice}
+            </if>
+            <if test="strataFee != null">
+                AND strata_fee = #{strataFee}
+            </if>
+            <if test="freeRentDate != null">
+                AND free_rent_date = #{freeRentDate}
+            </if>
+            <if test="payRule != null">
+                AND pay_rule = #{payRule}
+            </if>
+            <if test="increaseRule != null">
+                AND increase_rule = #{increaseRule}
+            </if>
+            <if test="taxRequest != null and taxRequest != ''">
+                AND tax_request = #{taxRequest}
+            </if>
+            <if test="taxes != null and taxes != ''">
+                AND taxes = #{taxes}
+            </if>
+            <if test="restrictIndustry != null and restrictIndustry != ''">
+                AND restrict_industry = #{restrictIndustry}
+            </if>
+            <if test="showVideo != null and showVideo != ''">
+                AND show_video = #{showVideo}
+            </if>
+            <if test="showPicture != null and showPicture != ''">
+                AND show_picture = #{showPicture}
+            </if>
+            <if test="expEmpCode != null">
+                AND exp_emp_code = #{expEmpCode}
+            </if>
+            <if test="expEmpName != null">
+                AND exp_emp_name = #{expEmpName}
+            </if>
+            <if test="expEmpPhone != null">
+                AND exp_emp_phone = #{expEmpPhone}
+            </if>
+            <if test="expEmpCpyName != null">
+                AND exp_emp_cpy_name = #{expEmpCpyName}
+            </if>
+            <if test="score != null">
+                AND score = #{score}
+            </if>
+            <if test="assessResult != null">
+                AND assess_result = #{assessResult}
+            </if>
+            <if test="expStatus != null">
+                AND exp_status = #{expStatus}
+            </if>
+
+
+            <if test="cpyCode != null and cpyCode != ''">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null and cpyName != ''">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="ownerCode != null and ownerCode != ''">
+                AND owner_code = #{ownerCode}
+            </if>
+            <if test="ownerName != null and ownerName != ''">
+                AND owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptCode != null and ownerDeptCode != ''">
+                AND owner_dept_code = #{ownerDeptCode}
+            </if>
+            <if test="ownerDeptName != null and ownerDeptName != ''">
+                AND owner_dept_name = #{deptName}
+            </if>
+            <if test="createCode != null and createCode != ''">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null and createName != ''">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null and createDeptCode != ''">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="createDeptName != null and createDeptName != ''">
+                AND create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateCode != null and lastUpdateCode != ''">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null and lastUpdateName != ''">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime}
+            </if>
+            <if test="lastUpdateTime != null">
+                AND last_update_time = #{lastUpdateTime}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND
+                (
+                park_owner_cpy_name like '%' || #{keyword} ||'%' or
+                park_owner_name like '%' || #{keyword} ||'%' or
+                park_owner_phone like '%' || #{keyword} ||'%' or
+                address like '%' || #{keyword} ||'%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap">
+        SELECT * FROM t_yq_exp_invpark_building
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_exp_invpark_building
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap" resultType="com.kfwy.park.exp.house.building.entity.InvparkEntity">
+        SELECT * FROM t_yq_exp_invpark_building
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_exp_invpark_building
+        <include refid="selectSql"/>
+    </select>
+</mapper>

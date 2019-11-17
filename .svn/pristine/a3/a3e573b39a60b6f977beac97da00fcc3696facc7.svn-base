@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kfwy.park.pro.house.building.entity.ParkEntity">
+    <resultMap id="baseResultMap" type="com.kfwy.park.pro.house.building.entity.ParkEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="long"/>
+        <result column="cpy_code" property="cpyCode" jdbcType="VARCHAR"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR"/>
+
+        <result column="pk_code" property="pkCode" jdbcType="VARCHAR"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR"/>
+        <result column="min_rent_area" property="minRentArea" jdbcType="NUMERIC"/>
+        <result column="average_price" property="averagePrice" jdbcType="NUMERIC"/>
+        <result column="land_block" property="landBlock" jdbcType="VARCHAR"/>
+        <result column="estate_year" property="estateYear" jdbcType="NUMERIC"/>
+        <result column="use_elec_total" property="useElecTotal" jdbcType="NUMERIC"/>
+        <result column="road_width" property="roadWidth" jdbcType="NUMERIC"/>
+         <result column="property_cost" property="propertyCost" jdbcType="NUMERIC"/>
+        <result column="rentable_area" property="rentableArea" jdbcType="NUMERIC"/>
+        <result column="longest_lease" property="longestLease" jdbcType="NUMERIC"/>
+        <result column="shortest_lease" property="shortestLease" jdbcType="NUMERIC"/>
+        <result column="building_total" property="buildingTotal" jdbcType="NUMERIC"/>
+        <result column="industry_restrictions" property="industryRestrictions" jdbcType="VARCHAR"/>
+        <result column="acreage" property="acreage" jdbcType="NUMERIC"/>
+        <result column="area_rate" property="areaRate" jdbcType="NUMERIC"/>
+        <result column="rent_invest_area" property="rentInvestArea" jdbcType="NUMERIC"/>
+        <result column="invest_area" property="investArea" jdbcType="NUMERIC"/>
+        <result column="investment_vacant_land" property="investmentVacantland" jdbcType="NUMERIC"/>
+        <result column="parking_space" property="parkingSpace" jdbcType="INTEGER"/>
+
+        <result column="has_register" property="hasRegister" jdbcType="BOOLEAN"/>
+        <result column="has_certify" property="hasCertify" jdbcType="BOOLEAN"/>
+        <result column="has_eia" property="hasEia" jdbcType="BOOLEAN"/>
+        <result column="has_sewage_certify" property="hasSewageCertify" jdbcType="BOOLEAN"/>
+        <result column="has_canteen" property="hasCanteen" jdbcType="BOOLEAN"/>
+        <result column="has_pub_booth" property="hasPubBooth" jdbcType="BOOLEAN"/>
+        <result column="has_office_build" property="hasOfficeBuild" jdbcType="BOOLEAN"/>
+        <result column="has_canopy" property="hasCanopy" jdbcType="BOOLEAN"/>
+        <result column="has_car_park" property="hasCarPark" jdbcType="BOOLEAN"/>
+        <result column="has_load_dock" property="hasLoadDock" jdbcType="BOOLEAN"/>
+        <result column="has_supermarket" property="hasSupermarket" jdbcType="BOOLEAN"/>
+        <result column="has_chargingPile" property="hasChargingPile" jdbcType="BOOLEAN"/>
+
+        <result column="territory_type" property="territoryType" jdbcType="VARCHAR"/>
+        <result column="territory_type_name" property="territoryTypeName" jdbcType="VARCHAR"/>
+        <result column="province_code" property="provinceCode" jdbcType="VARCHAR"/>
+        <result column="city_code" property="cityCode" jdbcType="VARCHAR"/>
+        <result column="region_code" property="regionCode" jdbcType="VARCHAR"/>
+        <result column="street_code" property="streetCode" jdbcType="VARCHAR"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR"/>
+        <result column="street_name" property="streetName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+
+
+        <result column="lead_trade" property="leadTrade" jdbcType="VARCHAR"/>
+        <result column="traffic_matching" property="trafficMatching" jdbcType="VARCHAR"/>
+        <result column="favoured_policy" property="favouredPolicy" jdbcType="VARCHAR"/>
+
+        <result column="park_video" property="parkVideo" jdbcType="VARCHAR"/>
+        <result column="out_picture" property="outPicture" jdbcType="VARCHAR"/>
+        <result column="aerial_view" property="aerialView" jdbcType="VARCHAR"/>
+        <result column="business_start_day" property="businessStartDay" jdbcType="TIMESTAMP"/>
+        <result column="business_end_day" property="businessEndDay" jdbcType="TIMESTAMP"/>
+        <result column="meter_reading" property="meterReading" jdbcType="VARCHAR"/>
+        <result column="use_elec_surplus" property="useElecSurplus" jdbcType="NUMERIC"/>
+        <result column="park_status" property="parkStatus" jdbcType="VARCHAR"/>
+
+
+        <result column="create_code" property="createCode" jdbcType="VARCHAR"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR"/>
+        <result column="create_dept_code" property="createDeptCode" jdbcType="VARCHAR"/>
+        <result column="last_update_code" property="lastUpdateCode" jdbcType="VARCHAR"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN"/>
+
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_yq_pro_hos_park
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code,
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name,
+                </if>
+
+                <if test="i.minRentArea != null  ">
+                    min_rent_area,
+                </if>
+                <if test="i.averagePrice != null  ">
+                    average_price,
+                </if>
+
+                <if test="i.landBlock != null and i.landBlock !=''">
+                    land_block,
+                </if>
+                <if test="i.estateYear != null  ">
+                    estate_year,
+                </if>
+                <if test="i.useElecTotal != null  ">
+                    use_elec_total,
+                </if>
+                <if test="i.roadWidth != null">
+                    road_width,
+                </if>
+                <if test="i.propertyCost != null">
+                    property_cost,
+                </if>
+               <if test="i.rentableArea != null">
+                    rentable_area,
+                </if>
+                <if test="i.longestLease != null">
+                    longest_lease,
+                </if>
+                <if test="i.shortestLease != null">
+                    shortest_lease,
+                </if>
+                 <if test="i.buildingTotal != null">
+                    building_total,
+                </if>
+                <if test="i.industryRestrictions != null and i.industryRestrictions !=''">
+                    industry_restrictions,
+                </if>
+               <if test="i.acreage != null">
+                    acreage,
+                </if>
+               <if test="i.areaRate != null">
+                   area_rate,
+                </if>
+                <if test="i.rentInvestArea != null">
+                    rent_invest_area,
+                </if>
+                <if test="i.investArea != null">
+                    invest_area,
+                </if>
+                <if test="i.investmentVacantland != null">
+                    investment_vacant_land,
+                </if>
+                <if test="i.parkingSpace != null">
+                    parking_space,
+                </if>
+
+                <if test="i.hasRegister != null">
+                    has_register,
+                </if>
+                <if test="i.hasCertify != null">
+                    has_certify,
+                </if>
+                <if test="i.hasEia != null">
+                    has_eia,
+                </if>
+                <if test="i.hasSewageCertify != null">
+                    has_sewage_certify,
+                </if>
+                <if test="i.hasCanteen != null">
+                    has_canteen,
+                </if>
+                <if test="i.hasPubBooth != null">
+                    has_pub_booth,
+                </if>
+                <if test="i.hasOfficeBuild != null">
+                    has_office_build,
+                </if>
+                <if test="i.hasCanopy != null">
+                    has_canopy,
+                </if>
+                <if test="i.hasCarPark != null">
+                    has_car_park,
+                </if>
+                <if test="i.hasLoadDock != null">
+                    has_load_dock,
+                </if>
+                <if test="i.hasSupermarket != null">
+                    has_supermarket,
+                </if>
+                <if test="i.hasChargingPile != null">
+                    has_chargingPile,
+                </if>
+
+
+                <if test="i.territoryType != null and i.territoryType !=''">
+                    territory_type,
+                </if>
+                <if test="i.territoryTypeName != null and i.territoryTypeName !=''">
+                    territory_type_name,
+                </if>
+                <if test="i.provinceCode != null and i.provinceCode !=''">
+                    province_code,
+                </if>
+                <if test="i.cityCode != null and i.cityCode !=''">
+                    city_code,
+                </if>
+                <if test="i.regionCode != null and i.regionCode !=''">
+                    region_code,
+                </if>
+                <if test="i.streetCode != null and i.streetCode !=''">
+                    street_code,
+                </if>
+                <if test="i.provinceName != null and i.provinceName !=''">
+                    province_name,
+                </if>
+                <if test="i.cityName != null and i.cityName !=''">
+                    city_name,
+                </if>
+                <if test="i.regionName != null and i.regionName !=''">
+                    region_name,
+                </if>
+                <if test="i.streetName != null and i.streetName !=''">
+                    street_name,
+                </if>
+                <if test="i.address != null and i.address !=''">
+                    address,
+                </if>
+
+                <if test="i.leadTrade != null and i.leadTrade !=''">
+                    lead_trade,
+                </if>
+                <if test="i.trafficMatching != null and i.trafficMatching !=''">
+                    traffic_matching,
+                </if>
+                <if test="i.favouredPolicy != null and i.favouredPolicy !=''">
+                    favoured_policy,
+                </if>
+
+                <if test="i.parkVideo != null and i.parkVideo !=''">
+                    park_video,
+                </if>
+                <if test="i.outPicture != null and i.outPicture !=''">
+                    out_picture,
+                </if>
+                <if test="i.aerialView != null and i.aerialView !=''">
+                    aerial_view,
+                </if>
+
+                <if test="i.businessStartDay != null">
+                    business_start_day,
+                </if>
+                <if test="i.businessEndDay != null">
+                    business_end_day,
+                </if>
+                <if test="i.meterReading != null and i.meterReading !=''">
+                    meter_reading,
+                </if>
+                <if test="i.useElecSurplus != null">
+                    use_elec_surplus,
+                </if>
+                <if test="i.parkStatus != null and i.parkStatus !=''">
+                    park_status,
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code,
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    #{i.pkName},
+                </if>
+                <if test="i.minRentArea != null  ">
+                    #{i.minRentArea},
+                </if>
+                <if test="i.averagePrice != null  ">
+                    #{i.averagePrice},
+                </if>
+
+                <if test="i.landBlock != null and i.landBlock !=''">
+                    #{i.landBlock},
+                </if>
+                <if test="i.estateYear != null  ">
+                    #{i.estateYear},
+                </if>
+                <if test="i.useElecTotal != null  ">
+                    #{i.useElecTotal},
+                </if>
+                <if test="i.roadWidth != null">
+                    #{i.roadWidth},
+                </if>
+                <if test="i.propertyCost != null">
+                    #{i.propertyCost},
+                </if>
+                <if test="i.rentableArea != null">
+                    #{i.rentableArea},
+                </if>
+               <if test="i.longestLease != null">
+                    #{i.longestLease},
+                </if>
+                <if test="i.shortestLease != null">
+                    #{i.shortestLease},
+                </if>
+                <if test="i.buildingTotal != null">
+                    #{i.buildingTotal},
+                </if>
+                <if test="i.industryRestrictions != null and i.industryRestrictions !=''">
+                    #{i.industryRestrictions},
+                </if>
+                <if test="i.acreage != null">
+                    #{i.acreage},
+                </if>
+                <if test="i.areaRate != null">
+                    #{i.areaRate},
+                </if>
+                <if test="i.rentInvestArea != null">
+                    #{i.rentInvestArea},
+                </if>
+                <if test="i.investArea != null">
+                    #{i.investArea},
+                </if>
+                <if test="i.investmentVacantland != null">
+                    #{i.investmentVacantland},
+                </if>
+                <if test="i.parkingSpace != null">
+                    #{i.parkingSpace},
+                </if>
+
+                <if test="i.hasRegister != null">
+                    #{i.hasRegister},
+                </if>
+                <if test="i.hasCertify != null">
+                    #{i.hasCertify},
+                </if>
+                <if test="i.hasEia != null">
+                    #{i.hasEia},
+                </if>
+                <if test="i.hasSewageCertify != null">
+                    #{i.hasSewageCertify},
+                </if>
+                <if test="i.hasCanteen != null">
+                    #{i.hasCanteen},
+                </if>
+                <if test="i.hasPubBooth != null">
+                    #{i.hasPubBooth},
+                </if>
+                <if test="i.hasOfficeBuild != null">
+                    #{i.hasOfficeBuild},
+                </if>
+                <if test="i.hasCanopy != null">
+                    #{i.hasCanopy},
+                </if>
+                <if test="i.hasCarPark != null">
+                    #{i.hasCarPark},
+                </if>
+                <if test="i.hasLoadDock != null">
+                    #{i.hasLoadDock},
+                </if>
+                <if test="i.hasSupermarket != null">
+                    #{i.hasSupermarket},
+                </if>
+                <if test="i.hasChargingPile != null">
+                    #{i.hasChargingPile},
+                </if>
+
+
+                <if test="i.territoryType != null and i.territoryType !=''">
+                    #{i.territoryType},
+                </if>
+                <if test="i.territoryTypeName != null and i.territoryTypeName !=''">
+                    #{i.territoryTypeName},
+                </if>
+                <if test="i.provinceCode != null and i.provinceCode !=''">
+                    #{i.provinceCode},
+                </if>
+                <if test="i.cityCode != null and i.cityCode !=''">
+                    #{i.cityCode},
+                </if>
+                <if test="i.regionCode != null and i.regionCode !=''">
+                    #{i.regionCode},
+                </if>
+                <if test="i.streetCode != null and i.streetCode !=''">
+                    #{i.streetCode},
+                </if>
+                <if test="i.provinceName != null and i.provinceName !=''">
+                    #{i.provinceName},
+                </if>
+                <if test="i.cityName != null and i.cityName !=''">
+                    #{i.cityName},
+                </if>
+                <if test="i.regionName != null and i.regionName !=''">
+                    #{i.regionName},
+                </if>
+                <if test="i.streetName != null and i.streetName !=''">
+                    #{i.streetName},
+                </if>
+                <if test="i.address != null and i.address !=''">
+                    #{i.address},
+                </if>
+
+                <if test="i.leadTrade != null and i.leadTrade !=''">
+                    #{i.leadTrade},
+                </if>
+                <if test="i.trafficMatching != null and i.trafficMatching !=''">
+                    #{i.trafficMatching},
+                </if>
+                <if test="i.favouredPolicy != null and i.favouredPolicy !=''">
+                    #{i.favouredPolicy},
+                </if>
+
+
+                <if test="i.parkVideo != null and i.parkVideo !=''">
+                    #{i.parkVideo},
+                </if>
+                <if test="i.outPicture != null and i.outPicture !=''">
+                    #{i.outPicture},
+                </if>
+                <if test="i.aerialView != null and i.aerialView !=''">
+                    #{i.aerialView},
+                </if>
+
+                <if test="i.businessStartDay != null">
+                    #{i.businessStartDay},
+                </if>
+                <if test="i.businessEndDay != null">
+                    #{i.businessEndDay},
+                </if>
+                <if test="i.meterReading != null and i.meterReading !=''">
+                    #{i.meterReading},
+                </if>
+                <if test="i.useElecSurplus != null">
+                    #{i.useElecSurplus},
+                </if>
+                <if test="i.parkStatus != null and i.parkStatus !=''">
+                    #{i.parkStatus},
+                </if>
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    #{i.remark}
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="com.kfwy.park.pro.house.building.entity.ParkEntity">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_yq_pro_hos_park
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cpyCode != null and i.cpyCode != ''">
+                    cpy_code = #{i.cpyCode},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+                <if test="i.pkCode != null and i.pkCode != ''">
+                    pk_code = #{i.pkCode},
+                </if>
+                <if test="i.pkName != null and i.pkName != ''">
+                    pk_name = #{i.pkName},
+                </if>
+                <if test="i.minRentArea != null  ">
+                    min_rent_area = #{i.minRentArea},
+                </if>
+                <if test="i.averagePrice != null  ">
+                    average_price = #{i.averagePrice},
+                </if>
+
+                <if test="i.landBlock != null and i.landBlock !=''">
+                    land_block = #{i.landBlock},
+                </if>
+                <if test="i.estateYear != null  ">
+                    estate_year = #{i.estateYear},
+                </if>
+                <if test="i.useElecTotal != null ">
+                    use_elec_total = #{i.useElecTotal},
+                </if>
+                <if test="i.roadWidth != null">
+                    road_width = #{i.roadWidth},
+                </if>
+                <if test="i.propertyCost != null">
+                    property_cost = #{i.propertyCost},
+                </if>
+
+                <if test="i.rentableArea != null">
+                    rentable_area =#{i.rentableArea},
+                </if>
+                 <if test="i.longestLease != null">
+                    longest_lease =#{i.longestLease},
+                </if>
+                <if test="i.shortestLease != null">
+                    shortest_lease =#{i.shortestLease},
+                </if>
+                 <if test="i.buildingTotal != null">
+                    building_total = #{i.buildingTotal},
+                </if>
+                <if test="i.industryRestrictions != null and i.industryRestrictions !=''">
+                    industry_restrictions = #{i.industryRestrictions},
+                </if>
+                <if test="i.acreage != null">
+                    acreage =#{i.acreage},
+                </if>
+                <if test="i.areaRate != null">
+                    area_rate =#{i.areaRate},
+                </if>
+                <if test="i.rentInvestArea != null">
+                    rent_invest_area =#{i.rentInvestArea},
+                </if>
+                <if test="i.investArea != null">
+                    invest_area =#{i.investArea},
+                </if>
+                <if test="i.investmentVacantland != null">
+                    investment_vacant_land =#{i.investmentVacantland},
+                </if>
+                <if test="i.parkingSpace != null">
+                    parking_space =#{i.parkingSpace},
+                </if>
+
+
+                <if test="i.hasRegister != null">
+                    has_register = #{i.hasRegister},
+                </if>
+                <if test="i.hasCertify != null">
+                    has_certify = #{i.hasCertify},
+                </if>
+                <if test="i.hasEia != null">
+                    has_eia = #{i.hasEia},
+                </if>
+                <if test="i.hasSewageCertify != null">
+                    has_sewage_certify = #{i.hasSewageCertify},
+                </if>
+                <if test="i.hasCanteen != null">
+                    has_canteen = #{i.hasCanteen},
+                </if>
+                <if test="i.hasPubBooth != null">
+                    has_pub_booth = #{i.hasPubBooth},
+                </if>
+                <if test="i.hasOfficeBuild != null">
+                    has_office_build = #{i.hasOfficeBuild},
+                </if>
+                <if test="i.hasCanopy != null">
+                    has_canopy = #{i.hasCanopy},
+                </if>
+                <if test="i.hasCarPark != null">
+                    has_car_park = #{i.hasCarPark},
+                </if>
+                <if test="i.hasLoadDock != null">
+                    has_load_dock = #{i.hasLoadDock},
+                </if>
+                <if test="i.hasSupermarket != null">
+                    has_supermarket = #{i.hasSupermarket},
+                </if>
+                <if test="i.hasChargingPile != null">
+                    has_chargingPile = #{i.hasChargingPile},
+                </if>
+
+                <if test="i.territoryType != null and i.territoryType !=''">
+                    territory_type = #{i.territoryType},
+                </if>
+                <if test="i.territoryTypeName != null and i.territoryTypeName !=''">
+                    territory_type_name = #{i.territoryTypeName},
+                </if>
+                <if test="i.provinceCode != null and i.provinceCode !=''">
+                    province_code = #{i.provinceCode},
+                </if>
+                <if test="i.cityCode != null and i.cityCode !=''">
+                    city_code = #{i.cityCode},
+                </if>
+                <if test="i.regionCode != null and i.regionCode !=''">
+                    region_code = #{i.regionCode},
+                </if>
+                <if test="i.streetCode != null and i.streetCode !=''">
+                    street_code = #{i.streetCode},
+                </if>
+                <if test="i.provinceName != null and i.provinceName !=''">
+                    province_name = #{i.provinceName},
+                </if>
+                <if test="i.cityName != null and i.cityName !=''">
+                    city_name = #{i.cityName},
+                </if>
+                <if test="i.regionName != null and i.regionName !=''">
+                    region_name = #{i.regionName},
+                </if>
+                <if test="i.streetName != null and i.streetName !=''">
+                    street_name = #{i.streetName},
+                </if>
+                <if test="i.address != null and i.address !=''">
+                    address = #{i.address},
+                </if>
+
+                <if test="i.leadTrade != null and i.leadTrade !=''">
+                    lead_trade = #{i.leadTrade},
+                </if>
+
+                <if test="i.trafficMatching != null and i.trafficMatching !=''">
+                    traffic_matching = #{i.trafficMatching},
+                </if>
+                <if test="i.favouredPolicy != null and i.favouredPolicy !=''">
+                    favoured_policy = #{i.favouredPolicy},
+                </if>
+                <if test="i.parkVideo != null">
+                    park_video = #{i.parkVideo},
+                </if>
+                <if test="i.outPicture != null">
+                    out_picture = #{i.outPicture},
+                </if>
+                <if test="i.aerialView != null">
+                    aerial_view = #{i.aerialView},
+                </if>
+
+                <if test="i.businessStartDay != null">
+                    business_start_day = #{i.businessStartDay},
+                </if>
+                <if test="i.businessEndDay != null">
+                    business_end_day = #{i.businessEndDay},
+                </if>
+                <if test="i.meterReading != null and i.meterReading !=''">
+                    meter_reading = #{i.meterReading},
+                </if>
+                <if test="i.useElecSurplus != null">
+                    use_elec_surplus = #{i.useElecSurplus},
+                </if>
+                <if test="i.parkStatus != null and i.parkStatus !=''">
+                    park_status = #{i.parkStatus},
+                </if>
+
+
+                <if test="i.createCode != null and i.createCode != ''">
+                    create_code = #{i.createCode},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptCode != null and i.createDeptCode != ''">
+                    create_dept_code = #{i.createDeptCode},
+                </if>
+                <if test="i.lastUpdateCode != null and i.lastUpdateCode != ''">
+                    last_update_code = #{i.lastUpdateCode},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.remark != null and i.remark!=''">
+                    remark = #{i.remark}
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                <if test="i.id != null">
+                    AND id = #{i.id}
+                </if>
+                <if test="i.pkCode != null">
+                    AND pk_code = #{i.pkCode}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_yq_pro_hos_park WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="id != null">
+                AND ID = #{id}
+            </if>
+            <if test="pkCode != null">
+                AND pk_code = #{pkCode}
+            </if>
+
+            <if test="cpyCode != null">
+                AND cpy_code = #{cpyCode}
+            </if>
+            <if test="cpyName != null">
+                AND cpy_name = #{cpyName}
+            </if>
+            <if test="pkName != null">
+                AND pk_name = #{pkName}
+            </if>
+            <if test="minRentArea != null">
+                AND min_rent_area = #{minRentArea}
+            </if>
+            <if test="averagePrice != null">
+                AND average_price = #{averagePrice}
+            </if>
+
+            <if test="landBlock != null">
+                AND land_block = #{landBlock}
+            </if>
+            <if test="estateYear != null">
+                AND estate_year = #{estateYear}
+            </if>
+            <if test="useElecTotal != null">
+                AND use_elec_total = #{useElecTotal}
+            </if>
+            <if test="roadWidth != null">
+                AND road_width = #{roadWidth}
+            </if>
+             <if test="propertyCost != null">
+                AND property_cost = #{propertyCost}
+            </if>
+            <if test="rentableArea != null">
+                AND rentable_area =#{rentableArea}
+            </if>
+             <if test="longestLease != null">
+                AND longest_lease =#{longestLease}
+            </if>
+            <if test="shortestLease != null">
+                AND shortest_lease =#{shortestLease}
+            </if>
+             <if test="buildingTotal != null">
+                AND building_total =#{buildingTotal}
+            </if>
+            <if test="industryRestrictions">
+                AND industry_restrictions =#{industryRestrictions}
+            </if>
+            <if test="acreage != null">
+                AND acreage =#{acreage}
+            </if>
+            <if test="areaRate != null">
+                AND area_rate =#{areaRate}
+            </if>
+            <if test="rentInvestArea != null">
+                AND rent_invest_area =#{rentInvestArea}
+            </if>
+            <if test="investArea != null">
+                AND invest_area = #{investArea}
+            </if>
+            <if test="investmentVacantland != null">
+                AND investment_vacant_land =#{investmentVacantland}
+            </if>
+            <if test="parkingSpace != null">
+                AND parking_space =#{parkingSpace}
+            </if>
+
+            <if test="hasRegister != null">
+                AND has_register = #{hasRegister}
+            </if>
+            <if test="hasCertify != null">
+                AND has_certify = #{hasCertify}
+            </if>
+            <if test="hasEia != null">
+                AND has_eia = #{hasEia}
+            </if>
+            <if test="hasSewageCertify != null">
+                AND has_sewage_certify = #{hasSewageCertify}
+            </if>
+            <if test="hasCanteen != null">
+                AND has_canteen = #{hasCanteen}
+            </if>
+            <if test="hasPubBooth != null">
+                AND has_pub_booth = #{hasPubBooth}
+            </if>
+            <if test="hasOfficeBuild != null">
+                AND has_office_build = #{hasOfficeBuild}
+            </if>
+            <if test="hasCanopy != null">
+                AND has_canopy = #{hasCanopy}
+            </if>
+            <if test="hasCarPark != null">
+                AND has_car_park = #{hasCarPark}
+            </if>
+            <if test="hasLoadDock != null">
+                AND has_load_dock = #{hasLoadDock}
+            </if>
+            <if test="hasSupermarket != null">
+                AND has_supermarket = #{hasSupermarket}
+            </if>
+            <if test="hasChargingPile != null">
+                AND has_chargingPile = #{hasChargingPile}
+            </if>
+
+            <if test="territoryType != null">
+                AND territory_type = #{territoryType}
+            </if>
+            <if test="territoryTypeName != null and territoryTypeName !=''">
+                AND territory_type_name = #{territoryTypeName}
+            </if>
+            <if test="provinceCode != null">
+                AND province_code = #{provinceCode}
+            </if>
+            <if test="cityCode != null">
+                AND city_code = #{cityCode}
+            </if>
+            <if test="regionCode != null">
+                AND region_code = #{regionCode}
+            </if>
+            <if test="streetCode != null">
+                AND street_code = #{streetCode}
+            </if>
+            <if test="provinceName != null">
+                AND province_name = #{provinceName}
+            </if>
+            <if test="cityName != null">
+                AND city_name = #{cityName}
+            </if>
+            <if test="regionName != null">
+                AND region_name = #{regionName}
+            </if>
+            <if test="streetName != null">
+                AND street_name = #{streetName}
+            </if>
+            <if test="address != null">
+                AND address = #{address}
+            </if>
+
+            <if test="leadTrade != null">
+                AND lead_trade = #{leadTrade}
+            </if>
+
+            <if test="trafficMatching != null">
+                AND traffic_matching = #{trafficMatching}
+            </if>
+            <if test="favouredPolicy != null">
+                AND favoured_policy = #{favouredPolicy}
+            </if>
+            <if test="parkVideo != null">
+                AND park_video = #{parkVideo}
+            </if>
+            <if test="outPicture != null">
+                AND out_picture = #{outPicture}
+            </if>
+            <if test="aerialView != null">
+                AND aerial_view = #{aerialView}
+            </if>
+
+            <if test="businessStartDay != null">
+                AND business_start_day = #{businessStartDay}
+            </if>
+            <if test="businessEndDay != null">
+                AND business_end_day = #{businessEndDay}
+            </if>
+            <if test="meterReading != null">
+                AND meter_reading = #{meterReading}
+            </if>
+            <if test="useElecSurplus != null">
+                AND use_elec_surplus = #{useElecSurplus}
+            </if>
+            <if test="parkStatus != null">
+                AND  park_status = #{parkStatus}
+            </if>
+
+
+            <if test="createCode != null">
+                AND create_code = #{createCode}
+            </if>
+            <if test="createName != null">
+                AND create_name = #{createName}
+            </if>
+            <if test="createDeptCode != null">
+                AND create_dept_code = #{createDeptCode}
+            </if>
+            <if test="lastUpdateCode != null">
+                AND last_update_code = #{lastUpdateCode}
+            </if>
+            <if test="lastUpdateName != null">
+                AND last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND create_time <![CDATA[ >= ]]>  #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND create_time <![CDATA[ <= ]]>  #{createTimeEnd}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+            <if test="isDeleted != null">
+                AND is_deleted = #{isDeleted}
+            </if>
+
+            <!--关键字-->
+            <if test="keyword != null and keyword !=''">
+                AND
+                (
+                pk_code like '%' || #{keyword} ||'%' or
+                pk_name like '%' || #{keyword} ||'%' or
+                address like '%' || #{keyword} ||'%'
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.house.building.entity.ParkEntity">
+        SELECT * FROM t_yq_pro_hos_park
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_hos_park
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="baseResultMap"
+            resultType="com.kfwy.park.pro.house.building.entity.ParkEntity">
+        SELECT * FROM t_yq_pro_hos_park
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(id) FROM t_yq_pro_hos_park
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过pkCode查询园区地址 -->
+    <select id="selectByPkCode" parameterType="string" resultMap="baseResultMap">
+        SELECT * FROM t_yq_pro_hos_park
+        WHERE pk_code = #{_parameter}
+    </select>
+
+    <!-- 查询总招商面积、总可租用面积 -->
+    <select id="selectParkAcreageSum" parameterType="java.util.Map" resultMap="baseResultMap">
+        select sum(acreage) as "acreage",sum(rentable_area) as "rentable_area" from t_yq_pro_hos_park
+         where cpy_code = #{cpyCode}
+    </select>
+
+    <!-- 查询园区所在的城市 -->
+    <select id="selectAllCity" parameterType="java.util.Map" resultMap="baseResultMap">
+        select distinct(city_code),(city_name) from t_yq_pro_hos_park
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询所有大区-->
+    <select id="selectAllTerritory" parameterType="java.util.Map" resultType="com.kfwy.park.pro.house.building.entity.ParkEntity">
+      SELECT DISTINCT (territory_type) as territoryType,territory_type_name as territoryTypeName FROM t_yq_pro_hos_park where cpy_code = #{cpyCode}
+      <if test="isDeleted != null">
+          AND is_deleted = #{isDeleted}
+      </if>
+    </select>
+
+</mapper>
